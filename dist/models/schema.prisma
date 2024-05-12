@@ -1,0 +1,374 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider      = "prisma-client-js"
+  output        = "../src/models"
+  binaryTargets = ["native", "debian-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model admin {
+  id                   Int      @id @default(autoincrement())
+  fullname             String
+  username             String   @unique
+  email                String   @unique
+  role                 Role     @default(Admin)
+  profile_image        String
+  password             String
+  reset_password_token String?  @unique
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model inspection_review {
+  id                        Int      @id @default(autoincrement())
+  facility                  facility @relation(fields: [facility_id], references: [id], onDelete: Cascade)
+  facility_id               Int      @unique
+  cac                       Boolean
+  owner_nin                 Boolean
+  services_offered          Boolean
+  number_of_bed             Boolean
+  source_of_water           Boolean
+  method_of_disposal        Boolean
+  site_plan                 Boolean
+  building_plan             Boolean
+  compliance_certificate    Boolean?
+  tax_clearance_certificate Boolean
+  facility_personnel_count  Boolean
+  facility_personnel        Boolean
+  review                    String
+  status                    Status
+  createdAt                 DateTime @default(now())
+  updatedAt                 DateTime @updatedAt
+}
+
+model inspector {
+  id                   Int        @id @default(autoincrement())
+  fullname             String
+  username             String     @unique
+  email                String     @unique
+  phone_number         String
+  address              String
+  role                 Role       @default(Inspector)
+  lga                  String?
+  profile_image        String
+  password             String
+  reset_password_token String?    @unique
+  createdAt            DateTime   @default(now())
+  updatedAt            DateTime   @updatedAt
+  facility             facility[]
+}
+
+model state {
+  id               Int                @id @default(autoincrement())
+  name             String
+  local_government local_government[]
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+}
+
+model local_government {
+  id        Int      @id @default(autoincrement())
+  name      String
+  state     state    @relation(fields: [state_id], references: [id], onDelete: Cascade)
+  state_id  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model users {
+  id                   Int                  @id @default(autoincrement())
+  fullname             String
+  email                String               @unique
+  phone_number         String               @unique
+  address              String
+  type                 Type
+  practice_id          String               @unique
+  practice_certificate String?
+  enugu_practice_id    String               @unique
+  specialization       String?
+  nin                  String               @unique
+  nin_image            String?
+  lga                  String?
+  state                String?
+  gender               String?
+  expiry_date          String
+  nin_status           Status               @default(Pending)
+  practice_id_status   Status               @default(Pending)
+  status               Status               @default(Pending)
+  facility_personnel   facility_personnel[]
+  passport             String?
+  password             String?
+  reset_password_token String?              @unique
+  certificate_url      String?
+  createdAt            DateTime             @default(now())
+  updatedAt            DateTime             @updatedAt
+}
+
+model food_handlers {
+  id                      Int                       @id @default(autoincrement())
+  fullname                String
+  email                   String                    @unique
+  phone_number            String                    @unique
+  address                 String
+  enugu_handler_id        String                    @unique
+  nin                     String                    @unique
+  nin_image               String?
+  lga                     String?
+  state                   String?
+  gender                  String?
+  food_facility_personnel food_facility_personnel[]
+  expiry_date             String
+  nin_status              Status                    @default(Pending)
+  status                  Status                    @default(Pending)
+  passport                String?
+  password                String?
+  reset_password_token    String?                   @unique
+  certificate_url         String?
+  createdAt               DateTime                  @default(now())
+  updatedAt               DateTime                  @updatedAt
+}
+
+model personnel_payment {
+  id              Int      @id @default(autoincrement())
+  fullname        String
+  email           String
+  amount          String
+  reference       String   @unique
+  phone_number    String
+  type            String
+  type_of_payment String?
+  status          String
+  has_registered  Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model facility_payment {
+  id              Int      @id @default(autoincrement())
+  facility_name   String
+  email           String
+  amount          String
+  reference       String   @unique
+  phone_number    String
+  type            String
+  type_of_payment String?
+  status          String
+  has_registered  Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model facility_complete_payment {
+  id              Int      @id @default(autoincrement())
+  facility_name   String
+  email           String
+  amount          String
+  reference       String   @unique
+  phone_number    String
+  type            String
+  type_of_payment String?
+  status          String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model revokedToken {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model facility {
+  id                             Int                  @id @default(autoincrement())
+  facility_name                  String
+  location                       String
+  cac                            String               @unique
+  cac_image                      String?
+  owner_name                     String
+  owner_phone_number             String
+  owner_contact_address          String
+  owner_nin                      String
+  owner_nin_image                String?
+  owner_passport                 String?
+  owner_email                    String
+  owner_gender                   String?
+  lga                            String?
+  facility_sector                Sector
+  facility_type                  Facility_Type
+  facility_level                 Level
+  personnel_incharge             String?
+  personnel_incharge_name        String?
+  personnel_incharge_practice_id String?
+  supervising_doctor_name        String?
+  supervising_doctor_practice_id String?
+  services_offered               String
+  landmark                       String?
+  number_of_bed                  Int
+  source_of_water                String
+  method_of_disposal             String
+  site_plan                      String
+  building_plan                  String
+  tax_clearance_certificate      String
+  compliance_certificate         String?
+  facility_personnel             facility_personnel[]
+  inspection_review              inspection_review[]
+  facility_personnel_count       Json?
+  expiry_date                    String?
+  enugu_facility_id              String               @unique
+  reference                      String               @unique
+  current_reference              String?              @unique
+  password                       String?
+  reset_password_token           String?              @unique
+  inspector                      inspector?           @relation(fields: [assigned_inspector], references: [id], onDelete: Cascade)
+  assigned_inspector             Int?
+  inspection_date                DateTime?
+  is_inspected                   Boolean              @default(false)
+  certificate_url                String?
+  cac_status                     Status
+  status                         Status
+  createdAt                      DateTime             @default(now())
+  updatedAt                      DateTime             @updatedAt
+}
+
+model facility_personnel {
+  id                Int      @id @default(autoincrement())
+  facility          facility @relation(fields: [facility_id], references: [id], onDelete: Cascade)
+  facility_id       Int
+  user              users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id           Int
+  enugu_practice_id String
+  type              String
+  createdAt         DateTime @default(now())
+}
+
+model food_facility {
+  id                       Int                       @id @default(autoincrement())
+  facility_name            String
+  location                 String
+  cac                      String
+  cac_image                String?
+  owner_name               String
+  owner_phone_number       String
+  owner_contact_address    String
+  owner_nin                String
+  owner_nin_image          String?
+  owner_email              String
+  lga                      String?
+  landmark                 String?
+  source_of_water          String
+  method_of_disposal       String
+  food_facility_personnel  food_facility_personnel[]
+  category                 Category?
+  facility_personnel_count Json?
+  expiry_date              String?
+  enugu_food_facility_id   String                    @unique
+  reference                String                    @unique
+  current_reference        String?                   @unique
+  password                 String?
+  reset_password_token     String?                   @unique
+  cac_status               Status
+  status                   Status
+  createdAt                DateTime                  @default(now())
+  updatedAt                DateTime                  @updatedAt
+}
+
+model food_facility_personnel {
+  id               Int           @id @default(autoincrement())
+  food_facility    food_facility @relation(fields: [food_facility_id], references: [id], onDelete: Cascade)
+  food_facility_id Int
+  food_handler     food_handlers @relation(fields: [food_handler_id], references: [id], onDelete: Cascade)
+  food_handler_id  Int
+  enugu_handler_id String
+  createdAt        DateTime      @default(now())
+}
+
+enum Status {
+  Pending
+  Rejected
+  Approved
+  Inactive
+  Active
+  Suspend
+  Verified
+}
+
+enum Role {
+  User
+  Inspector
+  Admin
+  Subadmin_facility
+  Subadmin_foodhandler
+  Subadmin_personnel
+}
+
+enum Type {
+  Doctor
+  Nurse
+  Pharmacist
+  Radiographer
+  Mid_wife
+  Dentist
+  Lab_Scientist
+  Optometrist
+  Physiotherapist
+  Psychiatrist
+  Community_health_worker
+  Emergency_medical_technician
+  Other
+}
+
+enum Facility_Type {
+  Specialist_hospital
+  Specialist_eye_hospital
+  Specialist_clinic
+  General_hospital
+  Outpatient_medical_clinic
+  Maternity_home
+  Grade_1_medical_lab
+  Grade_2_medical_lab
+  Grade_3_medical_lab
+  Grade_4_medical_lab
+  Dental_center
+  Dental_clinic
+  Eye_clinic
+  Eye_center
+  Xray_center
+  Physiotherapy_center
+  Radiotherapy_center
+  Mortuary
+  Ultrasound
+}
+
+enum Sector {
+  Private_sector_non_profit
+  Private_sector_profit
+  Federal_government_agency
+  State_government_agency
+  Local_government_agency
+}
+
+enum Level {
+  Primary
+  Secondary
+  Tertiary
+}
+
+enum Category {
+  Three_star_hotel
+  Regular
+  Motel
+  Fine_dining
+  Casual_dining
+  Cafes_and_Bistros
+  Buffet
+  Fast_food
+}

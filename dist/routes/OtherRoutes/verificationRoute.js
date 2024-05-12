@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.verificationRouter = void 0;
+const express_1 = __importDefault(require("express"));
+const verificationController_1 = require("../../controllers/OtherController/verificationController");
+exports.verificationRouter = express_1.default.Router();
+exports.verificationRouter.post('/verify-nin', verificationController_1.verifyNIN);
+exports.verificationRouter.post('/verify-cac', verificationController_1.verifyCAC);
+exports.verificationRouter.get('/verify-health-personnel', verificationController_1.verifyPersonnel);
+exports.verificationRouter.get('/verify-health-facility', verificationController_1.verifyFacility);
+exports.verificationRouter.get('/verify-food-handler-personnel', verificationController_1.verifyFoodPersonnel);
+exports.verificationRouter.get('/verify-food-vendor-facility', verificationController_1.verifyFoodFacility);
+exports.verificationRouter.get('/verify-personnel-payment', verificationController_1.verificationPaymentHandler);
+exports.verificationRouter.get('/verify-facility-payment', verificationController_1.verificationFacilityPaymentHandler);
+exports.verificationRouter.get('/verify-food-handler-personnel-payment', verificationController_1.verificationFoodPaymentHandler);
+exports.verificationRouter.get('/verify-food-vendor-facility-payment', verificationController_1.verificationFoodFacilityPaymentHandler);
+exports.verificationRouter.post('/check-payment', verificationController_1.checkReference);
