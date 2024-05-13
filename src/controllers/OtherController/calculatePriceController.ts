@@ -63,10 +63,42 @@ export async function facilityPriceList(request: Request, response: Response) {
             if (!errors.isEmpty()) {
             return response.status(400).json({ errors: errors.array() });
             }
+            let beds_range
+            if (type === "Specialist_hospital" || type === "Specialist_clinic") {
+                if (number_of_beds > 10) {
+                    beds_range = "above 10"
+                } else if (number_of_beds >= 6 && number_of_beds <= 10) {
+                    beds_range = "6 to 10"
+                } else if (number_of_beds >= 1 && number_of_beds <= 5) {
+                    beds_range = "1 to 5"
+                } else {
+                    beds_range = "without bed"
+                }
+              } else if (type === "General_hospital") {
+                if (number_of_beds > 50) {
+                    beds_range = "above 50"
+                } else if (number_of_beds >= 31 && number_of_beds <= 50) {
+                    beds_range = "30 to 50"
+                } else if (number_of_beds >= 10 && number_of_beds <= 30) {
+                    beds_range = "10 to 30"
+                } else {
+                    beds_range = "less than 10"
+                }
+              } else if (type === "Maternity_home") {
+                if (number_of_beds > 30) {
+                    beds_range = "above 30"
+                } else if (number_of_beds >= 21 && number_of_beds <= 30) {
+                    beds_range = "21 to 30"
+                } else if (number_of_beds >= 11 && number_of_beds <= 20) {
+                    beds_range = "11 to 20"
+                } else {
+                    beds_range = "1 to 10"
+                }
+              }
 
             // Attempt to fetch the price list for the provided type
             const price = await prisma.facility_price_list.findFirst({
-                where: { facility_type: type, number_of_beds }
+                where: { facility_type: type, number_of_beds: beds_range }
             });
 
             // Check if a price list entry was found
