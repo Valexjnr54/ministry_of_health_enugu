@@ -406,13 +406,13 @@ exports.Prisma.Facility_price_listScalarFieldEnum = {
   first_time_reg: 'first_time_reg',
   first_time_charge: 'first_time_charge',
   renewal_fee: 'renewal_fee',
-  renewal_charge: 'renewal_charge'
-};
-
-exports.Prisma.Facility_constant_price_listScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  amount: 'amount'
+  renewal_charge: 'renewal_charge',
+  verification_fee: 'verification_fee',
+  verification_charge: 'verification_charge',
+  certificate_fee: 'certificate_fee',
+  certificate_charge: 'certificate_charge',
+  inspection_fee: 'inspection_fee',
+  inspection_charge: 'inspection_charge'
 };
 
 exports.Prisma.Personnel_price_listScalarFieldEnum = {
@@ -421,6 +421,7 @@ exports.Prisma.Personnel_price_listScalarFieldEnum = {
   application_fee: 'application_fee',
   application_charge: 'application_charge',
   enugu_ID_certificate: 'enugu_ID_certificate',
+  certificate_charge: 'certificate_charge',
   renewal_fee: 'renewal_fee',
   renewal_charge: 'renewal_charge'
 };
@@ -552,7 +553,6 @@ exports.Prisma.ModelName = {
   food_facility: 'food_facility',
   food_facility_personnel: 'food_facility_personnel',
   facility_price_list: 'facility_price_list',
-  facility_constant_price_list: 'facility_constant_price_list',
   personnel_price_list: 'personnel_price_list'
 };
 

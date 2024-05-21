@@ -1,5 +1,5 @@
 // src/app.ts
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import rateLimiter from './middlewares/rateLimitMiddleware';
 import cors from 'cors';
 import { Config } from './config/config';
@@ -139,5 +139,11 @@ app.use(route , searchRouter)
 // Verification Routes Ends
 
 app.use(express.urlencoded({ extended: true }));
+
+// Error handling middleware
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
 
 export default app;

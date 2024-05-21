@@ -23,15 +23,23 @@ export async function personnelPriceList(request: Request, response: Response) {
             return response.status(404).json({ message: `No Price List associated with type ${type}` });
         }
 
+        if (price.certificate_charge === null) {
+            return response.status(400).json({ message: `Certificate charge should not be null` });
+        }
+
         const application_fee = price.application_fee
         const application_charge_in_percent = price.application_charge/100
-        const enugu_ID_certificate = price.enugu_ID_certificate
+        const certificate_fee = price.enugu_ID_certificate
+        const certificate_charge_in_percent = price.certificate_charge/100
         const renewal_fee = price.renewal_fee
-        const renewal_charge =  price.renewal_charge
+        const renewal_charge_in_percent =  price.renewal_charge/100
         const charge_fee = application_fee * application_charge_in_percent
+        const renewal_charge_fee = renewal_fee * renewal_charge_in_percent
+        const certificate_charge_fee = certificate_fee * certificate_charge_in_percent
         const total_application_fee = application_fee + charge_fee
-        const total_fee = total_application_fee + enugu_ID_certificate
-        const total_renewal = renewal_charge + renewal_fee
+        const total_certificate_fee = certificate_fee + certificate_charge_fee
+        const total_fee = total_application_fee + total_certificate_fee
+        const total_renewal = renewal_charge_fee + renewal_fee
 
         // If a price list entry is found, return it
         return response.status(200).json({'applicationFee' : total_fee, 'renewalFee': total_renewal});
@@ -106,39 +114,32 @@ export async function facilityPriceList(request: Request, response: Response) {
                 return response.status(404).json({ message: `No Price List associated with type ${type}` });
             }
 
+            if (price.verification_charge === null || price.inspection_charge === null || price.certificate_charge === null || price.verification_fee === null || price.inspection_fee === null || price.certificate_fee === null) {
+                return response.status(400).json({ message: `Certificate Fee & charge, Inspection Fee & Charge and Verification Fee & Charge should not be null` });
+            }
+
             const application_fee = price.application_fee
             const application_charge_in_percent = price.application_fee_charge/100
             const renewal_fee = price.renewal_fee
             const renewal_charge_percent =  price.renewal_charge / 100
+            const verification_fee = price.verification_fee
+            const verification_charge_percent =  price.verification_charge / 100
+            const certificate_fee = price.certificate_fee
+            const certificate_charge_percent =  price.certificate_charge / 100
+            const inspection_fee = price.inspection_fee
+            const inspection_charge_percent =  price.inspection_charge / 100
             const first_time_reg_fee = price.first_time_reg
             const first_time_charge_percent =  price.first_time_charge/100
             const charge_fee = application_fee * application_charge_in_percent
             const first_time_charge_fee = first_time_reg_fee * first_time_charge_percent
             const renewal_charge_fee = renewal_fee * renewal_charge_percent
+            const verification_charge_fee = verification_fee * verification_charge_percent
+            const inspection_charge_fee = inspection_fee * inspection_charge_percent
+            const certificate_charge_fee = certificate_fee * certificate_charge_percent
 
-            const verification = await prisma.facility_constant_price_list.findUnique({ where: {name:"Verification"}})
-            const inspection_charge = await prisma.facility_constant_price_list.findUnique({ where: {name:"Inspection Charges"}})
-            const inspection_fee = await prisma.facility_constant_price_list.findUnique({ where: {name:"Inspection Fee"}})
-            const certificate = await prisma.facility_constant_price_list.findUnique({ where: {name:"Enugu Health Authorization Certificate"}})
-
-            if (!verification) {
-                return response.status(404).json({ message: `Invalid verification amount` });
-            } else if (!inspection_charge) {
-                return response.status(404).json({ message: `Invalid inspection charge amount` });
-            } else if (!inspection_fee) {
-                return response.status(404).json({ message: `Invalid inspection fee amount` });
-            } else if (!certificate) {
-                return response.status(404).json({ message: `Invalid enugu cerificate amount` });
-            }
-
-            const verification_fee = verification.amount
-            const inspection_charge_fee = inspection_charge.amount
-            const inspection_fee_amount = inspection_fee.amount
-            const certificate_fee = certificate.amount
-
-            const total_application_fee = charge_fee + application_fee + verification_fee
-            const total_first_time_fee = first_time_reg_fee + first_time_charge_fee + inspection_charge_fee + inspection_fee_amount + certificate_fee
-            const total_renewal_fee = renewal_fee + renewal_charge_fee 
+            const total_application_fee = charge_fee + application_fee + verification_fee + verification_charge_fee
+            const total_first_time_fee = first_time_reg_fee + first_time_charge_fee + inspection_charge_fee + inspection_fee + certificate_fee + certificate_charge_fee
+            const total_renewal_fee = renewal_fee + renewal_charge_fee + verification_fee + verification_charge_fee + inspection_charge_fee + inspection_fee + certificate_fee + certificate_charge_fee
 
             return response.status(200).json({'applicationFee' : total_application_fee, 'first_timeFee':total_first_time_fee, 'renewalFee': total_renewal_fee});
             
@@ -153,39 +154,32 @@ export async function facilityPriceList(request: Request, response: Response) {
             return response.status(404).json({ message: `No Price List associated with type ${type}` });
         }
 
+        if (price.verification_charge === null || price.inspection_charge === null || price.certificate_charge === null || price.verification_fee === null || price.inspection_fee === null || price.certificate_fee === null) {
+            return response.status(400).json({ message: `Certificate Fee & charge, Inspection Fee & Charge and Verification Fee & Charge should not be null` });
+        }
+
         const application_fee = price.application_fee
         const application_charge_in_percent = price.application_fee_charge/100
         const renewal_fee = price.renewal_fee
         const renewal_charge_percent =  price.renewal_charge / 100
+        const verification_fee = price.verification_fee
+        const verification_charge_percent =  price.verification_charge / 100
+        const certificate_fee = price.certificate_fee
+        const certificate_charge_percent =  price.certificate_charge / 100
+        const inspection_fee = price.inspection_fee
+        const inspection_charge_percent =  price.inspection_charge / 100
         const first_time_reg_fee = price.first_time_reg
         const first_time_charge_percent =  price.first_time_charge/100
         const charge_fee = application_fee * application_charge_in_percent
         const first_time_charge_fee = first_time_reg_fee * first_time_charge_percent
         const renewal_charge_fee = renewal_fee * renewal_charge_percent
+        const verification_charge_fee = verification_fee * verification_charge_percent
+        const inspection_charge_fee = inspection_fee * inspection_charge_percent
+        const certificate_charge_fee = certificate_fee * certificate_charge_percent
 
-        const verification = await prisma.facility_constant_price_list.findUnique({ where: {name:"Verification"}})
-        const inspection_charge = await prisma.facility_constant_price_list.findUnique({ where: {name:"Inspection Charges"}})
-        const inspection_fee = await prisma.facility_constant_price_list.findUnique({ where: {name:"Inspection Fee"}})
-        const certificate = await prisma.facility_constant_price_list.findUnique({ where: {name:"Enugu Health Authorization Certificate"}})
-
-        if (!verification) {
-            return response.status(404).json({ message: `Invalid verification amount` });
-        } else if (!inspection_charge) {
-            return response.status(404).json({ message: `Invalid inspection charge amount` });
-        } else if (!inspection_fee) {
-            return response.status(404).json({ message: `Invalid inspection fee amount` });
-        } else if (!certificate) {
-            return response.status(404).json({ message: `Invalid enugu cerificate amount` });
-        }
-
-        const verification_fee = verification.amount
-        const inspection_charge_fee = inspection_charge.amount
-        const inspection_fee_amount = inspection_fee.amount
-        const certificate_fee = certificate.amount
-
-        const total_application_fee = charge_fee + application_fee + verification_fee
-        const total_first_time_fee = first_time_reg_fee + first_time_charge_fee + inspection_charge_fee + inspection_fee_amount + certificate_fee
-        const total_renewal_fee = renewal_fee + renewal_charge_fee 
+        const total_application_fee = charge_fee + application_fee + verification_fee + verification_charge_fee
+        const total_first_time_fee = first_time_reg_fee + first_time_charge_fee + inspection_charge_fee + inspection_fee + certificate_fee + certificate_charge_fee
+        const total_renewal_fee = renewal_fee + renewal_charge_fee + verification_fee + verification_charge_fee + inspection_charge_fee + inspection_fee + certificate_fee + certificate_charge_fee
 
         // If a price list entry is found, return it
         return response.status(200).json({'applicationFee' : total_application_fee, 'first_timeFee':total_first_time_fee, 'renewalFee': total_renewal_fee});

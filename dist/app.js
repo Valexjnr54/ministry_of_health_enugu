@@ -41,6 +41,9 @@ const facilityPaymentRoute_3 = require("./routes/PaystackRoutes/Food Handlers/fa
 const resetPasswordRoute_1 = require("./routes/ResetPasswordRoutes/resetPasswordRoute");
 const personnelAuthRoute_2 = require("./routes/FoodHandlerRoutes/Auth/personnelAuthRoute");
 const subAdminRoute_1 = require("./routes/AdminRoutes/Admin/subAdminRoute");
+const priceListRoute_1 = require("./routes/AdminRoutes/PriceList/priceListRoute");
+const calculatePriceList_1 = require("./routes/OtherRoutes/calculatePriceList");
+const searchRoute_1 = require("./routes/OtherRoutes/searchRoute");
 const app = (0, express_1.default)();
 app.use((0, morgan_1.default)("combined"));
 app.use(express_1.default.json());
@@ -74,6 +77,7 @@ app.use(route + "/admin", stateRoute_1.adminStateRouter);
 app.use(route + "/admin", statsRoute_1.adminStatsRouter);
 app.use(route + "/admin", inspectorRoute_1.adminInspectorRouter);
 app.use(route + "/admin", subAdminRoute_1.adminSubAdminRouter);
+app.use(route + "/admin", priceListRoute_1.adminPriceListRouter);
 // Admin Routes Ends
 // Inspector Routes Starts
 app.use(route + "/inspector", inspectorSettingsRoute_1.inspectorSettingsRouter);
@@ -113,6 +117,13 @@ app.use(route + "/verification", verificationRoute_1.verificationRouter);
 // Verification Routes Ends
 // Verification Routes Starts
 app.use(route, resetPasswordRoute_1.resetPasswordRouter);
+app.use(route, calculatePriceList_1.calculatePriceListRouter);
+app.use(route, searchRoute_1.searchRouter);
 // Verification Routes Ends
 app.use(express_1.default.urlencoded({ extended: true }));
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
 exports.default = app;

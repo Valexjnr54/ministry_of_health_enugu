@@ -68,19 +68,19 @@ model inspector {
 }
 
 model enforcer {
-  id                   Int        @id @default(autoincrement())
+  id                   Int      @id @default(autoincrement())
   fullname             String
-  username             String     @unique
-  email                String     @unique
+  username             String   @unique
+  email                String   @unique
   phone_number         String
   address              String
-  role                 Role       @default(Enforcer)
+  role                 Role     @default(Enforcer)
   lga                  String?
   profile_image        String
   password             String
-  reset_password_token String?    @unique
-  createdAt            DateTime   @default(now())
-  updatedAt            DateTime   @updatedAt
+  reset_password_token String?  @unique
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
 }
 
 model state {
@@ -317,12 +317,12 @@ model facility_price_list {
   first_time_charge      Int
   renewal_fee            Int
   renewal_charge         Int
-}
-
-model facility_constant_price_list {
-  id     Int    @id @default(autoincrement())
-  name   String @unique
-  amount Int
+  verification_fee       Int?
+  verification_charge    Int?
+  certificate_fee        Int?
+  certificate_charge     Int?
+  inspection_fee         Int?
+  inspection_charge      Int?
 }
 
 model personnel_price_list {
@@ -331,6 +331,7 @@ model personnel_price_list {
   application_fee      Int
   application_charge   Int
   enugu_ID_certificate Int
+  certificate_charge Int?
   renewal_fee          Int
   renewal_charge       Int
 }

@@ -11,25 +11,25 @@ import { uploadFile } from './cloudinary';
 const prisma = new PrismaClient();
 
 const transporter = nodemailer.createTransport({
-  host: process.env.MAIL_HOST || "smtp.gmail.com",
+  host: process.env.MAIL_HOST || "mail.enuguhealthverify.com",
   port: 465,
   auth: {
-    user: process.env.MAIL_USER || "qmarthub@gmail.com",
-    pass: process.env.MAIL_PASSWORD || "fukpospayyoomzlv"
+    user: process.env.MAIL_USER || "support@enuguhealthverify.com",
+    pass: process.env.MAIL_PASSWORD || "supportP@55word"
   }
 });
 
-export async function sendReceiptEmail(email: string, paymentDetails:object, reference:string ) {
+export async function sendReceiptEmail(email: string, paymentDetails:object, fullname:string, reference:string ) {
   // Load the email template
   const templatePath = path.join(__dirname, '../templates/email-templates/receipt.ejs');
   // Read the EJS template from the file
   const template = fs.readFileSync(templatePath, 'utf-8');
 
   const mailOptions = {
-    from: 'no-reply@ministry.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Your Health Facility Payment Was Successful!',
-    html: ejs.render(template, { paymentDetails, email, reference }),
+    html: ejs.render(template, { paymentDetails, email, fullname, reference }),
   };
 
   try {
@@ -48,7 +48,7 @@ export async function sendCompletionEmail(email: string, facility:object, type:s
 
   const url = `https://ministry-of-health-reg.netlify.app/login-page?type=${type}`
   const mailOptions = {
-    from: 'no-reply@ministry.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Facility Registration Submitted: Next Step is Physical Document Submission',
     html: ejs.render(template, { facility, email, url, password }),
@@ -69,7 +69,7 @@ export async function sendCreateFacilityMail(email: string, facility: object, am
   const template = fs.readFileSync(templatePath, 'utf-8');
 
   const mailOptions = {
-    from: 'no-reply@enuguhealthverify.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Facility Created',
     html: ejs.render(template, {  facility, email,amount }),
@@ -90,7 +90,7 @@ export async function sendSaveAndExitMail(email: string, facility: object) {
   const template = fs.readFileSync(templatePath, 'utf-8');
 
   const mailOptions = {
-    from: 'no-reply@enuguhealthverify.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Saved Details',
     html: ejs.render(template, { facility:facility, email:email }),
@@ -111,7 +111,7 @@ export async function sendWelcomeMail(email: string, user: object, password: str
   const template = fs.readFileSync(templatePath, 'utf-8');
 
   const mailOptions = {
-    from: 'no-reply@enuguhealthverify.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Welcome on board!',
     url: 'ministry-of-health-reg.netlify.app/personnel/login',
@@ -133,7 +133,7 @@ export async function sendWelcomeFoodMail(email: string, user: object, password:
   const template = fs.readFileSync(templatePath, 'utf-8');
 
   const mailOptions = {
-    from: 'no-reply@enuguhealthverify.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Welcome on board!',
     url: 'ministry-of-health-reg.netlify.app/personnel/login',
@@ -157,7 +157,7 @@ export async function sendCreateInspectorMail(email: string, inspector:object, p
   const url = "https://ministry-of-health-reg.netlify.app/inspector/login"
 
   const mailOptions = {
-    from: 'no-reply@ministry.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Inspector Account Created',
     html: ejs.render(template, { user:inspector, email, url, password }),
@@ -180,7 +180,7 @@ export async function sendCreateEnforcerMail(email: string, enforcer:object, pas
   const url = "https://ministry-of-health-reg.netlify.app/inspector/login"
 
   const mailOptions = {
-    from: 'no-reply@ministry.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Enforcer Account Created',
     html: ejs.render(template, { user:enforcer, email, url, password }),
@@ -203,7 +203,7 @@ export async function sendCreateSubAdminMail(email: string, inspector:object, pa
   const url = "https://ministry-of-health-reg.netlify.app/admin/login"
 
   const mailOptions = {
-    from: 'no-reply@ministry.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Admin Account Created',
     html: ejs.render(template, { user:inspector, email, url, password }),
@@ -235,7 +235,7 @@ export async function sendRenewalEmail(email: string, paymentDetails:object, use
   const upload = await uploadFile(certificate.modifiedPdfFilePath,"enugu_ministry_of_health/certificate/personnel_certificate")
 
   const mailOptions = {
-    from: 'no-reply@ministry.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Your Renewal Payment Was Successful!',
     html: ejs.render(template, { paymentDetails, email, user, reference }),
@@ -295,7 +295,7 @@ export async function sendRenewalFoodHandlerEmail(email: string, paymentDetails:
   const upload = await uploadFile(certificate.modifiedPdfFilePath,"enugu_ministry_of_health/certificate/food_handler_certificate")
 
   const mailOptions = {
-    from: 'no-reply@ministry.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Your Renewal Payment Was Successful!',
     html: ejs.render(template, { paymentDetails, email, user, reference }),
@@ -352,7 +352,7 @@ export async function sendRenewalFacilityEmail(email: string, paymentDetails:obj
   const upload = await uploadFile(certificate.modifiedPdfFilePath,"enugu_ministry_of_health/certificate/facility_certificate")
 
   const mailOptions = {
-    from: 'no-reply@ministry.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Your Renewal Payment Was Successful!',
     html: ejs.render(template, { paymentDetails, email, user, reference }),
@@ -391,7 +391,7 @@ export async function sendVerificationEmail(email: string, paymentDetails:object
   const template = fs.readFileSync(templatePath, 'utf-8');
 
   const mailOptions = {
-    from: 'no-reply@ministry.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Your Verification Payment Was Successful!',
     html: ejs.render(template, { paymentDetails, email, reference }),
@@ -412,7 +412,7 @@ export async function sendPersonnelReceiptEmail(email: string, paymentDetails:ob
   const template = fs.readFileSync(templatePath, 'utf-8');
 
   const mailOptions = {
-    from: 'no-reply@ministry.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Your Health Personnel Payment Was Successful!',
     html: ejs.render(template, { paymentDetails, email, reference }),
@@ -433,7 +433,7 @@ export async function sendFoodReceiptEmail(email: string, paymentDetails:object,
   const template = fs.readFileSync(templatePath, 'utf-8');
 
   const mailOptions = {
-    from: 'no-reply@ministry.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Your Food Handler Payment Was Successful!',
     html: ejs.render(template, { paymentDetails, email, reference }),
@@ -454,7 +454,7 @@ export async function sendPaymentEmail(email: string, paymentDetails:object, ful
   const template = fs.readFileSync(templatePath, 'utf-8');
 
   const mailOptions = {
-    from: 'no-reply@ministry.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Thank You for Starting your Health Personnel Registering! Continue Your Registration by Making Payment',
     html: ejs.render(template, { paymentDetails, email, fullname }),
@@ -475,7 +475,7 @@ export async function sendFoodPaymentEmail(email: string, paymentDetails:object,
   const template = fs.readFileSync(templatePath, 'utf-8');
 
   const mailOptions = {
-    from: 'no-reply@ministry.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Thank You for Starting your Food Handler Registering! Continue Your Registration by Making Payment',
     html: ejs.render(template, { paymentDetails, email, fullname }),
@@ -496,7 +496,7 @@ export async function sendFacilityPaymentEmail(email: string, paymentDetails:obj
   const template = fs.readFileSync(templatePath, 'utf-8');
 
   const mailOptions = {
-    from: 'no-reply@ministry.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Thank You for Starting your Health Facility Registering! Continue Your Registration by Making Payment',
     html: ejs.render(template, { paymentDetails, email, fullname }),
@@ -524,7 +524,7 @@ export async function sendResetEmail(email: string, user:object, reset_password_
   const url = `https://ministry-of-health-reg.netlify.app/reset-password?email=${email}&reset_token=${reset_password_token}&type=${type}`
 
   const mailOptions = {
-    from: 'no-reply@ministry.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Reset Password',
     html: ejs.render(template, { user, email, url, token:reset_password_token, type }),
@@ -546,7 +546,7 @@ export async function sendResetSuccessEmail(email: string, user:object, reset_pa
   const template = fs.readFileSync(templatePath, 'utf-8');
 
   const mailOptions = {
-    from: 'no-reply@ministry.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Reset Password Successful',
     html: ejs.render(template, { user, email, token:reset_password_token, type }),
@@ -573,7 +573,7 @@ export async function sendAssignInspectionEmail(email:string, assign:object, ins
   const template = fs.readFileSync(templatePath, 'utf-8');
 
   const mailOptions = {
-    from: 'no-reply@ministry.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Inspection Detail',
     html: ejs.render(template, { assign, email, inspector, type }),
@@ -603,7 +603,7 @@ export async function sendApprovedInspectionMail(email: string, facility:object,
   const upload = await uploadFile(certificate.modifiedPdfFilePath,"enugu_ministry_of_health/certificate/facility_certificate")
 
   const mailOptions = {
-    from: 'no-reply@ministry.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Welcome on board! Your Facility Inspection was Successful',
     html: ejs.render(template, { facility, email, upload, inspection }),
@@ -642,7 +642,7 @@ export async function sendRejectedInspectionMail(email: string, facility:object,
   const template = fs.readFileSync(templatePath, 'utf-8');
 
   const mailOptions = {
-    from: 'no-reply@ministry.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Critical Update: Facility Inspection Failed',
     html: ejs.render(template, { facility, email, inspection,  }),
@@ -674,7 +674,7 @@ export async function sendApprovedPersonnelMail(email: string, user: object, ful
   const upload = await uploadFile(certificate.modifiedPdfFilePath,"enugu_ministry_of_health/certificate/personnel_certificate")
 
   const mailOptions = {
-    from: 'no-reply@enuguhealthverify.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Welcome on board!',
     url: 'ministry-of-health-reg.netlify.app/personnel/login',
@@ -736,7 +736,7 @@ export async function sendApprovedFoodHandlerMail(email: string, user: object, f
   
 
   const mailOptions = {
-    from: 'no-reply@enuguhealthverify.com',
+    from: 'support@enuguhealthverify.com',
     to: email,
     subject: 'Welcome on board!',
     url: 'ministry-of-health-reg.netlify.app/personnel/login',

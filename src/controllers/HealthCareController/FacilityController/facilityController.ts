@@ -15,11 +15,12 @@ import uploadImage, { uploadFile } from "../../../utils/cloudinary";
 import fs from "fs";
 import {
   extractReferenceFromRequest,
+  getInsightTagValue,
   initializeCompletePayment,
   initializeFacilityPayment,
   initializePayment,
   verifyPayment,
-} from "../../../utils/paystack";
+} from "../../../utils/credo";
 import {
   sendCompletionEmail,
   sendCreateFacilityMail,
@@ -73,7 +74,7 @@ export async function createFacility(request: Request, response: Response) {
   //         return response.status(400).json({ message: `Please upload a ${image}` });
   //     }
   //   }
-  let facilityPersonnel
+  let facilityPersonnel;
 
   try {
     const validationRules = [
@@ -390,22 +391,20 @@ export async function createFacility(request: Request, response: Response) {
     const service_offered = JSON.stringify(services_offered_array);
     // const facilityPersonnel = JSON.parse(facility_personnel);
     // Check if facility_personnel is a string and parse it
-    if (typeof facility_personnel === 'string') {
+    if (typeof facility_personnel === "string") {
       facilityPersonnel = JSON.parse(facility_personnel);
     } else {
-        // If it's already an object or in another format, handle accordingly
-        facilityPersonnel = facility_personnel;
+      // If it's already an object or in another format, handle accordingly
+      facilityPersonnel = facility_personnel;
     }
 
     const check_payment = await prisma.facility_payment.findUnique({
       where: { reference },
     });
     if (!check_payment) {
-      return response
-        .status(400)
-        .json({
-          message: "Invalid Payment Reference, Please Kindly make payment",
-        });
+      return response.status(400).json({
+        message: "Invalid Payment Reference, Please Kindly make payment",
+      });
     }
 
     const existingCAC = await prisma.facility.findUnique({ where: { cac } });
@@ -417,12 +416,10 @@ export async function createFacility(request: Request, response: Response) {
       where: { reference, has_registered: true },
     });
     if (check_reference_used) {
-      return response
-        .status(400)
-        .json({
-          message:
-            "Payment Reference used by another user, Please Kindly make payment",
-        });
+      return response.status(400).json({
+        message:
+          "Payment Reference used by another user, Please Kindly make payment",
+      });
     }
 
     if (
@@ -607,25 +604,19 @@ export async function createFacility(request: Request, response: Response) {
 
     const ninResponse = await verifynin(owner_nin);
     if (ninResponse.response_code == "01") {
-      return response
-        .status(404)
-        .json({
-          message:
-            "Invalid Owner`s NIN, Please Check the NIN number and try again",
-        });
+      return response.status(404).json({
+        message:
+          "Invalid Owner`s NIN, Please Check the NIN number and try again",
+      });
     } else if (ninResponse.response_code == "02") {
-      return response
-        .status(400)
-        .json({
-          message: `Your NIN could not be verified at this time, The NIN you provided could be wrong please check if you provided a correct NIN if this persists check back later. If you are no longer on this page click on the 'already started registration button' on the registration page and provide your payment reference to continue.`,
-        });
+      return response.status(400).json({
+        message: `Your NIN could not be verified at this time, The NIN you provided could be wrong please check if you provided a correct NIN if this persists check back later. If you are no longer on this page click on the 'already started registration button' on the registration page and provide your payment reference to continue.`,
+      });
     } else if (ninResponse.response_code == "03") {
-      return response
-        .status(400)
-        .json({
-          message:
-            "Not your fault we will look into the reason, Please contact support",
-        });
+      return response.status(400).json({
+        message:
+          "Not your fault we will look into the reason, Please contact support",
+      });
     }
 
     const code = await uniqueSix();
@@ -642,24 +633,18 @@ export async function createFacility(request: Request, response: Response) {
       company_type
     );
     if (cacResponse.response_code == "01") {
-      return response
-        .status(404)
-        .json({
-          message: "Invalid CAC, Please Check the CAC number and try again",
-        });
+      return response.status(404).json({
+        message: "Invalid CAC, Please Check the CAC number and try again",
+      });
     } else if (cacResponse.response_code == "02") {
-      return response
-        .status(400)
-        .json({
-          message: `Your CAC could not be verified at this time, The CAC you provided could be wrong please check if you provided a correct CAC if this persists check back later. If you are no longer on this page click on the 'already started registration button' on the registration page and provide your payment reference to continue.`,
-        });
+      return response.status(400).json({
+        message: `Your CAC could not be verified at this time, The CAC you provided could be wrong please check if you provided a correct CAC if this persists check back later. If you are no longer on this page click on the 'already started registration button' on the registration page and provide your payment reference to continue.`,
+      });
     } else if (cacResponse.response_code == "03") {
-      return response
-        .status(400)
-        .json({
-          message:
-            "Not your fault we will look into the reason, Please contact support.",
-        });
+      return response.status(400).json({
+        message:
+          "Not your fault we will look into the reason, Please contact support.",
+      });
     }
 
     const facility = await prisma.facility.create({
@@ -733,7 +718,7 @@ export async function createFacility(request: Request, response: Response) {
     });
     const type_of_payment = "Complete Registration of Health Care Facility";
     const payamount = amount * 100;
-    const callback_url = Config.paystackFacilityCompleteRegistrationCallback;
+    const callback_url = Config.credoFacilityCompleteRegistrationCallback;
     if (!callback_url) {
       return response
         .status(400)
@@ -1072,35 +1057,31 @@ export async function saveAndExit(request: Request, response: Response) {
 
     // const facilityPersonnel = facility_personnel;
     // Check if facility_personnel is a string and parse it
-    let facilityPersonnel
-    if (typeof facility_personnel === 'string') {
+    let facilityPersonnel;
+    if (typeof facility_personnel === "string") {
       facilityPersonnel = JSON.parse(facility_personnel);
     } else {
-        // If it's already an object or in another format, handle accordingly
-        facilityPersonnel = facility_personnel;
+      // If it's already an object or in another format, handle accordingly
+      facilityPersonnel = facility_personnel;
     }
 
     const check_payment = await prisma.facility_payment.findUnique({
       where: { reference },
     });
     if (!check_payment) {
-      return response
-        .status(400)
-        .json({
-          message: "Invalid Payment Reference, Please Kindly make payment",
-        });
+      return response.status(400).json({
+        message: "Invalid Payment Reference, Please Kindly make payment",
+      });
     }
 
     const check_reference_used = await prisma.facility_payment.findUnique({
       where: { reference, has_registered: true },
     });
     if (check_reference_used) {
-      return response
-        .status(400)
-        .json({
-          message:
-            "Payment Reference used by another user, Please Kindly make payment",
-        });
+      return response.status(400).json({
+        message:
+          "Payment Reference used by another user, Please Kindly make payment",
+      });
     }
 
     if (
@@ -1264,13 +1245,11 @@ export async function saveAndExit(request: Request, response: Response) {
       where: { id: lga_id },
     });
 
-    return response
-      .status(201)
-      .json({
-        message: "Details Saved, Login to Complete Registration",
-        user: facility,
-        lga: lga_detail,
-      });
+    return response.status(201).json({
+      message: "Details Saved, Login to Complete Registration",
+      user: facility,
+      lga: lga_detail,
+    });
   } catch (error) {
     console.log(error);
     return response.status(500).json({ message: "Internal Server Error" });
@@ -1289,14 +1268,31 @@ export async function verifyCompleteRegistrationPaymentHandler(
 
     const paymentDetails = await verifyPayment(reference);
     const paymentStatus = paymentDetails.status;
-    const paymentReference = paymentDetails.reference;
-    const facility_name = paymentDetails.metadata.facility_name;
-    const email = paymentDetails.metadata.email;
-    const paidamount = paymentDetails.metadata.amount;
-    const phone_number = paymentDetails.metadata.phone_number;
-    const type = paymentDetails.metadata.type;
-    const type_of_payment = paymentDetails.metadata.type_of_payment;
-    const facility_id = parseInt(paymentDetails.metadata.facility_id as string);
+    const paymentReference = paymentDetails.transRef;
+    const facility_name = await getInsightTagValue(
+      "facility_name",
+      paymentDetails.metadata
+    );
+    const email = await getInsightTagValue("email", paymentDetails.metadata);
+    const paidamount = await getInsightTagValue(
+      "amount",
+      paymentDetails.metadata
+    );
+    const phone_number = await getInsightTagValue(
+      "phone_number",
+      paymentDetails.metadata
+    );
+    const type = await getInsightTagValue("type", paymentDetails.metadata);
+    const type_of_payment = await getInsightTagValue(
+      "type_of_payment",
+      paymentDetails.metadata
+    );
+    const facility_id = parseInt(
+      (await getInsightTagValue(
+        "facility_id",
+        paymentDetails.metadata
+      )) as string
+    );
 
     const amount = (paidamount / 100).toString();
 
@@ -1312,12 +1308,10 @@ export async function verifyCompleteRegistrationPaymentHandler(
       const fetch_facility = await prisma.facility.findUnique({
         where: { id: facility_id },
       });
-      return response
-        .status(200)
-        .json({
-          message: "Payment was Successful",
-          facility: facility_complete,
-        });
+      return response.status(200).json({
+        message: "Payment was Successful",
+        facility: facility_complete,
+      });
     }
 
     const payment = await prisma.facility_complete_payment.create({
@@ -1337,7 +1331,7 @@ export async function verifyCompleteRegistrationPaymentHandler(
       data: {
         expiry_date,
         password: hashedPassword,
-        current_reference: paymentDetails.Reference,
+        current_reference: paymentDetails.transRef,
       },
       where: {
         id: facility_id,
@@ -1644,7 +1638,7 @@ export async function initializeRenewalPaymentHandler(
     }
     const type_of_payment = "Renewal Payment of Health Care Facility";
     const payamount = amount * 100;
-    const callback_url = Config.paystackVerifyFacilityRenewalCallback;
+    const callback_url = Config.credoVerifyFacilityRenewalCallback;
     if (!callback_url) {
       return response
         .status(400)
@@ -1677,13 +1671,25 @@ export async function verifyRenewalPaymentHandler(
     }
     const paymentDetails = await verifyPayment(reference);
     const paymentStatus = paymentDetails.status;
-    const paymentReference = paymentDetails.reference;
-    const enugu_facility_id = paymentDetails.metadata.facility_name;
-    const email = paymentDetails.metadata.email;
-    const paidamount = paymentDetails.metadata.amount;
-    const phone_number = paymentDetails.metadata.phone_number;
-    const type = paymentDetails.metadata.type;
-    const type_of_payment = paymentDetails.metadata.type_of_payment;
+    const paymentReference = paymentDetails.transRef;
+    const enugu_facility_id = await getInsightTagValue(
+      "facility_name",
+      paymentDetails.metadata
+    );
+    const email = await getInsightTagValue("email", paymentDetails.metadata);
+    const paidamount = await getInsightTagValue(
+      "amount",
+      paymentDetails.metadata
+    );
+    const phone_number = await getInsightTagValue(
+      "phone_number",
+      paymentDetails.metadata
+    );
+    const type = await getInsightTagValue("type", paymentDetails.metadata);
+    const type_of_payment = await getInsightTagValue(
+      "type_of_payment",
+      paymentDetails.metadata
+    );
 
     const fetchFacility = await prisma.facility.findUnique({
       where: { enugu_facility_id },
@@ -1703,13 +1709,11 @@ export async function verifyRenewalPaymentHandler(
       const check_facility = await prisma.facility.findUnique({
         where: { enugu_facility_id },
       });
-      return response
-        .status(200)
-        .json({
-          message: "Renewal was Successful",
-          user: check_facility,
-          payment: check_reference,
-        });
+      return response.status(200).json({
+        message: "Renewal was Successful",
+        user: check_facility,
+        payment: check_reference,
+      });
     }
 
     const payment = await prisma.facility_payment.create({
@@ -1746,14 +1750,12 @@ export async function verifyRenewalPaymentHandler(
       facility.expiry_date
     );
 
-    return response
-      .status(200)
-      .json({
-        message: "Renewal was Successful",
-        user: facility,
-        payment,
-        lga,
-      });
+    return response.status(200).json({
+      message: "Renewal was Successful",
+      user: facility,
+      payment,
+      lga,
+    });
   } catch (error) {
     console.log(error);
   }

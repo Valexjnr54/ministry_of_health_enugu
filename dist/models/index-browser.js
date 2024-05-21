@@ -169,6 +169,22 @@ exports.Prisma.InspectorScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.EnforcerScalarFieldEnum = {
+  id: 'id',
+  fullname: 'fullname',
+  username: 'username',
+  email: 'email',
+  phone_number: 'phone_number',
+  address: 'address',
+  role: 'role',
+  lga: 'lga',
+  profile_image: 'profile_image',
+  password: 'password',
+  reset_password_token: 'reset_password_token',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.StateScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -381,6 +397,35 @@ exports.Prisma.Food_facility_personnelScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.Facility_price_listScalarFieldEnum = {
+  id: 'id',
+  facility_type: 'facility_type',
+  number_of_beds: 'number_of_beds',
+  application_fee: 'application_fee',
+  application_fee_charge: 'application_fee_charge',
+  first_time_reg: 'first_time_reg',
+  first_time_charge: 'first_time_charge',
+  renewal_fee: 'renewal_fee',
+  renewal_charge: 'renewal_charge',
+  verification_fee: 'verification_fee',
+  verification_charge: 'verification_charge',
+  certificate_fee: 'certificate_fee',
+  certificate_charge: 'certificate_charge',
+  inspection_fee: 'inspection_fee',
+  inspection_charge: 'inspection_charge'
+};
+
+exports.Prisma.Personnel_price_listScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  application_fee: 'application_fee',
+  application_charge: 'application_charge',
+  enugu_ID_certificate: 'enugu_ID_certificate',
+  certificate_charge: 'certificate_charge',
+  renewal_fee: 'renewal_fee',
+  renewal_charge: 'renewal_charge'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -412,7 +457,8 @@ exports.Role = exports.$Enums.Role = {
   Admin: 'Admin',
   Subadmin_facility: 'Subadmin_facility',
   Subadmin_foodhandler: 'Subadmin_foodhandler',
-  Subadmin_personnel: 'Subadmin_personnel'
+  Subadmin_personnel: 'Subadmin_personnel',
+  Enforcer: 'Enforcer'
 };
 
 exports.Status = exports.$Enums.Status = {
@@ -438,7 +484,8 @@ exports.Type = exports.$Enums.Type = {
   Psychiatrist: 'Psychiatrist',
   Community_health_worker: 'Community_health_worker',
   Emergency_medical_technician: 'Emergency_medical_technician',
-  Other: 'Other'
+  Other: 'Other',
+  food_handler: 'food_handler'
 };
 
 exports.Sector = exports.$Enums.Sector = {
@@ -492,6 +539,7 @@ exports.Prisma.ModelName = {
   admin: 'admin',
   inspection_review: 'inspection_review',
   inspector: 'inspector',
+  enforcer: 'enforcer',
   state: 'state',
   local_government: 'local_government',
   users: 'users',
@@ -503,7 +551,9 @@ exports.Prisma.ModelName = {
   facility: 'facility',
   facility_personnel: 'facility_personnel',
   food_facility: 'food_facility',
-  food_facility_personnel: 'food_facility_personnel'
+  food_facility_personnel: 'food_facility_personnel',
+  facility_price_list: 'facility_price_list',
+  personnel_price_list: 'personnel_price_list'
 };
 
 /**

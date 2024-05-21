@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "chrome",
+            "name": "https://pay.credodemo.com/lCch00wgD705ngyN58OW",
+            "request": "launch",
+            "url": "https://pay.credodemo.com/lCch00wgD705ngyN58OW"
+        }
+    ]
+}

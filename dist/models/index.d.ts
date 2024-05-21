@@ -29,6 +29,11 @@ export type inspection_review = $Result.DefaultSelection<Prisma.$inspection_revi
  */
 export type inspector = $Result.DefaultSelection<Prisma.$inspectorPayload>
 /**
+ * Model enforcer
+ * 
+ */
+export type enforcer = $Result.DefaultSelection<Prisma.$enforcerPayload>
+/**
  * Model state
  * 
  */
@@ -88,6 +93,16 @@ export type food_facility = $Result.DefaultSelection<Prisma.$food_facilityPayloa
  * 
  */
 export type food_facility_personnel = $Result.DefaultSelection<Prisma.$food_facility_personnelPayload>
+/**
+ * Model facility_price_list
+ * 
+ */
+export type facility_price_list = $Result.DefaultSelection<Prisma.$facility_price_listPayload>
+/**
+ * Model personnel_price_list
+ * 
+ */
+export type personnel_price_list = $Result.DefaultSelection<Prisma.$personnel_price_listPayload>
 
 /**
  * Enums
@@ -99,7 +114,8 @@ export namespace $Enums {
   Admin: 'Admin',
   Subadmin_facility: 'Subadmin_facility',
   Subadmin_foodhandler: 'Subadmin_foodhandler',
-  Subadmin_personnel: 'Subadmin_personnel'
+  Subadmin_personnel: 'Subadmin_personnel',
+  Enforcer: 'Enforcer'
 };
 
 export type Role = (typeof Role)[keyof typeof Role]
@@ -131,7 +147,8 @@ export const Type: {
   Psychiatrist: 'Psychiatrist',
   Community_health_worker: 'Community_health_worker',
   Emergency_medical_technician: 'Emergency_medical_technician',
-  Other: 'Other'
+  Other: 'Other',
+  food_handler: 'food_handler'
 };
 
 export type Type = (typeof Type)[keyof typeof Type]
@@ -378,6 +395,16 @@ export class PrismaClient<
   get inspector(): Prisma.inspectorDelegate<ExtArgs>;
 
   /**
+   * `prisma.enforcer`: Exposes CRUD operations for the **enforcer** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Enforcers
+    * const enforcers = await prisma.enforcer.findMany()
+    * ```
+    */
+  get enforcer(): Prisma.enforcerDelegate<ExtArgs>;
+
+  /**
    * `prisma.state`: Exposes CRUD operations for the **state** model.
     * Example usage:
     * ```ts
@@ -496,6 +523,26 @@ export class PrismaClient<
     * ```
     */
   get food_facility_personnel(): Prisma.food_facility_personnelDelegate<ExtArgs>;
+
+  /**
+   * `prisma.facility_price_list`: Exposes CRUD operations for the **facility_price_list** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Facility_price_lists
+    * const facility_price_lists = await prisma.facility_price_list.findMany()
+    * ```
+    */
+  get facility_price_list(): Prisma.facility_price_listDelegate<ExtArgs>;
+
+  /**
+   * `prisma.personnel_price_list`: Exposes CRUD operations for the **personnel_price_list** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Personnel_price_lists
+    * const personnel_price_lists = await prisma.personnel_price_list.findMany()
+    * ```
+    */
+  get personnel_price_list(): Prisma.personnel_price_listDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -976,6 +1023,7 @@ export namespace Prisma {
     admin: 'admin',
     inspection_review: 'inspection_review',
     inspector: 'inspector',
+    enforcer: 'enforcer',
     state: 'state',
     local_government: 'local_government',
     users: 'users',
@@ -987,7 +1035,9 @@ export namespace Prisma {
     facility: 'facility',
     facility_personnel: 'facility_personnel',
     food_facility: 'food_facility',
-    food_facility_personnel: 'food_facility_personnel'
+    food_facility_personnel: 'food_facility_personnel',
+    facility_price_list: 'facility_price_list',
+    personnel_price_list: 'personnel_price_list'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1004,7 +1054,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'admin' | 'inspection_review' | 'inspector' | 'state' | 'local_government' | 'users' | 'food_handlers' | 'personnel_payment' | 'facility_payment' | 'facility_complete_payment' | 'revokedToken' | 'facility' | 'facility_personnel' | 'food_facility' | 'food_facility_personnel'
+      modelProps: 'admin' | 'inspection_review' | 'inspector' | 'enforcer' | 'state' | 'local_government' | 'users' | 'food_handlers' | 'personnel_payment' | 'facility_payment' | 'facility_complete_payment' | 'revokedToken' | 'facility' | 'facility_personnel' | 'food_facility' | 'food_facility_personnel' | 'facility_price_list' | 'personnel_price_list'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1203,6 +1253,72 @@ export namespace Prisma {
           count: {
             args: Prisma.inspectorCountArgs<ExtArgs>,
             result: $Utils.Optional<InspectorCountAggregateOutputType> | number
+          }
+        }
+      }
+      enforcer: {
+        payload: Prisma.$enforcerPayload<ExtArgs>
+        fields: Prisma.enforcerFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.enforcerFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$enforcerPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.enforcerFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$enforcerPayload>
+          }
+          findFirst: {
+            args: Prisma.enforcerFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$enforcerPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.enforcerFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$enforcerPayload>
+          }
+          findMany: {
+            args: Prisma.enforcerFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$enforcerPayload>[]
+          }
+          create: {
+            args: Prisma.enforcerCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$enforcerPayload>
+          }
+          createMany: {
+            args: Prisma.enforcerCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.enforcerDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$enforcerPayload>
+          }
+          update: {
+            args: Prisma.enforcerUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$enforcerPayload>
+          }
+          deleteMany: {
+            args: Prisma.enforcerDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.enforcerUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.enforcerUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$enforcerPayload>
+          }
+          aggregate: {
+            args: Prisma.EnforcerAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateEnforcer>
+          }
+          groupBy: {
+            args: Prisma.enforcerGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<EnforcerGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.enforcerCountArgs<ExtArgs>,
+            result: $Utils.Optional<EnforcerCountAggregateOutputType> | number
           }
         }
       }
@@ -1995,6 +2111,138 @@ export namespace Prisma {
           count: {
             args: Prisma.food_facility_personnelCountArgs<ExtArgs>,
             result: $Utils.Optional<Food_facility_personnelCountAggregateOutputType> | number
+          }
+        }
+      }
+      facility_price_list: {
+        payload: Prisma.$facility_price_listPayload<ExtArgs>
+        fields: Prisma.facility_price_listFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.facility_price_listFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$facility_price_listPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.facility_price_listFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$facility_price_listPayload>
+          }
+          findFirst: {
+            args: Prisma.facility_price_listFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$facility_price_listPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.facility_price_listFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$facility_price_listPayload>
+          }
+          findMany: {
+            args: Prisma.facility_price_listFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$facility_price_listPayload>[]
+          }
+          create: {
+            args: Prisma.facility_price_listCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$facility_price_listPayload>
+          }
+          createMany: {
+            args: Prisma.facility_price_listCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.facility_price_listDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$facility_price_listPayload>
+          }
+          update: {
+            args: Prisma.facility_price_listUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$facility_price_listPayload>
+          }
+          deleteMany: {
+            args: Prisma.facility_price_listDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.facility_price_listUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.facility_price_listUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$facility_price_listPayload>
+          }
+          aggregate: {
+            args: Prisma.Facility_price_listAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateFacility_price_list>
+          }
+          groupBy: {
+            args: Prisma.facility_price_listGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<Facility_price_listGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.facility_price_listCountArgs<ExtArgs>,
+            result: $Utils.Optional<Facility_price_listCountAggregateOutputType> | number
+          }
+        }
+      }
+      personnel_price_list: {
+        payload: Prisma.$personnel_price_listPayload<ExtArgs>
+        fields: Prisma.personnel_price_listFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.personnel_price_listFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$personnel_price_listPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.personnel_price_listFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$personnel_price_listPayload>
+          }
+          findFirst: {
+            args: Prisma.personnel_price_listFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$personnel_price_listPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.personnel_price_listFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$personnel_price_listPayload>
+          }
+          findMany: {
+            args: Prisma.personnel_price_listFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$personnel_price_listPayload>[]
+          }
+          create: {
+            args: Prisma.personnel_price_listCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$personnel_price_listPayload>
+          }
+          createMany: {
+            args: Prisma.personnel_price_listCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.personnel_price_listDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$personnel_price_listPayload>
+          }
+          update: {
+            args: Prisma.personnel_price_listUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$personnel_price_listPayload>
+          }
+          deleteMany: {
+            args: Prisma.personnel_price_listDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.personnel_price_listUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.personnel_price_listUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$personnel_price_listPayload>
+          }
+          aggregate: {
+            args: Prisma.Personnel_price_listAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregatePersonnel_price_list>
+          }
+          groupBy: {
+            args: Prisma.personnel_price_listGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<Personnel_price_listGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.personnel_price_listCountArgs<ExtArgs>,
+            result: $Utils.Optional<Personnel_price_listCountAggregateOutputType> | number
           }
         }
       }
@@ -5429,6 +5677,985 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: inspectorInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model enforcer
+   */
+
+  export type AggregateEnforcer = {
+    _count: EnforcerCountAggregateOutputType | null
+    _avg: EnforcerAvgAggregateOutputType | null
+    _sum: EnforcerSumAggregateOutputType | null
+    _min: EnforcerMinAggregateOutputType | null
+    _max: EnforcerMaxAggregateOutputType | null
+  }
+
+  export type EnforcerAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type EnforcerSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type EnforcerMinAggregateOutputType = {
+    id: number | null
+    fullname: string | null
+    username: string | null
+    email: string | null
+    phone_number: string | null
+    address: string | null
+    role: $Enums.Role | null
+    lga: string | null
+    profile_image: string | null
+    password: string | null
+    reset_password_token: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type EnforcerMaxAggregateOutputType = {
+    id: number | null
+    fullname: string | null
+    username: string | null
+    email: string | null
+    phone_number: string | null
+    address: string | null
+    role: $Enums.Role | null
+    lga: string | null
+    profile_image: string | null
+    password: string | null
+    reset_password_token: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type EnforcerCountAggregateOutputType = {
+    id: number
+    fullname: number
+    username: number
+    email: number
+    phone_number: number
+    address: number
+    role: number
+    lga: number
+    profile_image: number
+    password: number
+    reset_password_token: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type EnforcerAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type EnforcerSumAggregateInputType = {
+    id?: true
+  }
+
+  export type EnforcerMinAggregateInputType = {
+    id?: true
+    fullname?: true
+    username?: true
+    email?: true
+    phone_number?: true
+    address?: true
+    role?: true
+    lga?: true
+    profile_image?: true
+    password?: true
+    reset_password_token?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type EnforcerMaxAggregateInputType = {
+    id?: true
+    fullname?: true
+    username?: true
+    email?: true
+    phone_number?: true
+    address?: true
+    role?: true
+    lga?: true
+    profile_image?: true
+    password?: true
+    reset_password_token?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type EnforcerCountAggregateInputType = {
+    id?: true
+    fullname?: true
+    username?: true
+    email?: true
+    phone_number?: true
+    address?: true
+    role?: true
+    lga?: true
+    profile_image?: true
+    password?: true
+    reset_password_token?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type EnforcerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which enforcer to aggregate.
+     */
+    where?: enforcerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of enforcers to fetch.
+     */
+    orderBy?: enforcerOrderByWithRelationInput | enforcerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: enforcerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` enforcers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` enforcers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned enforcers
+    **/
+    _count?: true | EnforcerCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: EnforcerAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EnforcerSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EnforcerMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EnforcerMaxAggregateInputType
+  }
+
+  export type GetEnforcerAggregateType<T extends EnforcerAggregateArgs> = {
+        [P in keyof T & keyof AggregateEnforcer]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEnforcer[P]>
+      : GetScalarType<T[P], AggregateEnforcer[P]>
+  }
+
+
+
+
+  export type enforcerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: enforcerWhereInput
+    orderBy?: enforcerOrderByWithAggregationInput | enforcerOrderByWithAggregationInput[]
+    by: EnforcerScalarFieldEnum[] | EnforcerScalarFieldEnum
+    having?: enforcerScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EnforcerCountAggregateInputType | true
+    _avg?: EnforcerAvgAggregateInputType
+    _sum?: EnforcerSumAggregateInputType
+    _min?: EnforcerMinAggregateInputType
+    _max?: EnforcerMaxAggregateInputType
+  }
+
+  export type EnforcerGroupByOutputType = {
+    id: number
+    fullname: string
+    username: string
+    email: string
+    phone_number: string
+    address: string
+    role: $Enums.Role
+    lga: string | null
+    profile_image: string
+    password: string
+    reset_password_token: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: EnforcerCountAggregateOutputType | null
+    _avg: EnforcerAvgAggregateOutputType | null
+    _sum: EnforcerSumAggregateOutputType | null
+    _min: EnforcerMinAggregateOutputType | null
+    _max: EnforcerMaxAggregateOutputType | null
+  }
+
+  type GetEnforcerGroupByPayload<T extends enforcerGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EnforcerGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EnforcerGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EnforcerGroupByOutputType[P]>
+            : GetScalarType<T[P], EnforcerGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type enforcerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fullname?: boolean
+    username?: boolean
+    email?: boolean
+    phone_number?: boolean
+    address?: boolean
+    role?: boolean
+    lga?: boolean
+    profile_image?: boolean
+    password?: boolean
+    reset_password_token?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["enforcer"]>
+
+  export type enforcerSelectScalar = {
+    id?: boolean
+    fullname?: boolean
+    username?: boolean
+    email?: boolean
+    phone_number?: boolean
+    address?: boolean
+    role?: boolean
+    lga?: boolean
+    profile_image?: boolean
+    password?: boolean
+    reset_password_token?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+
+
+  export type $enforcerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "enforcer"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      fullname: string
+      username: string
+      email: string
+      phone_number: string
+      address: string
+      role: $Enums.Role
+      lga: string | null
+      profile_image: string
+      password: string
+      reset_password_token: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["enforcer"]>
+    composites: {}
+  }
+
+
+  type enforcerGetPayload<S extends boolean | null | undefined | enforcerDefaultArgs> = $Result.GetResult<Prisma.$enforcerPayload, S>
+
+  type enforcerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<enforcerFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: EnforcerCountAggregateInputType | true
+    }
+
+  export interface enforcerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['enforcer'], meta: { name: 'enforcer' } }
+    /**
+     * Find zero or one Enforcer that matches the filter.
+     * @param {enforcerFindUniqueArgs} args - Arguments to find a Enforcer
+     * @example
+     * // Get one Enforcer
+     * const enforcer = await prisma.enforcer.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends enforcerFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, enforcerFindUniqueArgs<ExtArgs>>
+    ): Prisma__enforcerClient<$Result.GetResult<Prisma.$enforcerPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Enforcer that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {enforcerFindUniqueOrThrowArgs} args - Arguments to find a Enforcer
+     * @example
+     * // Get one Enforcer
+     * const enforcer = await prisma.enforcer.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends enforcerFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, enforcerFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__enforcerClient<$Result.GetResult<Prisma.$enforcerPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Enforcer that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {enforcerFindFirstArgs} args - Arguments to find a Enforcer
+     * @example
+     * // Get one Enforcer
+     * const enforcer = await prisma.enforcer.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends enforcerFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, enforcerFindFirstArgs<ExtArgs>>
+    ): Prisma__enforcerClient<$Result.GetResult<Prisma.$enforcerPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Enforcer that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {enforcerFindFirstOrThrowArgs} args - Arguments to find a Enforcer
+     * @example
+     * // Get one Enforcer
+     * const enforcer = await prisma.enforcer.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends enforcerFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, enforcerFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__enforcerClient<$Result.GetResult<Prisma.$enforcerPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Enforcers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {enforcerFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Enforcers
+     * const enforcers = await prisma.enforcer.findMany()
+     * 
+     * // Get first 10 Enforcers
+     * const enforcers = await prisma.enforcer.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const enforcerWithIdOnly = await prisma.enforcer.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends enforcerFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, enforcerFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$enforcerPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Enforcer.
+     * @param {enforcerCreateArgs} args - Arguments to create a Enforcer.
+     * @example
+     * // Create one Enforcer
+     * const Enforcer = await prisma.enforcer.create({
+     *   data: {
+     *     // ... data to create a Enforcer
+     *   }
+     * })
+     * 
+    **/
+    create<T extends enforcerCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, enforcerCreateArgs<ExtArgs>>
+    ): Prisma__enforcerClient<$Result.GetResult<Prisma.$enforcerPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Enforcers.
+     *     @param {enforcerCreateManyArgs} args - Arguments to create many Enforcers.
+     *     @example
+     *     // Create many Enforcers
+     *     const enforcer = await prisma.enforcer.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends enforcerCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, enforcerCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Enforcer.
+     * @param {enforcerDeleteArgs} args - Arguments to delete one Enforcer.
+     * @example
+     * // Delete one Enforcer
+     * const Enforcer = await prisma.enforcer.delete({
+     *   where: {
+     *     // ... filter to delete one Enforcer
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends enforcerDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, enforcerDeleteArgs<ExtArgs>>
+    ): Prisma__enforcerClient<$Result.GetResult<Prisma.$enforcerPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Enforcer.
+     * @param {enforcerUpdateArgs} args - Arguments to update one Enforcer.
+     * @example
+     * // Update one Enforcer
+     * const enforcer = await prisma.enforcer.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends enforcerUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, enforcerUpdateArgs<ExtArgs>>
+    ): Prisma__enforcerClient<$Result.GetResult<Prisma.$enforcerPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Enforcers.
+     * @param {enforcerDeleteManyArgs} args - Arguments to filter Enforcers to delete.
+     * @example
+     * // Delete a few Enforcers
+     * const { count } = await prisma.enforcer.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends enforcerDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, enforcerDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Enforcers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {enforcerUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Enforcers
+     * const enforcer = await prisma.enforcer.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends enforcerUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, enforcerUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Enforcer.
+     * @param {enforcerUpsertArgs} args - Arguments to update or create a Enforcer.
+     * @example
+     * // Update or create a Enforcer
+     * const enforcer = await prisma.enforcer.upsert({
+     *   create: {
+     *     // ... data to create a Enforcer
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Enforcer we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends enforcerUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, enforcerUpsertArgs<ExtArgs>>
+    ): Prisma__enforcerClient<$Result.GetResult<Prisma.$enforcerPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Enforcers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {enforcerCountArgs} args - Arguments to filter Enforcers to count.
+     * @example
+     * // Count the number of Enforcers
+     * const count = await prisma.enforcer.count({
+     *   where: {
+     *     // ... the filter for the Enforcers we want to count
+     *   }
+     * })
+    **/
+    count<T extends enforcerCountArgs>(
+      args?: Subset<T, enforcerCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EnforcerCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Enforcer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EnforcerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EnforcerAggregateArgs>(args: Subset<T, EnforcerAggregateArgs>): Prisma.PrismaPromise<GetEnforcerAggregateType<T>>
+
+    /**
+     * Group by Enforcer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {enforcerGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends enforcerGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: enforcerGroupByArgs['orderBy'] }
+        : { orderBy?: enforcerGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, enforcerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEnforcerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the enforcer model
+   */
+  readonly fields: enforcerFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for enforcer.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__enforcerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the enforcer model
+   */ 
+  interface enforcerFieldRefs {
+    readonly id: FieldRef<"enforcer", 'Int'>
+    readonly fullname: FieldRef<"enforcer", 'String'>
+    readonly username: FieldRef<"enforcer", 'String'>
+    readonly email: FieldRef<"enforcer", 'String'>
+    readonly phone_number: FieldRef<"enforcer", 'String'>
+    readonly address: FieldRef<"enforcer", 'String'>
+    readonly role: FieldRef<"enforcer", 'Role'>
+    readonly lga: FieldRef<"enforcer", 'String'>
+    readonly profile_image: FieldRef<"enforcer", 'String'>
+    readonly password: FieldRef<"enforcer", 'String'>
+    readonly reset_password_token: FieldRef<"enforcer", 'String'>
+    readonly createdAt: FieldRef<"enforcer", 'DateTime'>
+    readonly updatedAt: FieldRef<"enforcer", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * enforcer findUnique
+   */
+  export type enforcerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the enforcer
+     */
+    select?: enforcerSelect<ExtArgs> | null
+    /**
+     * Filter, which enforcer to fetch.
+     */
+    where: enforcerWhereUniqueInput
+  }
+
+  /**
+   * enforcer findUniqueOrThrow
+   */
+  export type enforcerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the enforcer
+     */
+    select?: enforcerSelect<ExtArgs> | null
+    /**
+     * Filter, which enforcer to fetch.
+     */
+    where: enforcerWhereUniqueInput
+  }
+
+  /**
+   * enforcer findFirst
+   */
+  export type enforcerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the enforcer
+     */
+    select?: enforcerSelect<ExtArgs> | null
+    /**
+     * Filter, which enforcer to fetch.
+     */
+    where?: enforcerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of enforcers to fetch.
+     */
+    orderBy?: enforcerOrderByWithRelationInput | enforcerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for enforcers.
+     */
+    cursor?: enforcerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` enforcers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` enforcers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of enforcers.
+     */
+    distinct?: EnforcerScalarFieldEnum | EnforcerScalarFieldEnum[]
+  }
+
+  /**
+   * enforcer findFirstOrThrow
+   */
+  export type enforcerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the enforcer
+     */
+    select?: enforcerSelect<ExtArgs> | null
+    /**
+     * Filter, which enforcer to fetch.
+     */
+    where?: enforcerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of enforcers to fetch.
+     */
+    orderBy?: enforcerOrderByWithRelationInput | enforcerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for enforcers.
+     */
+    cursor?: enforcerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` enforcers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` enforcers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of enforcers.
+     */
+    distinct?: EnforcerScalarFieldEnum | EnforcerScalarFieldEnum[]
+  }
+
+  /**
+   * enforcer findMany
+   */
+  export type enforcerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the enforcer
+     */
+    select?: enforcerSelect<ExtArgs> | null
+    /**
+     * Filter, which enforcers to fetch.
+     */
+    where?: enforcerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of enforcers to fetch.
+     */
+    orderBy?: enforcerOrderByWithRelationInput | enforcerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing enforcers.
+     */
+    cursor?: enforcerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` enforcers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` enforcers.
+     */
+    skip?: number
+    distinct?: EnforcerScalarFieldEnum | EnforcerScalarFieldEnum[]
+  }
+
+  /**
+   * enforcer create
+   */
+  export type enforcerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the enforcer
+     */
+    select?: enforcerSelect<ExtArgs> | null
+    /**
+     * The data needed to create a enforcer.
+     */
+    data: XOR<enforcerCreateInput, enforcerUncheckedCreateInput>
+  }
+
+  /**
+   * enforcer createMany
+   */
+  export type enforcerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many enforcers.
+     */
+    data: enforcerCreateManyInput | enforcerCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * enforcer update
+   */
+  export type enforcerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the enforcer
+     */
+    select?: enforcerSelect<ExtArgs> | null
+    /**
+     * The data needed to update a enforcer.
+     */
+    data: XOR<enforcerUpdateInput, enforcerUncheckedUpdateInput>
+    /**
+     * Choose, which enforcer to update.
+     */
+    where: enforcerWhereUniqueInput
+  }
+
+  /**
+   * enforcer updateMany
+   */
+  export type enforcerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update enforcers.
+     */
+    data: XOR<enforcerUpdateManyMutationInput, enforcerUncheckedUpdateManyInput>
+    /**
+     * Filter which enforcers to update
+     */
+    where?: enforcerWhereInput
+  }
+
+  /**
+   * enforcer upsert
+   */
+  export type enforcerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the enforcer
+     */
+    select?: enforcerSelect<ExtArgs> | null
+    /**
+     * The filter to search for the enforcer to update in case it exists.
+     */
+    where: enforcerWhereUniqueInput
+    /**
+     * In case the enforcer found by the `where` argument doesn't exist, create a new enforcer with this data.
+     */
+    create: XOR<enforcerCreateInput, enforcerUncheckedCreateInput>
+    /**
+     * In case the enforcer was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<enforcerUpdateInput, enforcerUncheckedUpdateInput>
+  }
+
+  /**
+   * enforcer delete
+   */
+  export type enforcerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the enforcer
+     */
+    select?: enforcerSelect<ExtArgs> | null
+    /**
+     * Filter which enforcer to delete.
+     */
+    where: enforcerWhereUniqueInput
+  }
+
+  /**
+   * enforcer deleteMany
+   */
+  export type enforcerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which enforcers to delete
+     */
+    where?: enforcerWhereInput
+  }
+
+  /**
+   * enforcer without action
+   */
+  export type enforcerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the enforcer
+     */
+    select?: enforcerSelect<ExtArgs> | null
   }
 
 
@@ -17970,6 +19197,2003 @@ export namespace Prisma {
 
 
   /**
+   * Model facility_price_list
+   */
+
+  export type AggregateFacility_price_list = {
+    _count: Facility_price_listCountAggregateOutputType | null
+    _avg: Facility_price_listAvgAggregateOutputType | null
+    _sum: Facility_price_listSumAggregateOutputType | null
+    _min: Facility_price_listMinAggregateOutputType | null
+    _max: Facility_price_listMaxAggregateOutputType | null
+  }
+
+  export type Facility_price_listAvgAggregateOutputType = {
+    id: number | null
+    application_fee: number | null
+    application_fee_charge: number | null
+    first_time_reg: number | null
+    first_time_charge: number | null
+    renewal_fee: number | null
+    renewal_charge: number | null
+    verification_fee: number | null
+    verification_charge: number | null
+    certificate_fee: number | null
+    certificate_charge: number | null
+    inspection_fee: number | null
+    inspection_charge: number | null
+  }
+
+  export type Facility_price_listSumAggregateOutputType = {
+    id: number | null
+    application_fee: number | null
+    application_fee_charge: number | null
+    first_time_reg: number | null
+    first_time_charge: number | null
+    renewal_fee: number | null
+    renewal_charge: number | null
+    verification_fee: number | null
+    verification_charge: number | null
+    certificate_fee: number | null
+    certificate_charge: number | null
+    inspection_fee: number | null
+    inspection_charge: number | null
+  }
+
+  export type Facility_price_listMinAggregateOutputType = {
+    id: number | null
+    facility_type: $Enums.Facility_Type | null
+    number_of_beds: string | null
+    application_fee: number | null
+    application_fee_charge: number | null
+    first_time_reg: number | null
+    first_time_charge: number | null
+    renewal_fee: number | null
+    renewal_charge: number | null
+    verification_fee: number | null
+    verification_charge: number | null
+    certificate_fee: number | null
+    certificate_charge: number | null
+    inspection_fee: number | null
+    inspection_charge: number | null
+  }
+
+  export type Facility_price_listMaxAggregateOutputType = {
+    id: number | null
+    facility_type: $Enums.Facility_Type | null
+    number_of_beds: string | null
+    application_fee: number | null
+    application_fee_charge: number | null
+    first_time_reg: number | null
+    first_time_charge: number | null
+    renewal_fee: number | null
+    renewal_charge: number | null
+    verification_fee: number | null
+    verification_charge: number | null
+    certificate_fee: number | null
+    certificate_charge: number | null
+    inspection_fee: number | null
+    inspection_charge: number | null
+  }
+
+  export type Facility_price_listCountAggregateOutputType = {
+    id: number
+    facility_type: number
+    number_of_beds: number
+    application_fee: number
+    application_fee_charge: number
+    first_time_reg: number
+    first_time_charge: number
+    renewal_fee: number
+    renewal_charge: number
+    verification_fee: number
+    verification_charge: number
+    certificate_fee: number
+    certificate_charge: number
+    inspection_fee: number
+    inspection_charge: number
+    _all: number
+  }
+
+
+  export type Facility_price_listAvgAggregateInputType = {
+    id?: true
+    application_fee?: true
+    application_fee_charge?: true
+    first_time_reg?: true
+    first_time_charge?: true
+    renewal_fee?: true
+    renewal_charge?: true
+    verification_fee?: true
+    verification_charge?: true
+    certificate_fee?: true
+    certificate_charge?: true
+    inspection_fee?: true
+    inspection_charge?: true
+  }
+
+  export type Facility_price_listSumAggregateInputType = {
+    id?: true
+    application_fee?: true
+    application_fee_charge?: true
+    first_time_reg?: true
+    first_time_charge?: true
+    renewal_fee?: true
+    renewal_charge?: true
+    verification_fee?: true
+    verification_charge?: true
+    certificate_fee?: true
+    certificate_charge?: true
+    inspection_fee?: true
+    inspection_charge?: true
+  }
+
+  export type Facility_price_listMinAggregateInputType = {
+    id?: true
+    facility_type?: true
+    number_of_beds?: true
+    application_fee?: true
+    application_fee_charge?: true
+    first_time_reg?: true
+    first_time_charge?: true
+    renewal_fee?: true
+    renewal_charge?: true
+    verification_fee?: true
+    verification_charge?: true
+    certificate_fee?: true
+    certificate_charge?: true
+    inspection_fee?: true
+    inspection_charge?: true
+  }
+
+  export type Facility_price_listMaxAggregateInputType = {
+    id?: true
+    facility_type?: true
+    number_of_beds?: true
+    application_fee?: true
+    application_fee_charge?: true
+    first_time_reg?: true
+    first_time_charge?: true
+    renewal_fee?: true
+    renewal_charge?: true
+    verification_fee?: true
+    verification_charge?: true
+    certificate_fee?: true
+    certificate_charge?: true
+    inspection_fee?: true
+    inspection_charge?: true
+  }
+
+  export type Facility_price_listCountAggregateInputType = {
+    id?: true
+    facility_type?: true
+    number_of_beds?: true
+    application_fee?: true
+    application_fee_charge?: true
+    first_time_reg?: true
+    first_time_charge?: true
+    renewal_fee?: true
+    renewal_charge?: true
+    verification_fee?: true
+    verification_charge?: true
+    certificate_fee?: true
+    certificate_charge?: true
+    inspection_fee?: true
+    inspection_charge?: true
+    _all?: true
+  }
+
+  export type Facility_price_listAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which facility_price_list to aggregate.
+     */
+    where?: facility_price_listWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of facility_price_lists to fetch.
+     */
+    orderBy?: facility_price_listOrderByWithRelationInput | facility_price_listOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: facility_price_listWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` facility_price_lists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` facility_price_lists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned facility_price_lists
+    **/
+    _count?: true | Facility_price_listCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Facility_price_listAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Facility_price_listSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Facility_price_listMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Facility_price_listMaxAggregateInputType
+  }
+
+  export type GetFacility_price_listAggregateType<T extends Facility_price_listAggregateArgs> = {
+        [P in keyof T & keyof AggregateFacility_price_list]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFacility_price_list[P]>
+      : GetScalarType<T[P], AggregateFacility_price_list[P]>
+  }
+
+
+
+
+  export type facility_price_listGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: facility_price_listWhereInput
+    orderBy?: facility_price_listOrderByWithAggregationInput | facility_price_listOrderByWithAggregationInput[]
+    by: Facility_price_listScalarFieldEnum[] | Facility_price_listScalarFieldEnum
+    having?: facility_price_listScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Facility_price_listCountAggregateInputType | true
+    _avg?: Facility_price_listAvgAggregateInputType
+    _sum?: Facility_price_listSumAggregateInputType
+    _min?: Facility_price_listMinAggregateInputType
+    _max?: Facility_price_listMaxAggregateInputType
+  }
+
+  export type Facility_price_listGroupByOutputType = {
+    id: number
+    facility_type: $Enums.Facility_Type
+    number_of_beds: string | null
+    application_fee: number
+    application_fee_charge: number
+    first_time_reg: number
+    first_time_charge: number
+    renewal_fee: number
+    renewal_charge: number
+    verification_fee: number | null
+    verification_charge: number | null
+    certificate_fee: number | null
+    certificate_charge: number | null
+    inspection_fee: number | null
+    inspection_charge: number | null
+    _count: Facility_price_listCountAggregateOutputType | null
+    _avg: Facility_price_listAvgAggregateOutputType | null
+    _sum: Facility_price_listSumAggregateOutputType | null
+    _min: Facility_price_listMinAggregateOutputType | null
+    _max: Facility_price_listMaxAggregateOutputType | null
+  }
+
+  type GetFacility_price_listGroupByPayload<T extends facility_price_listGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Facility_price_listGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Facility_price_listGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Facility_price_listGroupByOutputType[P]>
+            : GetScalarType<T[P], Facility_price_listGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type facility_price_listSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    facility_type?: boolean
+    number_of_beds?: boolean
+    application_fee?: boolean
+    application_fee_charge?: boolean
+    first_time_reg?: boolean
+    first_time_charge?: boolean
+    renewal_fee?: boolean
+    renewal_charge?: boolean
+    verification_fee?: boolean
+    verification_charge?: boolean
+    certificate_fee?: boolean
+    certificate_charge?: boolean
+    inspection_fee?: boolean
+    inspection_charge?: boolean
+  }, ExtArgs["result"]["facility_price_list"]>
+
+  export type facility_price_listSelectScalar = {
+    id?: boolean
+    facility_type?: boolean
+    number_of_beds?: boolean
+    application_fee?: boolean
+    application_fee_charge?: boolean
+    first_time_reg?: boolean
+    first_time_charge?: boolean
+    renewal_fee?: boolean
+    renewal_charge?: boolean
+    verification_fee?: boolean
+    verification_charge?: boolean
+    certificate_fee?: boolean
+    certificate_charge?: boolean
+    inspection_fee?: boolean
+    inspection_charge?: boolean
+  }
+
+
+
+  export type $facility_price_listPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "facility_price_list"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      facility_type: $Enums.Facility_Type
+      number_of_beds: string | null
+      application_fee: number
+      application_fee_charge: number
+      first_time_reg: number
+      first_time_charge: number
+      renewal_fee: number
+      renewal_charge: number
+      verification_fee: number | null
+      verification_charge: number | null
+      certificate_fee: number | null
+      certificate_charge: number | null
+      inspection_fee: number | null
+      inspection_charge: number | null
+    }, ExtArgs["result"]["facility_price_list"]>
+    composites: {}
+  }
+
+
+  type facility_price_listGetPayload<S extends boolean | null | undefined | facility_price_listDefaultArgs> = $Result.GetResult<Prisma.$facility_price_listPayload, S>
+
+  type facility_price_listCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<facility_price_listFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: Facility_price_listCountAggregateInputType | true
+    }
+
+  export interface facility_price_listDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['facility_price_list'], meta: { name: 'facility_price_list' } }
+    /**
+     * Find zero or one Facility_price_list that matches the filter.
+     * @param {facility_price_listFindUniqueArgs} args - Arguments to find a Facility_price_list
+     * @example
+     * // Get one Facility_price_list
+     * const facility_price_list = await prisma.facility_price_list.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends facility_price_listFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, facility_price_listFindUniqueArgs<ExtArgs>>
+    ): Prisma__facility_price_listClient<$Result.GetResult<Prisma.$facility_price_listPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Facility_price_list that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {facility_price_listFindUniqueOrThrowArgs} args - Arguments to find a Facility_price_list
+     * @example
+     * // Get one Facility_price_list
+     * const facility_price_list = await prisma.facility_price_list.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends facility_price_listFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, facility_price_listFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__facility_price_listClient<$Result.GetResult<Prisma.$facility_price_listPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Facility_price_list that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {facility_price_listFindFirstArgs} args - Arguments to find a Facility_price_list
+     * @example
+     * // Get one Facility_price_list
+     * const facility_price_list = await prisma.facility_price_list.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends facility_price_listFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, facility_price_listFindFirstArgs<ExtArgs>>
+    ): Prisma__facility_price_listClient<$Result.GetResult<Prisma.$facility_price_listPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Facility_price_list that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {facility_price_listFindFirstOrThrowArgs} args - Arguments to find a Facility_price_list
+     * @example
+     * // Get one Facility_price_list
+     * const facility_price_list = await prisma.facility_price_list.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends facility_price_listFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, facility_price_listFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__facility_price_listClient<$Result.GetResult<Prisma.$facility_price_listPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Facility_price_lists that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {facility_price_listFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Facility_price_lists
+     * const facility_price_lists = await prisma.facility_price_list.findMany()
+     * 
+     * // Get first 10 Facility_price_lists
+     * const facility_price_lists = await prisma.facility_price_list.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const facility_price_listWithIdOnly = await prisma.facility_price_list.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends facility_price_listFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, facility_price_listFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$facility_price_listPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Facility_price_list.
+     * @param {facility_price_listCreateArgs} args - Arguments to create a Facility_price_list.
+     * @example
+     * // Create one Facility_price_list
+     * const Facility_price_list = await prisma.facility_price_list.create({
+     *   data: {
+     *     // ... data to create a Facility_price_list
+     *   }
+     * })
+     * 
+    **/
+    create<T extends facility_price_listCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, facility_price_listCreateArgs<ExtArgs>>
+    ): Prisma__facility_price_listClient<$Result.GetResult<Prisma.$facility_price_listPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Facility_price_lists.
+     *     @param {facility_price_listCreateManyArgs} args - Arguments to create many Facility_price_lists.
+     *     @example
+     *     // Create many Facility_price_lists
+     *     const facility_price_list = await prisma.facility_price_list.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends facility_price_listCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, facility_price_listCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Facility_price_list.
+     * @param {facility_price_listDeleteArgs} args - Arguments to delete one Facility_price_list.
+     * @example
+     * // Delete one Facility_price_list
+     * const Facility_price_list = await prisma.facility_price_list.delete({
+     *   where: {
+     *     // ... filter to delete one Facility_price_list
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends facility_price_listDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, facility_price_listDeleteArgs<ExtArgs>>
+    ): Prisma__facility_price_listClient<$Result.GetResult<Prisma.$facility_price_listPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Facility_price_list.
+     * @param {facility_price_listUpdateArgs} args - Arguments to update one Facility_price_list.
+     * @example
+     * // Update one Facility_price_list
+     * const facility_price_list = await prisma.facility_price_list.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends facility_price_listUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, facility_price_listUpdateArgs<ExtArgs>>
+    ): Prisma__facility_price_listClient<$Result.GetResult<Prisma.$facility_price_listPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Facility_price_lists.
+     * @param {facility_price_listDeleteManyArgs} args - Arguments to filter Facility_price_lists to delete.
+     * @example
+     * // Delete a few Facility_price_lists
+     * const { count } = await prisma.facility_price_list.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends facility_price_listDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, facility_price_listDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Facility_price_lists.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {facility_price_listUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Facility_price_lists
+     * const facility_price_list = await prisma.facility_price_list.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends facility_price_listUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, facility_price_listUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Facility_price_list.
+     * @param {facility_price_listUpsertArgs} args - Arguments to update or create a Facility_price_list.
+     * @example
+     * // Update or create a Facility_price_list
+     * const facility_price_list = await prisma.facility_price_list.upsert({
+     *   create: {
+     *     // ... data to create a Facility_price_list
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Facility_price_list we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends facility_price_listUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, facility_price_listUpsertArgs<ExtArgs>>
+    ): Prisma__facility_price_listClient<$Result.GetResult<Prisma.$facility_price_listPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Facility_price_lists.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {facility_price_listCountArgs} args - Arguments to filter Facility_price_lists to count.
+     * @example
+     * // Count the number of Facility_price_lists
+     * const count = await prisma.facility_price_list.count({
+     *   where: {
+     *     // ... the filter for the Facility_price_lists we want to count
+     *   }
+     * })
+    **/
+    count<T extends facility_price_listCountArgs>(
+      args?: Subset<T, facility_price_listCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Facility_price_listCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Facility_price_list.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Facility_price_listAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Facility_price_listAggregateArgs>(args: Subset<T, Facility_price_listAggregateArgs>): Prisma.PrismaPromise<GetFacility_price_listAggregateType<T>>
+
+    /**
+     * Group by Facility_price_list.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {facility_price_listGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends facility_price_listGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: facility_price_listGroupByArgs['orderBy'] }
+        : { orderBy?: facility_price_listGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, facility_price_listGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFacility_price_listGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the facility_price_list model
+   */
+  readonly fields: facility_price_listFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for facility_price_list.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__facility_price_listClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the facility_price_list model
+   */ 
+  interface facility_price_listFieldRefs {
+    readonly id: FieldRef<"facility_price_list", 'Int'>
+    readonly facility_type: FieldRef<"facility_price_list", 'Facility_Type'>
+    readonly number_of_beds: FieldRef<"facility_price_list", 'String'>
+    readonly application_fee: FieldRef<"facility_price_list", 'Int'>
+    readonly application_fee_charge: FieldRef<"facility_price_list", 'Int'>
+    readonly first_time_reg: FieldRef<"facility_price_list", 'Int'>
+    readonly first_time_charge: FieldRef<"facility_price_list", 'Int'>
+    readonly renewal_fee: FieldRef<"facility_price_list", 'Int'>
+    readonly renewal_charge: FieldRef<"facility_price_list", 'Int'>
+    readonly verification_fee: FieldRef<"facility_price_list", 'Int'>
+    readonly verification_charge: FieldRef<"facility_price_list", 'Int'>
+    readonly certificate_fee: FieldRef<"facility_price_list", 'Int'>
+    readonly certificate_charge: FieldRef<"facility_price_list", 'Int'>
+    readonly inspection_fee: FieldRef<"facility_price_list", 'Int'>
+    readonly inspection_charge: FieldRef<"facility_price_list", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * facility_price_list findUnique
+   */
+  export type facility_price_listFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the facility_price_list
+     */
+    select?: facility_price_listSelect<ExtArgs> | null
+    /**
+     * Filter, which facility_price_list to fetch.
+     */
+    where: facility_price_listWhereUniqueInput
+  }
+
+  /**
+   * facility_price_list findUniqueOrThrow
+   */
+  export type facility_price_listFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the facility_price_list
+     */
+    select?: facility_price_listSelect<ExtArgs> | null
+    /**
+     * Filter, which facility_price_list to fetch.
+     */
+    where: facility_price_listWhereUniqueInput
+  }
+
+  /**
+   * facility_price_list findFirst
+   */
+  export type facility_price_listFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the facility_price_list
+     */
+    select?: facility_price_listSelect<ExtArgs> | null
+    /**
+     * Filter, which facility_price_list to fetch.
+     */
+    where?: facility_price_listWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of facility_price_lists to fetch.
+     */
+    orderBy?: facility_price_listOrderByWithRelationInput | facility_price_listOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for facility_price_lists.
+     */
+    cursor?: facility_price_listWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` facility_price_lists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` facility_price_lists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of facility_price_lists.
+     */
+    distinct?: Facility_price_listScalarFieldEnum | Facility_price_listScalarFieldEnum[]
+  }
+
+  /**
+   * facility_price_list findFirstOrThrow
+   */
+  export type facility_price_listFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the facility_price_list
+     */
+    select?: facility_price_listSelect<ExtArgs> | null
+    /**
+     * Filter, which facility_price_list to fetch.
+     */
+    where?: facility_price_listWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of facility_price_lists to fetch.
+     */
+    orderBy?: facility_price_listOrderByWithRelationInput | facility_price_listOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for facility_price_lists.
+     */
+    cursor?: facility_price_listWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` facility_price_lists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` facility_price_lists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of facility_price_lists.
+     */
+    distinct?: Facility_price_listScalarFieldEnum | Facility_price_listScalarFieldEnum[]
+  }
+
+  /**
+   * facility_price_list findMany
+   */
+  export type facility_price_listFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the facility_price_list
+     */
+    select?: facility_price_listSelect<ExtArgs> | null
+    /**
+     * Filter, which facility_price_lists to fetch.
+     */
+    where?: facility_price_listWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of facility_price_lists to fetch.
+     */
+    orderBy?: facility_price_listOrderByWithRelationInput | facility_price_listOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing facility_price_lists.
+     */
+    cursor?: facility_price_listWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` facility_price_lists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` facility_price_lists.
+     */
+    skip?: number
+    distinct?: Facility_price_listScalarFieldEnum | Facility_price_listScalarFieldEnum[]
+  }
+
+  /**
+   * facility_price_list create
+   */
+  export type facility_price_listCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the facility_price_list
+     */
+    select?: facility_price_listSelect<ExtArgs> | null
+    /**
+     * The data needed to create a facility_price_list.
+     */
+    data: XOR<facility_price_listCreateInput, facility_price_listUncheckedCreateInput>
+  }
+
+  /**
+   * facility_price_list createMany
+   */
+  export type facility_price_listCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many facility_price_lists.
+     */
+    data: facility_price_listCreateManyInput | facility_price_listCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * facility_price_list update
+   */
+  export type facility_price_listUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the facility_price_list
+     */
+    select?: facility_price_listSelect<ExtArgs> | null
+    /**
+     * The data needed to update a facility_price_list.
+     */
+    data: XOR<facility_price_listUpdateInput, facility_price_listUncheckedUpdateInput>
+    /**
+     * Choose, which facility_price_list to update.
+     */
+    where: facility_price_listWhereUniqueInput
+  }
+
+  /**
+   * facility_price_list updateMany
+   */
+  export type facility_price_listUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update facility_price_lists.
+     */
+    data: XOR<facility_price_listUpdateManyMutationInput, facility_price_listUncheckedUpdateManyInput>
+    /**
+     * Filter which facility_price_lists to update
+     */
+    where?: facility_price_listWhereInput
+  }
+
+  /**
+   * facility_price_list upsert
+   */
+  export type facility_price_listUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the facility_price_list
+     */
+    select?: facility_price_listSelect<ExtArgs> | null
+    /**
+     * The filter to search for the facility_price_list to update in case it exists.
+     */
+    where: facility_price_listWhereUniqueInput
+    /**
+     * In case the facility_price_list found by the `where` argument doesn't exist, create a new facility_price_list with this data.
+     */
+    create: XOR<facility_price_listCreateInput, facility_price_listUncheckedCreateInput>
+    /**
+     * In case the facility_price_list was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<facility_price_listUpdateInput, facility_price_listUncheckedUpdateInput>
+  }
+
+  /**
+   * facility_price_list delete
+   */
+  export type facility_price_listDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the facility_price_list
+     */
+    select?: facility_price_listSelect<ExtArgs> | null
+    /**
+     * Filter which facility_price_list to delete.
+     */
+    where: facility_price_listWhereUniqueInput
+  }
+
+  /**
+   * facility_price_list deleteMany
+   */
+  export type facility_price_listDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which facility_price_lists to delete
+     */
+    where?: facility_price_listWhereInput
+  }
+
+  /**
+   * facility_price_list without action
+   */
+  export type facility_price_listDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the facility_price_list
+     */
+    select?: facility_price_listSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * Model personnel_price_list
+   */
+
+  export type AggregatePersonnel_price_list = {
+    _count: Personnel_price_listCountAggregateOutputType | null
+    _avg: Personnel_price_listAvgAggregateOutputType | null
+    _sum: Personnel_price_listSumAggregateOutputType | null
+    _min: Personnel_price_listMinAggregateOutputType | null
+    _max: Personnel_price_listMaxAggregateOutputType | null
+  }
+
+  export type Personnel_price_listAvgAggregateOutputType = {
+    id: number | null
+    application_fee: number | null
+    application_charge: number | null
+    enugu_ID_certificate: number | null
+    certificate_charge: number | null
+    renewal_fee: number | null
+    renewal_charge: number | null
+  }
+
+  export type Personnel_price_listSumAggregateOutputType = {
+    id: number | null
+    application_fee: number | null
+    application_charge: number | null
+    enugu_ID_certificate: number | null
+    certificate_charge: number | null
+    renewal_fee: number | null
+    renewal_charge: number | null
+  }
+
+  export type Personnel_price_listMinAggregateOutputType = {
+    id: number | null
+    type: $Enums.Type | null
+    application_fee: number | null
+    application_charge: number | null
+    enugu_ID_certificate: number | null
+    certificate_charge: number | null
+    renewal_fee: number | null
+    renewal_charge: number | null
+  }
+
+  export type Personnel_price_listMaxAggregateOutputType = {
+    id: number | null
+    type: $Enums.Type | null
+    application_fee: number | null
+    application_charge: number | null
+    enugu_ID_certificate: number | null
+    certificate_charge: number | null
+    renewal_fee: number | null
+    renewal_charge: number | null
+  }
+
+  export type Personnel_price_listCountAggregateOutputType = {
+    id: number
+    type: number
+    application_fee: number
+    application_charge: number
+    enugu_ID_certificate: number
+    certificate_charge: number
+    renewal_fee: number
+    renewal_charge: number
+    _all: number
+  }
+
+
+  export type Personnel_price_listAvgAggregateInputType = {
+    id?: true
+    application_fee?: true
+    application_charge?: true
+    enugu_ID_certificate?: true
+    certificate_charge?: true
+    renewal_fee?: true
+    renewal_charge?: true
+  }
+
+  export type Personnel_price_listSumAggregateInputType = {
+    id?: true
+    application_fee?: true
+    application_charge?: true
+    enugu_ID_certificate?: true
+    certificate_charge?: true
+    renewal_fee?: true
+    renewal_charge?: true
+  }
+
+  export type Personnel_price_listMinAggregateInputType = {
+    id?: true
+    type?: true
+    application_fee?: true
+    application_charge?: true
+    enugu_ID_certificate?: true
+    certificate_charge?: true
+    renewal_fee?: true
+    renewal_charge?: true
+  }
+
+  export type Personnel_price_listMaxAggregateInputType = {
+    id?: true
+    type?: true
+    application_fee?: true
+    application_charge?: true
+    enugu_ID_certificate?: true
+    certificate_charge?: true
+    renewal_fee?: true
+    renewal_charge?: true
+  }
+
+  export type Personnel_price_listCountAggregateInputType = {
+    id?: true
+    type?: true
+    application_fee?: true
+    application_charge?: true
+    enugu_ID_certificate?: true
+    certificate_charge?: true
+    renewal_fee?: true
+    renewal_charge?: true
+    _all?: true
+  }
+
+  export type Personnel_price_listAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which personnel_price_list to aggregate.
+     */
+    where?: personnel_price_listWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of personnel_price_lists to fetch.
+     */
+    orderBy?: personnel_price_listOrderByWithRelationInput | personnel_price_listOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: personnel_price_listWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` personnel_price_lists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` personnel_price_lists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned personnel_price_lists
+    **/
+    _count?: true | Personnel_price_listCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Personnel_price_listAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Personnel_price_listSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Personnel_price_listMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Personnel_price_listMaxAggregateInputType
+  }
+
+  export type GetPersonnel_price_listAggregateType<T extends Personnel_price_listAggregateArgs> = {
+        [P in keyof T & keyof AggregatePersonnel_price_list]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePersonnel_price_list[P]>
+      : GetScalarType<T[P], AggregatePersonnel_price_list[P]>
+  }
+
+
+
+
+  export type personnel_price_listGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: personnel_price_listWhereInput
+    orderBy?: personnel_price_listOrderByWithAggregationInput | personnel_price_listOrderByWithAggregationInput[]
+    by: Personnel_price_listScalarFieldEnum[] | Personnel_price_listScalarFieldEnum
+    having?: personnel_price_listScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Personnel_price_listCountAggregateInputType | true
+    _avg?: Personnel_price_listAvgAggregateInputType
+    _sum?: Personnel_price_listSumAggregateInputType
+    _min?: Personnel_price_listMinAggregateInputType
+    _max?: Personnel_price_listMaxAggregateInputType
+  }
+
+  export type Personnel_price_listGroupByOutputType = {
+    id: number
+    type: $Enums.Type
+    application_fee: number
+    application_charge: number
+    enugu_ID_certificate: number
+    certificate_charge: number | null
+    renewal_fee: number
+    renewal_charge: number
+    _count: Personnel_price_listCountAggregateOutputType | null
+    _avg: Personnel_price_listAvgAggregateOutputType | null
+    _sum: Personnel_price_listSumAggregateOutputType | null
+    _min: Personnel_price_listMinAggregateOutputType | null
+    _max: Personnel_price_listMaxAggregateOutputType | null
+  }
+
+  type GetPersonnel_price_listGroupByPayload<T extends personnel_price_listGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Personnel_price_listGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Personnel_price_listGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Personnel_price_listGroupByOutputType[P]>
+            : GetScalarType<T[P], Personnel_price_listGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type personnel_price_listSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    type?: boolean
+    application_fee?: boolean
+    application_charge?: boolean
+    enugu_ID_certificate?: boolean
+    certificate_charge?: boolean
+    renewal_fee?: boolean
+    renewal_charge?: boolean
+  }, ExtArgs["result"]["personnel_price_list"]>
+
+  export type personnel_price_listSelectScalar = {
+    id?: boolean
+    type?: boolean
+    application_fee?: boolean
+    application_charge?: boolean
+    enugu_ID_certificate?: boolean
+    certificate_charge?: boolean
+    renewal_fee?: boolean
+    renewal_charge?: boolean
+  }
+
+
+
+  export type $personnel_price_listPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "personnel_price_list"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      type: $Enums.Type
+      application_fee: number
+      application_charge: number
+      enugu_ID_certificate: number
+      certificate_charge: number | null
+      renewal_fee: number
+      renewal_charge: number
+    }, ExtArgs["result"]["personnel_price_list"]>
+    composites: {}
+  }
+
+
+  type personnel_price_listGetPayload<S extends boolean | null | undefined | personnel_price_listDefaultArgs> = $Result.GetResult<Prisma.$personnel_price_listPayload, S>
+
+  type personnel_price_listCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<personnel_price_listFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: Personnel_price_listCountAggregateInputType | true
+    }
+
+  export interface personnel_price_listDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['personnel_price_list'], meta: { name: 'personnel_price_list' } }
+    /**
+     * Find zero or one Personnel_price_list that matches the filter.
+     * @param {personnel_price_listFindUniqueArgs} args - Arguments to find a Personnel_price_list
+     * @example
+     * // Get one Personnel_price_list
+     * const personnel_price_list = await prisma.personnel_price_list.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends personnel_price_listFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, personnel_price_listFindUniqueArgs<ExtArgs>>
+    ): Prisma__personnel_price_listClient<$Result.GetResult<Prisma.$personnel_price_listPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Personnel_price_list that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {personnel_price_listFindUniqueOrThrowArgs} args - Arguments to find a Personnel_price_list
+     * @example
+     * // Get one Personnel_price_list
+     * const personnel_price_list = await prisma.personnel_price_list.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends personnel_price_listFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, personnel_price_listFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__personnel_price_listClient<$Result.GetResult<Prisma.$personnel_price_listPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Personnel_price_list that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {personnel_price_listFindFirstArgs} args - Arguments to find a Personnel_price_list
+     * @example
+     * // Get one Personnel_price_list
+     * const personnel_price_list = await prisma.personnel_price_list.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends personnel_price_listFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, personnel_price_listFindFirstArgs<ExtArgs>>
+    ): Prisma__personnel_price_listClient<$Result.GetResult<Prisma.$personnel_price_listPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Personnel_price_list that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {personnel_price_listFindFirstOrThrowArgs} args - Arguments to find a Personnel_price_list
+     * @example
+     * // Get one Personnel_price_list
+     * const personnel_price_list = await prisma.personnel_price_list.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends personnel_price_listFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, personnel_price_listFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__personnel_price_listClient<$Result.GetResult<Prisma.$personnel_price_listPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Personnel_price_lists that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {personnel_price_listFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Personnel_price_lists
+     * const personnel_price_lists = await prisma.personnel_price_list.findMany()
+     * 
+     * // Get first 10 Personnel_price_lists
+     * const personnel_price_lists = await prisma.personnel_price_list.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const personnel_price_listWithIdOnly = await prisma.personnel_price_list.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends personnel_price_listFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, personnel_price_listFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$personnel_price_listPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Personnel_price_list.
+     * @param {personnel_price_listCreateArgs} args - Arguments to create a Personnel_price_list.
+     * @example
+     * // Create one Personnel_price_list
+     * const Personnel_price_list = await prisma.personnel_price_list.create({
+     *   data: {
+     *     // ... data to create a Personnel_price_list
+     *   }
+     * })
+     * 
+    **/
+    create<T extends personnel_price_listCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, personnel_price_listCreateArgs<ExtArgs>>
+    ): Prisma__personnel_price_listClient<$Result.GetResult<Prisma.$personnel_price_listPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Personnel_price_lists.
+     *     @param {personnel_price_listCreateManyArgs} args - Arguments to create many Personnel_price_lists.
+     *     @example
+     *     // Create many Personnel_price_lists
+     *     const personnel_price_list = await prisma.personnel_price_list.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends personnel_price_listCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, personnel_price_listCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Personnel_price_list.
+     * @param {personnel_price_listDeleteArgs} args - Arguments to delete one Personnel_price_list.
+     * @example
+     * // Delete one Personnel_price_list
+     * const Personnel_price_list = await prisma.personnel_price_list.delete({
+     *   where: {
+     *     // ... filter to delete one Personnel_price_list
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends personnel_price_listDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, personnel_price_listDeleteArgs<ExtArgs>>
+    ): Prisma__personnel_price_listClient<$Result.GetResult<Prisma.$personnel_price_listPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Personnel_price_list.
+     * @param {personnel_price_listUpdateArgs} args - Arguments to update one Personnel_price_list.
+     * @example
+     * // Update one Personnel_price_list
+     * const personnel_price_list = await prisma.personnel_price_list.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends personnel_price_listUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, personnel_price_listUpdateArgs<ExtArgs>>
+    ): Prisma__personnel_price_listClient<$Result.GetResult<Prisma.$personnel_price_listPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Personnel_price_lists.
+     * @param {personnel_price_listDeleteManyArgs} args - Arguments to filter Personnel_price_lists to delete.
+     * @example
+     * // Delete a few Personnel_price_lists
+     * const { count } = await prisma.personnel_price_list.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends personnel_price_listDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, personnel_price_listDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Personnel_price_lists.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {personnel_price_listUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Personnel_price_lists
+     * const personnel_price_list = await prisma.personnel_price_list.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends personnel_price_listUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, personnel_price_listUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Personnel_price_list.
+     * @param {personnel_price_listUpsertArgs} args - Arguments to update or create a Personnel_price_list.
+     * @example
+     * // Update or create a Personnel_price_list
+     * const personnel_price_list = await prisma.personnel_price_list.upsert({
+     *   create: {
+     *     // ... data to create a Personnel_price_list
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Personnel_price_list we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends personnel_price_listUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, personnel_price_listUpsertArgs<ExtArgs>>
+    ): Prisma__personnel_price_listClient<$Result.GetResult<Prisma.$personnel_price_listPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Personnel_price_lists.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {personnel_price_listCountArgs} args - Arguments to filter Personnel_price_lists to count.
+     * @example
+     * // Count the number of Personnel_price_lists
+     * const count = await prisma.personnel_price_list.count({
+     *   where: {
+     *     // ... the filter for the Personnel_price_lists we want to count
+     *   }
+     * })
+    **/
+    count<T extends personnel_price_listCountArgs>(
+      args?: Subset<T, personnel_price_listCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Personnel_price_listCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Personnel_price_list.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Personnel_price_listAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Personnel_price_listAggregateArgs>(args: Subset<T, Personnel_price_listAggregateArgs>): Prisma.PrismaPromise<GetPersonnel_price_listAggregateType<T>>
+
+    /**
+     * Group by Personnel_price_list.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {personnel_price_listGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends personnel_price_listGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: personnel_price_listGroupByArgs['orderBy'] }
+        : { orderBy?: personnel_price_listGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, personnel_price_listGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPersonnel_price_listGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the personnel_price_list model
+   */
+  readonly fields: personnel_price_listFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for personnel_price_list.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__personnel_price_listClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the personnel_price_list model
+   */ 
+  interface personnel_price_listFieldRefs {
+    readonly id: FieldRef<"personnel_price_list", 'Int'>
+    readonly type: FieldRef<"personnel_price_list", 'Type'>
+    readonly application_fee: FieldRef<"personnel_price_list", 'Int'>
+    readonly application_charge: FieldRef<"personnel_price_list", 'Int'>
+    readonly enugu_ID_certificate: FieldRef<"personnel_price_list", 'Int'>
+    readonly certificate_charge: FieldRef<"personnel_price_list", 'Int'>
+    readonly renewal_fee: FieldRef<"personnel_price_list", 'Int'>
+    readonly renewal_charge: FieldRef<"personnel_price_list", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * personnel_price_list findUnique
+   */
+  export type personnel_price_listFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the personnel_price_list
+     */
+    select?: personnel_price_listSelect<ExtArgs> | null
+    /**
+     * Filter, which personnel_price_list to fetch.
+     */
+    where: personnel_price_listWhereUniqueInput
+  }
+
+  /**
+   * personnel_price_list findUniqueOrThrow
+   */
+  export type personnel_price_listFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the personnel_price_list
+     */
+    select?: personnel_price_listSelect<ExtArgs> | null
+    /**
+     * Filter, which personnel_price_list to fetch.
+     */
+    where: personnel_price_listWhereUniqueInput
+  }
+
+  /**
+   * personnel_price_list findFirst
+   */
+  export type personnel_price_listFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the personnel_price_list
+     */
+    select?: personnel_price_listSelect<ExtArgs> | null
+    /**
+     * Filter, which personnel_price_list to fetch.
+     */
+    where?: personnel_price_listWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of personnel_price_lists to fetch.
+     */
+    orderBy?: personnel_price_listOrderByWithRelationInput | personnel_price_listOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for personnel_price_lists.
+     */
+    cursor?: personnel_price_listWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` personnel_price_lists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` personnel_price_lists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of personnel_price_lists.
+     */
+    distinct?: Personnel_price_listScalarFieldEnum | Personnel_price_listScalarFieldEnum[]
+  }
+
+  /**
+   * personnel_price_list findFirstOrThrow
+   */
+  export type personnel_price_listFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the personnel_price_list
+     */
+    select?: personnel_price_listSelect<ExtArgs> | null
+    /**
+     * Filter, which personnel_price_list to fetch.
+     */
+    where?: personnel_price_listWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of personnel_price_lists to fetch.
+     */
+    orderBy?: personnel_price_listOrderByWithRelationInput | personnel_price_listOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for personnel_price_lists.
+     */
+    cursor?: personnel_price_listWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` personnel_price_lists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` personnel_price_lists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of personnel_price_lists.
+     */
+    distinct?: Personnel_price_listScalarFieldEnum | Personnel_price_listScalarFieldEnum[]
+  }
+
+  /**
+   * personnel_price_list findMany
+   */
+  export type personnel_price_listFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the personnel_price_list
+     */
+    select?: personnel_price_listSelect<ExtArgs> | null
+    /**
+     * Filter, which personnel_price_lists to fetch.
+     */
+    where?: personnel_price_listWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of personnel_price_lists to fetch.
+     */
+    orderBy?: personnel_price_listOrderByWithRelationInput | personnel_price_listOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing personnel_price_lists.
+     */
+    cursor?: personnel_price_listWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` personnel_price_lists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` personnel_price_lists.
+     */
+    skip?: number
+    distinct?: Personnel_price_listScalarFieldEnum | Personnel_price_listScalarFieldEnum[]
+  }
+
+  /**
+   * personnel_price_list create
+   */
+  export type personnel_price_listCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the personnel_price_list
+     */
+    select?: personnel_price_listSelect<ExtArgs> | null
+    /**
+     * The data needed to create a personnel_price_list.
+     */
+    data: XOR<personnel_price_listCreateInput, personnel_price_listUncheckedCreateInput>
+  }
+
+  /**
+   * personnel_price_list createMany
+   */
+  export type personnel_price_listCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many personnel_price_lists.
+     */
+    data: personnel_price_listCreateManyInput | personnel_price_listCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * personnel_price_list update
+   */
+  export type personnel_price_listUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the personnel_price_list
+     */
+    select?: personnel_price_listSelect<ExtArgs> | null
+    /**
+     * The data needed to update a personnel_price_list.
+     */
+    data: XOR<personnel_price_listUpdateInput, personnel_price_listUncheckedUpdateInput>
+    /**
+     * Choose, which personnel_price_list to update.
+     */
+    where: personnel_price_listWhereUniqueInput
+  }
+
+  /**
+   * personnel_price_list updateMany
+   */
+  export type personnel_price_listUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update personnel_price_lists.
+     */
+    data: XOR<personnel_price_listUpdateManyMutationInput, personnel_price_listUncheckedUpdateManyInput>
+    /**
+     * Filter which personnel_price_lists to update
+     */
+    where?: personnel_price_listWhereInput
+  }
+
+  /**
+   * personnel_price_list upsert
+   */
+  export type personnel_price_listUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the personnel_price_list
+     */
+    select?: personnel_price_listSelect<ExtArgs> | null
+    /**
+     * The filter to search for the personnel_price_list to update in case it exists.
+     */
+    where: personnel_price_listWhereUniqueInput
+    /**
+     * In case the personnel_price_list found by the `where` argument doesn't exist, create a new personnel_price_list with this data.
+     */
+    create: XOR<personnel_price_listCreateInput, personnel_price_listUncheckedCreateInput>
+    /**
+     * In case the personnel_price_list was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<personnel_price_listUpdateInput, personnel_price_listUncheckedUpdateInput>
+  }
+
+  /**
+   * personnel_price_list delete
+   */
+  export type personnel_price_listDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the personnel_price_list
+     */
+    select?: personnel_price_listSelect<ExtArgs> | null
+    /**
+     * Filter which personnel_price_list to delete.
+     */
+    where: personnel_price_listWhereUniqueInput
+  }
+
+  /**
+   * personnel_price_list deleteMany
+   */
+  export type personnel_price_listDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which personnel_price_lists to delete
+     */
+    where?: personnel_price_listWhereInput
+  }
+
+  /**
+   * personnel_price_list without action
+   */
+  export type personnel_price_listDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the personnel_price_list
+     */
+    select?: personnel_price_listSelect<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -18040,6 +21264,25 @@ export namespace Prisma {
   };
 
   export type InspectorScalarFieldEnum = (typeof InspectorScalarFieldEnum)[keyof typeof InspectorScalarFieldEnum]
+
+
+  export const EnforcerScalarFieldEnum: {
+    id: 'id',
+    fullname: 'fullname',
+    username: 'username',
+    email: 'email',
+    phone_number: 'phone_number',
+    address: 'address',
+    role: 'role',
+    lga: 'lga',
+    profile_image: 'profile_image',
+    password: 'password',
+    reset_password_token: 'reset_password_token',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type EnforcerScalarFieldEnum = (typeof EnforcerScalarFieldEnum)[keyof typeof EnforcerScalarFieldEnum]
 
 
   export const StateScalarFieldEnum: {
@@ -18288,6 +21531,41 @@ export namespace Prisma {
   };
 
   export type Food_facility_personnelScalarFieldEnum = (typeof Food_facility_personnelScalarFieldEnum)[keyof typeof Food_facility_personnelScalarFieldEnum]
+
+
+  export const Facility_price_listScalarFieldEnum: {
+    id: 'id',
+    facility_type: 'facility_type',
+    number_of_beds: 'number_of_beds',
+    application_fee: 'application_fee',
+    application_fee_charge: 'application_fee_charge',
+    first_time_reg: 'first_time_reg',
+    first_time_charge: 'first_time_charge',
+    renewal_fee: 'renewal_fee',
+    renewal_charge: 'renewal_charge',
+    verification_fee: 'verification_fee',
+    verification_charge: 'verification_charge',
+    certificate_fee: 'certificate_fee',
+    certificate_charge: 'certificate_charge',
+    inspection_fee: 'inspection_fee',
+    inspection_charge: 'inspection_charge'
+  };
+
+  export type Facility_price_listScalarFieldEnum = (typeof Facility_price_listScalarFieldEnum)[keyof typeof Facility_price_listScalarFieldEnum]
+
+
+  export const Personnel_price_listScalarFieldEnum: {
+    id: 'id',
+    type: 'type',
+    application_fee: 'application_fee',
+    application_charge: 'application_charge',
+    enugu_ID_certificate: 'enugu_ID_certificate',
+    certificate_charge: 'certificate_charge',
+    renewal_fee: 'renewal_fee',
+    renewal_charge: 'renewal_charge'
+  };
+
+  export type Personnel_price_listScalarFieldEnum = (typeof Personnel_price_listScalarFieldEnum)[keyof typeof Personnel_price_listScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -18803,6 +22081,100 @@ export namespace Prisma {
     reset_password_token?: StringNullableWithAggregatesFilter<"inspector"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"inspector"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"inspector"> | Date | string
+  }
+
+  export type enforcerWhereInput = {
+    AND?: enforcerWhereInput | enforcerWhereInput[]
+    OR?: enforcerWhereInput[]
+    NOT?: enforcerWhereInput | enforcerWhereInput[]
+    id?: IntFilter<"enforcer"> | number
+    fullname?: StringFilter<"enforcer"> | string
+    username?: StringFilter<"enforcer"> | string
+    email?: StringFilter<"enforcer"> | string
+    phone_number?: StringFilter<"enforcer"> | string
+    address?: StringFilter<"enforcer"> | string
+    role?: EnumRoleFilter<"enforcer"> | $Enums.Role
+    lga?: StringNullableFilter<"enforcer"> | string | null
+    profile_image?: StringFilter<"enforcer"> | string
+    password?: StringFilter<"enforcer"> | string
+    reset_password_token?: StringNullableFilter<"enforcer"> | string | null
+    createdAt?: DateTimeFilter<"enforcer"> | Date | string
+    updatedAt?: DateTimeFilter<"enforcer"> | Date | string
+  }
+
+  export type enforcerOrderByWithRelationInput = {
+    id?: SortOrder
+    fullname?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    phone_number?: SortOrder
+    address?: SortOrder
+    role?: SortOrder
+    lga?: SortOrderInput | SortOrder
+    profile_image?: SortOrder
+    password?: SortOrder
+    reset_password_token?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type enforcerWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    username?: string
+    email?: string
+    reset_password_token?: string
+    AND?: enforcerWhereInput | enforcerWhereInput[]
+    OR?: enforcerWhereInput[]
+    NOT?: enforcerWhereInput | enforcerWhereInput[]
+    fullname?: StringFilter<"enforcer"> | string
+    phone_number?: StringFilter<"enforcer"> | string
+    address?: StringFilter<"enforcer"> | string
+    role?: EnumRoleFilter<"enforcer"> | $Enums.Role
+    lga?: StringNullableFilter<"enforcer"> | string | null
+    profile_image?: StringFilter<"enforcer"> | string
+    password?: StringFilter<"enforcer"> | string
+    createdAt?: DateTimeFilter<"enforcer"> | Date | string
+    updatedAt?: DateTimeFilter<"enforcer"> | Date | string
+  }, "id" | "username" | "email" | "reset_password_token">
+
+  export type enforcerOrderByWithAggregationInput = {
+    id?: SortOrder
+    fullname?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    phone_number?: SortOrder
+    address?: SortOrder
+    role?: SortOrder
+    lga?: SortOrderInput | SortOrder
+    profile_image?: SortOrder
+    password?: SortOrder
+    reset_password_token?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: enforcerCountOrderByAggregateInput
+    _avg?: enforcerAvgOrderByAggregateInput
+    _max?: enforcerMaxOrderByAggregateInput
+    _min?: enforcerMinOrderByAggregateInput
+    _sum?: enforcerSumOrderByAggregateInput
+  }
+
+  export type enforcerScalarWhereWithAggregatesInput = {
+    AND?: enforcerScalarWhereWithAggregatesInput | enforcerScalarWhereWithAggregatesInput[]
+    OR?: enforcerScalarWhereWithAggregatesInput[]
+    NOT?: enforcerScalarWhereWithAggregatesInput | enforcerScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"enforcer"> | number
+    fullname?: StringWithAggregatesFilter<"enforcer"> | string
+    username?: StringWithAggregatesFilter<"enforcer"> | string
+    email?: StringWithAggregatesFilter<"enforcer"> | string
+    phone_number?: StringWithAggregatesFilter<"enforcer"> | string
+    address?: StringWithAggregatesFilter<"enforcer"> | string
+    role?: EnumRoleWithAggregatesFilter<"enforcer"> | $Enums.Role
+    lga?: StringNullableWithAggregatesFilter<"enforcer"> | string | null
+    profile_image?: StringWithAggregatesFilter<"enforcer"> | string
+    password?: StringWithAggregatesFilter<"enforcer"> | string
+    reset_password_token?: StringNullableWithAggregatesFilter<"enforcer"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"enforcer"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"enforcer"> | Date | string
   }
 
   export type stateWhereInput = {
@@ -20069,6 +23441,179 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"food_facility_personnel"> | Date | string
   }
 
+  export type facility_price_listWhereInput = {
+    AND?: facility_price_listWhereInput | facility_price_listWhereInput[]
+    OR?: facility_price_listWhereInput[]
+    NOT?: facility_price_listWhereInput | facility_price_listWhereInput[]
+    id?: IntFilter<"facility_price_list"> | number
+    facility_type?: EnumFacility_TypeFilter<"facility_price_list"> | $Enums.Facility_Type
+    number_of_beds?: StringNullableFilter<"facility_price_list"> | string | null
+    application_fee?: IntFilter<"facility_price_list"> | number
+    application_fee_charge?: IntFilter<"facility_price_list"> | number
+    first_time_reg?: IntFilter<"facility_price_list"> | number
+    first_time_charge?: IntFilter<"facility_price_list"> | number
+    renewal_fee?: IntFilter<"facility_price_list"> | number
+    renewal_charge?: IntFilter<"facility_price_list"> | number
+    verification_fee?: IntNullableFilter<"facility_price_list"> | number | null
+    verification_charge?: IntNullableFilter<"facility_price_list"> | number | null
+    certificate_fee?: IntNullableFilter<"facility_price_list"> | number | null
+    certificate_charge?: IntNullableFilter<"facility_price_list"> | number | null
+    inspection_fee?: IntNullableFilter<"facility_price_list"> | number | null
+    inspection_charge?: IntNullableFilter<"facility_price_list"> | number | null
+  }
+
+  export type facility_price_listOrderByWithRelationInput = {
+    id?: SortOrder
+    facility_type?: SortOrder
+    number_of_beds?: SortOrderInput | SortOrder
+    application_fee?: SortOrder
+    application_fee_charge?: SortOrder
+    first_time_reg?: SortOrder
+    first_time_charge?: SortOrder
+    renewal_fee?: SortOrder
+    renewal_charge?: SortOrder
+    verification_fee?: SortOrderInput | SortOrder
+    verification_charge?: SortOrderInput | SortOrder
+    certificate_fee?: SortOrderInput | SortOrder
+    certificate_charge?: SortOrderInput | SortOrder
+    inspection_fee?: SortOrderInput | SortOrder
+    inspection_charge?: SortOrderInput | SortOrder
+  }
+
+  export type facility_price_listWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: facility_price_listWhereInput | facility_price_listWhereInput[]
+    OR?: facility_price_listWhereInput[]
+    NOT?: facility_price_listWhereInput | facility_price_listWhereInput[]
+    facility_type?: EnumFacility_TypeFilter<"facility_price_list"> | $Enums.Facility_Type
+    number_of_beds?: StringNullableFilter<"facility_price_list"> | string | null
+    application_fee?: IntFilter<"facility_price_list"> | number
+    application_fee_charge?: IntFilter<"facility_price_list"> | number
+    first_time_reg?: IntFilter<"facility_price_list"> | number
+    first_time_charge?: IntFilter<"facility_price_list"> | number
+    renewal_fee?: IntFilter<"facility_price_list"> | number
+    renewal_charge?: IntFilter<"facility_price_list"> | number
+    verification_fee?: IntNullableFilter<"facility_price_list"> | number | null
+    verification_charge?: IntNullableFilter<"facility_price_list"> | number | null
+    certificate_fee?: IntNullableFilter<"facility_price_list"> | number | null
+    certificate_charge?: IntNullableFilter<"facility_price_list"> | number | null
+    inspection_fee?: IntNullableFilter<"facility_price_list"> | number | null
+    inspection_charge?: IntNullableFilter<"facility_price_list"> | number | null
+  }, "id">
+
+  export type facility_price_listOrderByWithAggregationInput = {
+    id?: SortOrder
+    facility_type?: SortOrder
+    number_of_beds?: SortOrderInput | SortOrder
+    application_fee?: SortOrder
+    application_fee_charge?: SortOrder
+    first_time_reg?: SortOrder
+    first_time_charge?: SortOrder
+    renewal_fee?: SortOrder
+    renewal_charge?: SortOrder
+    verification_fee?: SortOrderInput | SortOrder
+    verification_charge?: SortOrderInput | SortOrder
+    certificate_fee?: SortOrderInput | SortOrder
+    certificate_charge?: SortOrderInput | SortOrder
+    inspection_fee?: SortOrderInput | SortOrder
+    inspection_charge?: SortOrderInput | SortOrder
+    _count?: facility_price_listCountOrderByAggregateInput
+    _avg?: facility_price_listAvgOrderByAggregateInput
+    _max?: facility_price_listMaxOrderByAggregateInput
+    _min?: facility_price_listMinOrderByAggregateInput
+    _sum?: facility_price_listSumOrderByAggregateInput
+  }
+
+  export type facility_price_listScalarWhereWithAggregatesInput = {
+    AND?: facility_price_listScalarWhereWithAggregatesInput | facility_price_listScalarWhereWithAggregatesInput[]
+    OR?: facility_price_listScalarWhereWithAggregatesInput[]
+    NOT?: facility_price_listScalarWhereWithAggregatesInput | facility_price_listScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"facility_price_list"> | number
+    facility_type?: EnumFacility_TypeWithAggregatesFilter<"facility_price_list"> | $Enums.Facility_Type
+    number_of_beds?: StringNullableWithAggregatesFilter<"facility_price_list"> | string | null
+    application_fee?: IntWithAggregatesFilter<"facility_price_list"> | number
+    application_fee_charge?: IntWithAggregatesFilter<"facility_price_list"> | number
+    first_time_reg?: IntWithAggregatesFilter<"facility_price_list"> | number
+    first_time_charge?: IntWithAggregatesFilter<"facility_price_list"> | number
+    renewal_fee?: IntWithAggregatesFilter<"facility_price_list"> | number
+    renewal_charge?: IntWithAggregatesFilter<"facility_price_list"> | number
+    verification_fee?: IntNullableWithAggregatesFilter<"facility_price_list"> | number | null
+    verification_charge?: IntNullableWithAggregatesFilter<"facility_price_list"> | number | null
+    certificate_fee?: IntNullableWithAggregatesFilter<"facility_price_list"> | number | null
+    certificate_charge?: IntNullableWithAggregatesFilter<"facility_price_list"> | number | null
+    inspection_fee?: IntNullableWithAggregatesFilter<"facility_price_list"> | number | null
+    inspection_charge?: IntNullableWithAggregatesFilter<"facility_price_list"> | number | null
+  }
+
+  export type personnel_price_listWhereInput = {
+    AND?: personnel_price_listWhereInput | personnel_price_listWhereInput[]
+    OR?: personnel_price_listWhereInput[]
+    NOT?: personnel_price_listWhereInput | personnel_price_listWhereInput[]
+    id?: IntFilter<"personnel_price_list"> | number
+    type?: EnumTypeFilter<"personnel_price_list"> | $Enums.Type
+    application_fee?: IntFilter<"personnel_price_list"> | number
+    application_charge?: IntFilter<"personnel_price_list"> | number
+    enugu_ID_certificate?: IntFilter<"personnel_price_list"> | number
+    certificate_charge?: IntNullableFilter<"personnel_price_list"> | number | null
+    renewal_fee?: IntFilter<"personnel_price_list"> | number
+    renewal_charge?: IntFilter<"personnel_price_list"> | number
+  }
+
+  export type personnel_price_listOrderByWithRelationInput = {
+    id?: SortOrder
+    type?: SortOrder
+    application_fee?: SortOrder
+    application_charge?: SortOrder
+    enugu_ID_certificate?: SortOrder
+    certificate_charge?: SortOrderInput | SortOrder
+    renewal_fee?: SortOrder
+    renewal_charge?: SortOrder
+  }
+
+  export type personnel_price_listWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: personnel_price_listWhereInput | personnel_price_listWhereInput[]
+    OR?: personnel_price_listWhereInput[]
+    NOT?: personnel_price_listWhereInput | personnel_price_listWhereInput[]
+    type?: EnumTypeFilter<"personnel_price_list"> | $Enums.Type
+    application_fee?: IntFilter<"personnel_price_list"> | number
+    application_charge?: IntFilter<"personnel_price_list"> | number
+    enugu_ID_certificate?: IntFilter<"personnel_price_list"> | number
+    certificate_charge?: IntNullableFilter<"personnel_price_list"> | number | null
+    renewal_fee?: IntFilter<"personnel_price_list"> | number
+    renewal_charge?: IntFilter<"personnel_price_list"> | number
+  }, "id">
+
+  export type personnel_price_listOrderByWithAggregationInput = {
+    id?: SortOrder
+    type?: SortOrder
+    application_fee?: SortOrder
+    application_charge?: SortOrder
+    enugu_ID_certificate?: SortOrder
+    certificate_charge?: SortOrderInput | SortOrder
+    renewal_fee?: SortOrder
+    renewal_charge?: SortOrder
+    _count?: personnel_price_listCountOrderByAggregateInput
+    _avg?: personnel_price_listAvgOrderByAggregateInput
+    _max?: personnel_price_listMaxOrderByAggregateInput
+    _min?: personnel_price_listMinOrderByAggregateInput
+    _sum?: personnel_price_listSumOrderByAggregateInput
+  }
+
+  export type personnel_price_listScalarWhereWithAggregatesInput = {
+    AND?: personnel_price_listScalarWhereWithAggregatesInput | personnel_price_listScalarWhereWithAggregatesInput[]
+    OR?: personnel_price_listScalarWhereWithAggregatesInput[]
+    NOT?: personnel_price_listScalarWhereWithAggregatesInput | personnel_price_listScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"personnel_price_list"> | number
+    type?: EnumTypeWithAggregatesFilter<"personnel_price_list"> | $Enums.Type
+    application_fee?: IntWithAggregatesFilter<"personnel_price_list"> | number
+    application_charge?: IntWithAggregatesFilter<"personnel_price_list"> | number
+    enugu_ID_certificate?: IntWithAggregatesFilter<"personnel_price_list"> | number
+    certificate_charge?: IntNullableWithAggregatesFilter<"personnel_price_list"> | number | null
+    renewal_fee?: IntWithAggregatesFilter<"personnel_price_list"> | number
+    renewal_charge?: IntWithAggregatesFilter<"personnel_price_list"> | number
+  }
+
   export type adminCreateInput = {
     fullname: string
     username: string
@@ -20398,6 +23943,115 @@ export namespace Prisma {
   }
 
   export type inspectorUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    fullname?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    lga?: NullableStringFieldUpdateOperationsInput | string | null
+    profile_image?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    reset_password_token?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type enforcerCreateInput = {
+    fullname: string
+    username: string
+    email: string
+    phone_number: string
+    address: string
+    role?: $Enums.Role
+    lga?: string | null
+    profile_image: string
+    password: string
+    reset_password_token?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type enforcerUncheckedCreateInput = {
+    id?: number
+    fullname: string
+    username: string
+    email: string
+    phone_number: string
+    address: string
+    role?: $Enums.Role
+    lga?: string | null
+    profile_image: string
+    password: string
+    reset_password_token?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type enforcerUpdateInput = {
+    fullname?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    lga?: NullableStringFieldUpdateOperationsInput | string | null
+    profile_image?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    reset_password_token?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type enforcerUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    fullname?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    lga?: NullableStringFieldUpdateOperationsInput | string | null
+    profile_image?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    reset_password_token?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type enforcerCreateManyInput = {
+    id?: number
+    fullname: string
+    username: string
+    email: string
+    phone_number: string
+    address: string
+    role?: $Enums.Role
+    lga?: string | null
+    profile_image: string
+    password: string
+    reset_password_token?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type enforcerUpdateManyMutationInput = {
+    fullname?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    lga?: NullableStringFieldUpdateOperationsInput | string | null
+    profile_image?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    reset_password_token?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type enforcerUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     fullname?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
@@ -21879,6 +25533,203 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type facility_price_listCreateInput = {
+    facility_type: $Enums.Facility_Type
+    number_of_beds?: string | null
+    application_fee: number
+    application_fee_charge: number
+    first_time_reg: number
+    first_time_charge: number
+    renewal_fee: number
+    renewal_charge: number
+    verification_fee?: number | null
+    verification_charge?: number | null
+    certificate_fee?: number | null
+    certificate_charge?: number | null
+    inspection_fee?: number | null
+    inspection_charge?: number | null
+  }
+
+  export type facility_price_listUncheckedCreateInput = {
+    id?: number
+    facility_type: $Enums.Facility_Type
+    number_of_beds?: string | null
+    application_fee: number
+    application_fee_charge: number
+    first_time_reg: number
+    first_time_charge: number
+    renewal_fee: number
+    renewal_charge: number
+    verification_fee?: number | null
+    verification_charge?: number | null
+    certificate_fee?: number | null
+    certificate_charge?: number | null
+    inspection_fee?: number | null
+    inspection_charge?: number | null
+  }
+
+  export type facility_price_listUpdateInput = {
+    facility_type?: EnumFacility_TypeFieldUpdateOperationsInput | $Enums.Facility_Type
+    number_of_beds?: NullableStringFieldUpdateOperationsInput | string | null
+    application_fee?: IntFieldUpdateOperationsInput | number
+    application_fee_charge?: IntFieldUpdateOperationsInput | number
+    first_time_reg?: IntFieldUpdateOperationsInput | number
+    first_time_charge?: IntFieldUpdateOperationsInput | number
+    renewal_fee?: IntFieldUpdateOperationsInput | number
+    renewal_charge?: IntFieldUpdateOperationsInput | number
+    verification_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    verification_charge?: NullableIntFieldUpdateOperationsInput | number | null
+    certificate_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    certificate_charge?: NullableIntFieldUpdateOperationsInput | number | null
+    inspection_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    inspection_charge?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type facility_price_listUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    facility_type?: EnumFacility_TypeFieldUpdateOperationsInput | $Enums.Facility_Type
+    number_of_beds?: NullableStringFieldUpdateOperationsInput | string | null
+    application_fee?: IntFieldUpdateOperationsInput | number
+    application_fee_charge?: IntFieldUpdateOperationsInput | number
+    first_time_reg?: IntFieldUpdateOperationsInput | number
+    first_time_charge?: IntFieldUpdateOperationsInput | number
+    renewal_fee?: IntFieldUpdateOperationsInput | number
+    renewal_charge?: IntFieldUpdateOperationsInput | number
+    verification_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    verification_charge?: NullableIntFieldUpdateOperationsInput | number | null
+    certificate_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    certificate_charge?: NullableIntFieldUpdateOperationsInput | number | null
+    inspection_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    inspection_charge?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type facility_price_listCreateManyInput = {
+    id?: number
+    facility_type: $Enums.Facility_Type
+    number_of_beds?: string | null
+    application_fee: number
+    application_fee_charge: number
+    first_time_reg: number
+    first_time_charge: number
+    renewal_fee: number
+    renewal_charge: number
+    verification_fee?: number | null
+    verification_charge?: number | null
+    certificate_fee?: number | null
+    certificate_charge?: number | null
+    inspection_fee?: number | null
+    inspection_charge?: number | null
+  }
+
+  export type facility_price_listUpdateManyMutationInput = {
+    facility_type?: EnumFacility_TypeFieldUpdateOperationsInput | $Enums.Facility_Type
+    number_of_beds?: NullableStringFieldUpdateOperationsInput | string | null
+    application_fee?: IntFieldUpdateOperationsInput | number
+    application_fee_charge?: IntFieldUpdateOperationsInput | number
+    first_time_reg?: IntFieldUpdateOperationsInput | number
+    first_time_charge?: IntFieldUpdateOperationsInput | number
+    renewal_fee?: IntFieldUpdateOperationsInput | number
+    renewal_charge?: IntFieldUpdateOperationsInput | number
+    verification_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    verification_charge?: NullableIntFieldUpdateOperationsInput | number | null
+    certificate_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    certificate_charge?: NullableIntFieldUpdateOperationsInput | number | null
+    inspection_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    inspection_charge?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type facility_price_listUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    facility_type?: EnumFacility_TypeFieldUpdateOperationsInput | $Enums.Facility_Type
+    number_of_beds?: NullableStringFieldUpdateOperationsInput | string | null
+    application_fee?: IntFieldUpdateOperationsInput | number
+    application_fee_charge?: IntFieldUpdateOperationsInput | number
+    first_time_reg?: IntFieldUpdateOperationsInput | number
+    first_time_charge?: IntFieldUpdateOperationsInput | number
+    renewal_fee?: IntFieldUpdateOperationsInput | number
+    renewal_charge?: IntFieldUpdateOperationsInput | number
+    verification_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    verification_charge?: NullableIntFieldUpdateOperationsInput | number | null
+    certificate_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    certificate_charge?: NullableIntFieldUpdateOperationsInput | number | null
+    inspection_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    inspection_charge?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type personnel_price_listCreateInput = {
+    type: $Enums.Type
+    application_fee: number
+    application_charge: number
+    enugu_ID_certificate: number
+    certificate_charge?: number | null
+    renewal_fee: number
+    renewal_charge: number
+  }
+
+  export type personnel_price_listUncheckedCreateInput = {
+    id?: number
+    type: $Enums.Type
+    application_fee: number
+    application_charge: number
+    enugu_ID_certificate: number
+    certificate_charge?: number | null
+    renewal_fee: number
+    renewal_charge: number
+  }
+
+  export type personnel_price_listUpdateInput = {
+    type?: EnumTypeFieldUpdateOperationsInput | $Enums.Type
+    application_fee?: IntFieldUpdateOperationsInput | number
+    application_charge?: IntFieldUpdateOperationsInput | number
+    enugu_ID_certificate?: IntFieldUpdateOperationsInput | number
+    certificate_charge?: NullableIntFieldUpdateOperationsInput | number | null
+    renewal_fee?: IntFieldUpdateOperationsInput | number
+    renewal_charge?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type personnel_price_listUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: EnumTypeFieldUpdateOperationsInput | $Enums.Type
+    application_fee?: IntFieldUpdateOperationsInput | number
+    application_charge?: IntFieldUpdateOperationsInput | number
+    enugu_ID_certificate?: IntFieldUpdateOperationsInput | number
+    certificate_charge?: NullableIntFieldUpdateOperationsInput | number | null
+    renewal_fee?: IntFieldUpdateOperationsInput | number
+    renewal_charge?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type personnel_price_listCreateManyInput = {
+    id?: number
+    type: $Enums.Type
+    application_fee: number
+    application_charge: number
+    enugu_ID_certificate: number
+    certificate_charge?: number | null
+    renewal_fee: number
+    renewal_charge: number
+  }
+
+  export type personnel_price_listUpdateManyMutationInput = {
+    type?: EnumTypeFieldUpdateOperationsInput | $Enums.Type
+    application_fee?: IntFieldUpdateOperationsInput | number
+    application_charge?: IntFieldUpdateOperationsInput | number
+    enugu_ID_certificate?: IntFieldUpdateOperationsInput | number
+    certificate_charge?: NullableIntFieldUpdateOperationsInput | number | null
+    renewal_fee?: IntFieldUpdateOperationsInput | number
+    renewal_charge?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type personnel_price_listUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: EnumTypeFieldUpdateOperationsInput | $Enums.Type
+    application_fee?: IntFieldUpdateOperationsInput | number
+    application_charge?: IntFieldUpdateOperationsInput | number
+    enugu_ID_certificate?: IntFieldUpdateOperationsInput | number
+    certificate_charge?: NullableIntFieldUpdateOperationsInput | number | null
+    renewal_fee?: IntFieldUpdateOperationsInput | number
+    renewal_charge?: IntFieldUpdateOperationsInput | number
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -22250,6 +26101,62 @@ export namespace Prisma {
   }
 
   export type inspectorSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type enforcerCountOrderByAggregateInput = {
+    id?: SortOrder
+    fullname?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    phone_number?: SortOrder
+    address?: SortOrder
+    role?: SortOrder
+    lga?: SortOrder
+    profile_image?: SortOrder
+    password?: SortOrder
+    reset_password_token?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type enforcerAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type enforcerMaxOrderByAggregateInput = {
+    id?: SortOrder
+    fullname?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    phone_number?: SortOrder
+    address?: SortOrder
+    role?: SortOrder
+    lga?: SortOrder
+    profile_image?: SortOrder
+    password?: SortOrder
+    reset_password_token?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type enforcerMinOrderByAggregateInput = {
+    id?: SortOrder
+    fullname?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    phone_number?: SortOrder
+    address?: SortOrder
+    role?: SortOrder
+    lga?: SortOrder
+    profile_image?: SortOrder
+    password?: SortOrder
+    reset_password_token?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type enforcerSumOrderByAggregateInput = {
     id?: SortOrder
   }
 
@@ -23242,6 +27149,145 @@ export namespace Prisma {
     id?: SortOrder
     food_facility_id?: SortOrder
     food_handler_id?: SortOrder
+  }
+
+  export type facility_price_listCountOrderByAggregateInput = {
+    id?: SortOrder
+    facility_type?: SortOrder
+    number_of_beds?: SortOrder
+    application_fee?: SortOrder
+    application_fee_charge?: SortOrder
+    first_time_reg?: SortOrder
+    first_time_charge?: SortOrder
+    renewal_fee?: SortOrder
+    renewal_charge?: SortOrder
+    verification_fee?: SortOrder
+    verification_charge?: SortOrder
+    certificate_fee?: SortOrder
+    certificate_charge?: SortOrder
+    inspection_fee?: SortOrder
+    inspection_charge?: SortOrder
+  }
+
+  export type facility_price_listAvgOrderByAggregateInput = {
+    id?: SortOrder
+    application_fee?: SortOrder
+    application_fee_charge?: SortOrder
+    first_time_reg?: SortOrder
+    first_time_charge?: SortOrder
+    renewal_fee?: SortOrder
+    renewal_charge?: SortOrder
+    verification_fee?: SortOrder
+    verification_charge?: SortOrder
+    certificate_fee?: SortOrder
+    certificate_charge?: SortOrder
+    inspection_fee?: SortOrder
+    inspection_charge?: SortOrder
+  }
+
+  export type facility_price_listMaxOrderByAggregateInput = {
+    id?: SortOrder
+    facility_type?: SortOrder
+    number_of_beds?: SortOrder
+    application_fee?: SortOrder
+    application_fee_charge?: SortOrder
+    first_time_reg?: SortOrder
+    first_time_charge?: SortOrder
+    renewal_fee?: SortOrder
+    renewal_charge?: SortOrder
+    verification_fee?: SortOrder
+    verification_charge?: SortOrder
+    certificate_fee?: SortOrder
+    certificate_charge?: SortOrder
+    inspection_fee?: SortOrder
+    inspection_charge?: SortOrder
+  }
+
+  export type facility_price_listMinOrderByAggregateInput = {
+    id?: SortOrder
+    facility_type?: SortOrder
+    number_of_beds?: SortOrder
+    application_fee?: SortOrder
+    application_fee_charge?: SortOrder
+    first_time_reg?: SortOrder
+    first_time_charge?: SortOrder
+    renewal_fee?: SortOrder
+    renewal_charge?: SortOrder
+    verification_fee?: SortOrder
+    verification_charge?: SortOrder
+    certificate_fee?: SortOrder
+    certificate_charge?: SortOrder
+    inspection_fee?: SortOrder
+    inspection_charge?: SortOrder
+  }
+
+  export type facility_price_listSumOrderByAggregateInput = {
+    id?: SortOrder
+    application_fee?: SortOrder
+    application_fee_charge?: SortOrder
+    first_time_reg?: SortOrder
+    first_time_charge?: SortOrder
+    renewal_fee?: SortOrder
+    renewal_charge?: SortOrder
+    verification_fee?: SortOrder
+    verification_charge?: SortOrder
+    certificate_fee?: SortOrder
+    certificate_charge?: SortOrder
+    inspection_fee?: SortOrder
+    inspection_charge?: SortOrder
+  }
+
+  export type personnel_price_listCountOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    application_fee?: SortOrder
+    application_charge?: SortOrder
+    enugu_ID_certificate?: SortOrder
+    certificate_charge?: SortOrder
+    renewal_fee?: SortOrder
+    renewal_charge?: SortOrder
+  }
+
+  export type personnel_price_listAvgOrderByAggregateInput = {
+    id?: SortOrder
+    application_fee?: SortOrder
+    application_charge?: SortOrder
+    enugu_ID_certificate?: SortOrder
+    certificate_charge?: SortOrder
+    renewal_fee?: SortOrder
+    renewal_charge?: SortOrder
+  }
+
+  export type personnel_price_listMaxOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    application_fee?: SortOrder
+    application_charge?: SortOrder
+    enugu_ID_certificate?: SortOrder
+    certificate_charge?: SortOrder
+    renewal_fee?: SortOrder
+    renewal_charge?: SortOrder
+  }
+
+  export type personnel_price_listMinOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    application_fee?: SortOrder
+    application_charge?: SortOrder
+    enugu_ID_certificate?: SortOrder
+    certificate_charge?: SortOrder
+    renewal_fee?: SortOrder
+    renewal_charge?: SortOrder
+  }
+
+  export type personnel_price_listSumOrderByAggregateInput = {
+    id?: SortOrder
+    application_fee?: SortOrder
+    application_charge?: SortOrder
+    enugu_ID_certificate?: SortOrder
+    certificate_charge?: SortOrder
+    renewal_fee?: SortOrder
+    renewal_charge?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -25933,6 +29979,10 @@ export namespace Prisma {
      */
     export type inspectorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = inspectorDefaultArgs<ExtArgs>
     /**
+     * @deprecated Use enforcerDefaultArgs instead
+     */
+    export type enforcerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = enforcerDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use stateDefaultArgs instead
      */
     export type stateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = stateDefaultArgs<ExtArgs>
@@ -25980,6 +30030,14 @@ export namespace Prisma {
      * @deprecated Use food_facility_personnelDefaultArgs instead
      */
     export type food_facility_personnelArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = food_facility_personnelDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use facility_price_listDefaultArgs instead
+     */
+    export type facility_price_listArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = facility_price_listDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use personnel_price_listDefaultArgs instead
+     */
+    export type personnel_price_listArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = personnel_price_listDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

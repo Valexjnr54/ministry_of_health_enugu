@@ -322,14 +322,14 @@
                                                         <table cellpadding="0" cellspacing="0" width="100%" bgcolor="#fafafa" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;background-color:#fafafa;border-radius:10px" role="presentation">
                                                             <tr>
                                                                 <td align="left" style="padding:20px;Margin:0">
-                                                                    <h3 style="Margin:0;line-height:34px;mso-line-height-rule:exactly;font-family:Imprima, Arial, sans-serif;font-size:28px;font-style:normal;font-weight:bold;color:#2D3142">Dear,&nbsp; <%= paymentDetails.metadata.fullname%></h3>
+                                                                    <h3 style="Margin:0;line-height:34px;mso-line-height-rule:exactly;font-family:Imprima, Arial, sans-serif;font-size:28px;font-style:normal;font-weight:bold;color:#2D3142">Dear,&nbsp; <%= fullname%></h3>
                                                                     <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Imprima, Arial, sans-serif;line-height:27px;color:#2D3142;font-size:18px"><br></p>
                                                                     <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Imprima, Arial, sans-serif;line-height:27px;color:#2D3142;font-size:18px">We are thrilled to inform you that your recent payment was successfully processed. Thank you for choosing Enugu Health Verify!<br><br>
                                                                         
                                                                     Payment Details:<br>
                                                                     Payment ID: <%= reference%><br>
                                                                         Amount Paid: <%= paymentDetails.amount / 100%><br>
-                                                                        Date and Time: <%= new Date(paymentDetails.paid_at).toLocaleDateString("en-US") %><br><br>
+                                                                        Date and Time: <%= new Date(paymentDetails.transactionDate).toLocaleDateString("en-US") %><br><br>
                                                                         Your transaction is now complete, and you can enjoy the benefits of our services immediately. Should you have any questions regarding your payment or require further assistance, please don't hesitate to contact our customer support team at support@enuguhealthverify.com or visit our <a href="https://ministry-of-health-reg.netlify.app">Contact Us</a>.
                                                                         
                                                                         Once again, thank you for your trust in Enugu Health Verify. We look forward to serving you again soon!</p>

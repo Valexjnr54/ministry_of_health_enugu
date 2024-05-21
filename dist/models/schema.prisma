@@ -67,6 +67,22 @@ model inspector {
   facility             facility[]
 }
 
+model enforcer {
+  id                   Int      @id @default(autoincrement())
+  fullname             String
+  username             String   @unique
+  email                String   @unique
+  phone_number         String
+  address              String
+  role                 Role     @default(Enforcer)
+  lga                  String?
+  profile_image        String
+  password             String
+  reset_password_token String?  @unique
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
 model state {
   id               Int                @id @default(autoincrement())
   name             String
@@ -291,6 +307,35 @@ model food_facility_personnel {
   createdAt        DateTime      @default(now())
 }
 
+model facility_price_list {
+  id                     Int           @id @default(autoincrement())
+  facility_type          Facility_Type
+  number_of_beds         String?
+  application_fee        Int
+  application_fee_charge Int
+  first_time_reg         Int
+  first_time_charge      Int
+  renewal_fee            Int
+  renewal_charge         Int
+  verification_fee       Int?
+  verification_charge    Int?
+  certificate_fee        Int?
+  certificate_charge     Int?
+  inspection_fee         Int?
+  inspection_charge      Int?
+}
+
+model personnel_price_list {
+  id                   Int  @id @default(autoincrement())
+  type                 Type
+  application_fee      Int
+  application_charge   Int
+  enugu_ID_certificate Int
+  certificate_charge Int?
+  renewal_fee          Int
+  renewal_charge       Int
+}
+
 enum Status {
   Pending
   Rejected
@@ -308,6 +353,7 @@ enum Role {
   Subadmin_facility
   Subadmin_foodhandler
   Subadmin_personnel
+  Enforcer
 }
 
 enum Type {
@@ -324,6 +370,7 @@ enum Type {
   Community_health_worker
   Emergency_medical_technician
   Other
+  food_handler
 }
 
 enum Facility_Type {

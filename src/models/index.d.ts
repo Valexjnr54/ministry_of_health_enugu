@@ -99,11 +99,6 @@ export type food_facility_personnel = $Result.DefaultSelection<Prisma.$food_faci
  */
 export type facility_price_list = $Result.DefaultSelection<Prisma.$facility_price_listPayload>
 /**
- * Model facility_constant_price_list
- * 
- */
-export type facility_constant_price_list = $Result.DefaultSelection<Prisma.$facility_constant_price_listPayload>
-/**
  * Model personnel_price_list
  * 
  */
@@ -538,16 +533,6 @@ export class PrismaClient<
     * ```
     */
   get facility_price_list(): Prisma.facility_price_listDelegate<ExtArgs>;
-
-  /**
-   * `prisma.facility_constant_price_list`: Exposes CRUD operations for the **facility_constant_price_list** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Facility_constant_price_lists
-    * const facility_constant_price_lists = await prisma.facility_constant_price_list.findMany()
-    * ```
-    */
-  get facility_constant_price_list(): Prisma.facility_constant_price_listDelegate<ExtArgs>;
 
   /**
    * `prisma.personnel_price_list`: Exposes CRUD operations for the **personnel_price_list** model.
@@ -1052,7 +1037,6 @@ export namespace Prisma {
     food_facility: 'food_facility',
     food_facility_personnel: 'food_facility_personnel',
     facility_price_list: 'facility_price_list',
-    facility_constant_price_list: 'facility_constant_price_list',
     personnel_price_list: 'personnel_price_list'
   };
 
@@ -1070,7 +1054,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'admin' | 'inspection_review' | 'inspector' | 'enforcer' | 'state' | 'local_government' | 'users' | 'food_handlers' | 'personnel_payment' | 'facility_payment' | 'facility_complete_payment' | 'revokedToken' | 'facility' | 'facility_personnel' | 'food_facility' | 'food_facility_personnel' | 'facility_price_list' | 'facility_constant_price_list' | 'personnel_price_list'
+      modelProps: 'admin' | 'inspection_review' | 'inspector' | 'enforcer' | 'state' | 'local_government' | 'users' | 'food_handlers' | 'personnel_payment' | 'facility_payment' | 'facility_complete_payment' | 'revokedToken' | 'facility' | 'facility_personnel' | 'food_facility' | 'food_facility_personnel' | 'facility_price_list' | 'personnel_price_list'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -2193,72 +2177,6 @@ export namespace Prisma {
           count: {
             args: Prisma.facility_price_listCountArgs<ExtArgs>,
             result: $Utils.Optional<Facility_price_listCountAggregateOutputType> | number
-          }
-        }
-      }
-      facility_constant_price_list: {
-        payload: Prisma.$facility_constant_price_listPayload<ExtArgs>
-        fields: Prisma.facility_constant_price_listFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.facility_constant_price_listFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$facility_constant_price_listPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.facility_constant_price_listFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$facility_constant_price_listPayload>
-          }
-          findFirst: {
-            args: Prisma.facility_constant_price_listFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$facility_constant_price_listPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.facility_constant_price_listFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$facility_constant_price_listPayload>
-          }
-          findMany: {
-            args: Prisma.facility_constant_price_listFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$facility_constant_price_listPayload>[]
-          }
-          create: {
-            args: Prisma.facility_constant_price_listCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$facility_constant_price_listPayload>
-          }
-          createMany: {
-            args: Prisma.facility_constant_price_listCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          delete: {
-            args: Prisma.facility_constant_price_listDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$facility_constant_price_listPayload>
-          }
-          update: {
-            args: Prisma.facility_constant_price_listUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$facility_constant_price_listPayload>
-          }
-          deleteMany: {
-            args: Prisma.facility_constant_price_listDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          updateMany: {
-            args: Prisma.facility_constant_price_listUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          upsert: {
-            args: Prisma.facility_constant_price_listUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$facility_constant_price_listPayload>
-          }
-          aggregate: {
-            args: Prisma.Facility_constant_price_listAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateFacility_constant_price_list>
-          }
-          groupBy: {
-            args: Prisma.facility_constant_price_listGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<Facility_constant_price_listGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.facility_constant_price_listCountArgs<ExtArgs>,
-            result: $Utils.Optional<Facility_constant_price_listCountAggregateOutputType> | number
           }
         }
       }
@@ -19298,6 +19216,12 @@ export namespace Prisma {
     first_time_charge: number | null
     renewal_fee: number | null
     renewal_charge: number | null
+    verification_fee: number | null
+    verification_charge: number | null
+    certificate_fee: number | null
+    certificate_charge: number | null
+    inspection_fee: number | null
+    inspection_charge: number | null
   }
 
   export type Facility_price_listSumAggregateOutputType = {
@@ -19308,6 +19232,12 @@ export namespace Prisma {
     first_time_charge: number | null
     renewal_fee: number | null
     renewal_charge: number | null
+    verification_fee: number | null
+    verification_charge: number | null
+    certificate_fee: number | null
+    certificate_charge: number | null
+    inspection_fee: number | null
+    inspection_charge: number | null
   }
 
   export type Facility_price_listMinAggregateOutputType = {
@@ -19320,6 +19250,12 @@ export namespace Prisma {
     first_time_charge: number | null
     renewal_fee: number | null
     renewal_charge: number | null
+    verification_fee: number | null
+    verification_charge: number | null
+    certificate_fee: number | null
+    certificate_charge: number | null
+    inspection_fee: number | null
+    inspection_charge: number | null
   }
 
   export type Facility_price_listMaxAggregateOutputType = {
@@ -19332,6 +19268,12 @@ export namespace Prisma {
     first_time_charge: number | null
     renewal_fee: number | null
     renewal_charge: number | null
+    verification_fee: number | null
+    verification_charge: number | null
+    certificate_fee: number | null
+    certificate_charge: number | null
+    inspection_fee: number | null
+    inspection_charge: number | null
   }
 
   export type Facility_price_listCountAggregateOutputType = {
@@ -19344,6 +19286,12 @@ export namespace Prisma {
     first_time_charge: number
     renewal_fee: number
     renewal_charge: number
+    verification_fee: number
+    verification_charge: number
+    certificate_fee: number
+    certificate_charge: number
+    inspection_fee: number
+    inspection_charge: number
     _all: number
   }
 
@@ -19356,6 +19304,12 @@ export namespace Prisma {
     first_time_charge?: true
     renewal_fee?: true
     renewal_charge?: true
+    verification_fee?: true
+    verification_charge?: true
+    certificate_fee?: true
+    certificate_charge?: true
+    inspection_fee?: true
+    inspection_charge?: true
   }
 
   export type Facility_price_listSumAggregateInputType = {
@@ -19366,6 +19320,12 @@ export namespace Prisma {
     first_time_charge?: true
     renewal_fee?: true
     renewal_charge?: true
+    verification_fee?: true
+    verification_charge?: true
+    certificate_fee?: true
+    certificate_charge?: true
+    inspection_fee?: true
+    inspection_charge?: true
   }
 
   export type Facility_price_listMinAggregateInputType = {
@@ -19378,6 +19338,12 @@ export namespace Prisma {
     first_time_charge?: true
     renewal_fee?: true
     renewal_charge?: true
+    verification_fee?: true
+    verification_charge?: true
+    certificate_fee?: true
+    certificate_charge?: true
+    inspection_fee?: true
+    inspection_charge?: true
   }
 
   export type Facility_price_listMaxAggregateInputType = {
@@ -19390,6 +19356,12 @@ export namespace Prisma {
     first_time_charge?: true
     renewal_fee?: true
     renewal_charge?: true
+    verification_fee?: true
+    verification_charge?: true
+    certificate_fee?: true
+    certificate_charge?: true
+    inspection_fee?: true
+    inspection_charge?: true
   }
 
   export type Facility_price_listCountAggregateInputType = {
@@ -19402,6 +19374,12 @@ export namespace Prisma {
     first_time_charge?: true
     renewal_fee?: true
     renewal_charge?: true
+    verification_fee?: true
+    verification_charge?: true
+    certificate_fee?: true
+    certificate_charge?: true
+    inspection_fee?: true
+    inspection_charge?: true
     _all?: true
   }
 
@@ -19501,6 +19479,12 @@ export namespace Prisma {
     first_time_charge: number
     renewal_fee: number
     renewal_charge: number
+    verification_fee: number | null
+    verification_charge: number | null
+    certificate_fee: number | null
+    certificate_charge: number | null
+    inspection_fee: number | null
+    inspection_charge: number | null
     _count: Facility_price_listCountAggregateOutputType | null
     _avg: Facility_price_listAvgAggregateOutputType | null
     _sum: Facility_price_listSumAggregateOutputType | null
@@ -19532,6 +19516,12 @@ export namespace Prisma {
     first_time_charge?: boolean
     renewal_fee?: boolean
     renewal_charge?: boolean
+    verification_fee?: boolean
+    verification_charge?: boolean
+    certificate_fee?: boolean
+    certificate_charge?: boolean
+    inspection_fee?: boolean
+    inspection_charge?: boolean
   }, ExtArgs["result"]["facility_price_list"]>
 
   export type facility_price_listSelectScalar = {
@@ -19544,6 +19534,12 @@ export namespace Prisma {
     first_time_charge?: boolean
     renewal_fee?: boolean
     renewal_charge?: boolean
+    verification_fee?: boolean
+    verification_charge?: boolean
+    certificate_fee?: boolean
+    certificate_charge?: boolean
+    inspection_fee?: boolean
+    inspection_charge?: boolean
   }
 
 
@@ -19561,6 +19557,12 @@ export namespace Prisma {
       first_time_charge: number
       renewal_fee: number
       renewal_charge: number
+      verification_fee: number | null
+      verification_charge: number | null
+      certificate_fee: number | null
+      certificate_charge: number | null
+      inspection_fee: number | null
+      inspection_charge: number | null
     }, ExtArgs["result"]["facility_price_list"]>
     composites: {}
   }
@@ -19964,6 +19966,12 @@ export namespace Prisma {
     readonly first_time_charge: FieldRef<"facility_price_list", 'Int'>
     readonly renewal_fee: FieldRef<"facility_price_list", 'Int'>
     readonly renewal_charge: FieldRef<"facility_price_list", 'Int'>
+    readonly verification_fee: FieldRef<"facility_price_list", 'Int'>
+    readonly verification_charge: FieldRef<"facility_price_list", 'Int'>
+    readonly certificate_fee: FieldRef<"facility_price_list", 'Int'>
+    readonly certificate_charge: FieldRef<"facility_price_list", 'Int'>
+    readonly inspection_fee: FieldRef<"facility_price_list", 'Int'>
+    readonly inspection_charge: FieldRef<"facility_price_list", 'Int'>
   }
     
 
@@ -20238,879 +20246,6 @@ export namespace Prisma {
 
 
   /**
-   * Model facility_constant_price_list
-   */
-
-  export type AggregateFacility_constant_price_list = {
-    _count: Facility_constant_price_listCountAggregateOutputType | null
-    _avg: Facility_constant_price_listAvgAggregateOutputType | null
-    _sum: Facility_constant_price_listSumAggregateOutputType | null
-    _min: Facility_constant_price_listMinAggregateOutputType | null
-    _max: Facility_constant_price_listMaxAggregateOutputType | null
-  }
-
-  export type Facility_constant_price_listAvgAggregateOutputType = {
-    id: number | null
-    amount: number | null
-  }
-
-  export type Facility_constant_price_listSumAggregateOutputType = {
-    id: number | null
-    amount: number | null
-  }
-
-  export type Facility_constant_price_listMinAggregateOutputType = {
-    id: number | null
-    name: string | null
-    amount: number | null
-  }
-
-  export type Facility_constant_price_listMaxAggregateOutputType = {
-    id: number | null
-    name: string | null
-    amount: number | null
-  }
-
-  export type Facility_constant_price_listCountAggregateOutputType = {
-    id: number
-    name: number
-    amount: number
-    _all: number
-  }
-
-
-  export type Facility_constant_price_listAvgAggregateInputType = {
-    id?: true
-    amount?: true
-  }
-
-  export type Facility_constant_price_listSumAggregateInputType = {
-    id?: true
-    amount?: true
-  }
-
-  export type Facility_constant_price_listMinAggregateInputType = {
-    id?: true
-    name?: true
-    amount?: true
-  }
-
-  export type Facility_constant_price_listMaxAggregateInputType = {
-    id?: true
-    name?: true
-    amount?: true
-  }
-
-  export type Facility_constant_price_listCountAggregateInputType = {
-    id?: true
-    name?: true
-    amount?: true
-    _all?: true
-  }
-
-  export type Facility_constant_price_listAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which facility_constant_price_list to aggregate.
-     */
-    where?: facility_constant_price_listWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of facility_constant_price_lists to fetch.
-     */
-    orderBy?: facility_constant_price_listOrderByWithRelationInput | facility_constant_price_listOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: facility_constant_price_listWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` facility_constant_price_lists from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` facility_constant_price_lists.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned facility_constant_price_lists
-    **/
-    _count?: true | Facility_constant_price_listCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: Facility_constant_price_listAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: Facility_constant_price_listSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: Facility_constant_price_listMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: Facility_constant_price_listMaxAggregateInputType
-  }
-
-  export type GetFacility_constant_price_listAggregateType<T extends Facility_constant_price_listAggregateArgs> = {
-        [P in keyof T & keyof AggregateFacility_constant_price_list]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateFacility_constant_price_list[P]>
-      : GetScalarType<T[P], AggregateFacility_constant_price_list[P]>
-  }
-
-
-
-
-  export type facility_constant_price_listGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: facility_constant_price_listWhereInput
-    orderBy?: facility_constant_price_listOrderByWithAggregationInput | facility_constant_price_listOrderByWithAggregationInput[]
-    by: Facility_constant_price_listScalarFieldEnum[] | Facility_constant_price_listScalarFieldEnum
-    having?: facility_constant_price_listScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: Facility_constant_price_listCountAggregateInputType | true
-    _avg?: Facility_constant_price_listAvgAggregateInputType
-    _sum?: Facility_constant_price_listSumAggregateInputType
-    _min?: Facility_constant_price_listMinAggregateInputType
-    _max?: Facility_constant_price_listMaxAggregateInputType
-  }
-
-  export type Facility_constant_price_listGroupByOutputType = {
-    id: number
-    name: string
-    amount: number
-    _count: Facility_constant_price_listCountAggregateOutputType | null
-    _avg: Facility_constant_price_listAvgAggregateOutputType | null
-    _sum: Facility_constant_price_listSumAggregateOutputType | null
-    _min: Facility_constant_price_listMinAggregateOutputType | null
-    _max: Facility_constant_price_listMaxAggregateOutputType | null
-  }
-
-  type GetFacility_constant_price_listGroupByPayload<T extends facility_constant_price_listGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<Facility_constant_price_listGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof Facility_constant_price_listGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], Facility_constant_price_listGroupByOutputType[P]>
-            : GetScalarType<T[P], Facility_constant_price_listGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type facility_constant_price_listSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    amount?: boolean
-  }, ExtArgs["result"]["facility_constant_price_list"]>
-
-  export type facility_constant_price_listSelectScalar = {
-    id?: boolean
-    name?: boolean
-    amount?: boolean
-  }
-
-
-
-  export type $facility_constant_price_listPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "facility_constant_price_list"
-    objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      name: string
-      amount: number
-    }, ExtArgs["result"]["facility_constant_price_list"]>
-    composites: {}
-  }
-
-
-  type facility_constant_price_listGetPayload<S extends boolean | null | undefined | facility_constant_price_listDefaultArgs> = $Result.GetResult<Prisma.$facility_constant_price_listPayload, S>
-
-  type facility_constant_price_listCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<facility_constant_price_listFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: Facility_constant_price_listCountAggregateInputType | true
-    }
-
-  export interface facility_constant_price_listDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['facility_constant_price_list'], meta: { name: 'facility_constant_price_list' } }
-    /**
-     * Find zero or one Facility_constant_price_list that matches the filter.
-     * @param {facility_constant_price_listFindUniqueArgs} args - Arguments to find a Facility_constant_price_list
-     * @example
-     * // Get one Facility_constant_price_list
-     * const facility_constant_price_list = await prisma.facility_constant_price_list.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUnique<T extends facility_constant_price_listFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, facility_constant_price_listFindUniqueArgs<ExtArgs>>
-    ): Prisma__facility_constant_price_listClient<$Result.GetResult<Prisma.$facility_constant_price_listPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
-
-    /**
-     * Find one Facility_constant_price_list that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
-     * @param {facility_constant_price_listFindUniqueOrThrowArgs} args - Arguments to find a Facility_constant_price_list
-     * @example
-     * // Get one Facility_constant_price_list
-     * const facility_constant_price_list = await prisma.facility_constant_price_list.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUniqueOrThrow<T extends facility_constant_price_listFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, facility_constant_price_listFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__facility_constant_price_listClient<$Result.GetResult<Prisma.$facility_constant_price_listPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find the first Facility_constant_price_list that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {facility_constant_price_listFindFirstArgs} args - Arguments to find a Facility_constant_price_list
-     * @example
-     * // Get one Facility_constant_price_list
-     * const facility_constant_price_list = await prisma.facility_constant_price_list.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirst<T extends facility_constant_price_listFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, facility_constant_price_listFindFirstArgs<ExtArgs>>
-    ): Prisma__facility_constant_price_listClient<$Result.GetResult<Prisma.$facility_constant_price_listPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
-
-    /**
-     * Find the first Facility_constant_price_list that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {facility_constant_price_listFindFirstOrThrowArgs} args - Arguments to find a Facility_constant_price_list
-     * @example
-     * // Get one Facility_constant_price_list
-     * const facility_constant_price_list = await prisma.facility_constant_price_list.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirstOrThrow<T extends facility_constant_price_listFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, facility_constant_price_listFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__facility_constant_price_listClient<$Result.GetResult<Prisma.$facility_constant_price_listPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find zero or more Facility_constant_price_lists that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {facility_constant_price_listFindManyArgs=} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Facility_constant_price_lists
-     * const facility_constant_price_lists = await prisma.facility_constant_price_list.findMany()
-     * 
-     * // Get first 10 Facility_constant_price_lists
-     * const facility_constant_price_lists = await prisma.facility_constant_price_list.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const facility_constant_price_listWithIdOnly = await prisma.facility_constant_price_list.findMany({ select: { id: true } })
-     * 
-    **/
-    findMany<T extends facility_constant_price_listFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, facility_constant_price_listFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$facility_constant_price_listPayload<ExtArgs>, T, 'findMany'>>
-
-    /**
-     * Create a Facility_constant_price_list.
-     * @param {facility_constant_price_listCreateArgs} args - Arguments to create a Facility_constant_price_list.
-     * @example
-     * // Create one Facility_constant_price_list
-     * const Facility_constant_price_list = await prisma.facility_constant_price_list.create({
-     *   data: {
-     *     // ... data to create a Facility_constant_price_list
-     *   }
-     * })
-     * 
-    **/
-    create<T extends facility_constant_price_listCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, facility_constant_price_listCreateArgs<ExtArgs>>
-    ): Prisma__facility_constant_price_listClient<$Result.GetResult<Prisma.$facility_constant_price_listPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
-
-    /**
-     * Create many Facility_constant_price_lists.
-     *     @param {facility_constant_price_listCreateManyArgs} args - Arguments to create many Facility_constant_price_lists.
-     *     @example
-     *     // Create many Facility_constant_price_lists
-     *     const facility_constant_price_list = await prisma.facility_constant_price_list.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
-     *     
-    **/
-    createMany<T extends facility_constant_price_listCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, facility_constant_price_listCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a Facility_constant_price_list.
-     * @param {facility_constant_price_listDeleteArgs} args - Arguments to delete one Facility_constant_price_list.
-     * @example
-     * // Delete one Facility_constant_price_list
-     * const Facility_constant_price_list = await prisma.facility_constant_price_list.delete({
-     *   where: {
-     *     // ... filter to delete one Facility_constant_price_list
-     *   }
-     * })
-     * 
-    **/
-    delete<T extends facility_constant_price_listDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, facility_constant_price_listDeleteArgs<ExtArgs>>
-    ): Prisma__facility_constant_price_listClient<$Result.GetResult<Prisma.$facility_constant_price_listPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
-
-    /**
-     * Update one Facility_constant_price_list.
-     * @param {facility_constant_price_listUpdateArgs} args - Arguments to update one Facility_constant_price_list.
-     * @example
-     * // Update one Facility_constant_price_list
-     * const facility_constant_price_list = await prisma.facility_constant_price_list.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    update<T extends facility_constant_price_listUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, facility_constant_price_listUpdateArgs<ExtArgs>>
-    ): Prisma__facility_constant_price_listClient<$Result.GetResult<Prisma.$facility_constant_price_listPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
-
-    /**
-     * Delete zero or more Facility_constant_price_lists.
-     * @param {facility_constant_price_listDeleteManyArgs} args - Arguments to filter Facility_constant_price_lists to delete.
-     * @example
-     * // Delete a few Facility_constant_price_lists
-     * const { count } = await prisma.facility_constant_price_list.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-    **/
-    deleteMany<T extends facility_constant_price_listDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, facility_constant_price_listDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Facility_constant_price_lists.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {facility_constant_price_listUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Facility_constant_price_lists
-     * const facility_constant_price_list = await prisma.facility_constant_price_list.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    updateMany<T extends facility_constant_price_listUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, facility_constant_price_listUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Facility_constant_price_list.
-     * @param {facility_constant_price_listUpsertArgs} args - Arguments to update or create a Facility_constant_price_list.
-     * @example
-     * // Update or create a Facility_constant_price_list
-     * const facility_constant_price_list = await prisma.facility_constant_price_list.upsert({
-     *   create: {
-     *     // ... data to create a Facility_constant_price_list
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Facility_constant_price_list we want to update
-     *   }
-     * })
-    **/
-    upsert<T extends facility_constant_price_listUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, facility_constant_price_listUpsertArgs<ExtArgs>>
-    ): Prisma__facility_constant_price_listClient<$Result.GetResult<Prisma.$facility_constant_price_listPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
-
-    /**
-     * Count the number of Facility_constant_price_lists.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {facility_constant_price_listCountArgs} args - Arguments to filter Facility_constant_price_lists to count.
-     * @example
-     * // Count the number of Facility_constant_price_lists
-     * const count = await prisma.facility_constant_price_list.count({
-     *   where: {
-     *     // ... the filter for the Facility_constant_price_lists we want to count
-     *   }
-     * })
-    **/
-    count<T extends facility_constant_price_listCountArgs>(
-      args?: Subset<T, facility_constant_price_listCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], Facility_constant_price_listCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Facility_constant_price_list.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {Facility_constant_price_listAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends Facility_constant_price_listAggregateArgs>(args: Subset<T, Facility_constant_price_listAggregateArgs>): Prisma.PrismaPromise<GetFacility_constant_price_listAggregateType<T>>
-
-    /**
-     * Group by Facility_constant_price_list.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {facility_constant_price_listGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends facility_constant_price_listGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: facility_constant_price_listGroupByArgs['orderBy'] }
-        : { orderBy?: facility_constant_price_listGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, facility_constant_price_listGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFacility_constant_price_listGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the facility_constant_price_list model
-   */
-  readonly fields: facility_constant_price_listFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for facility_constant_price_list.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__facility_constant_price_listClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
-  }
-
-
-
-  /**
-   * Fields of the facility_constant_price_list model
-   */ 
-  interface facility_constant_price_listFieldRefs {
-    readonly id: FieldRef<"facility_constant_price_list", 'Int'>
-    readonly name: FieldRef<"facility_constant_price_list", 'String'>
-    readonly amount: FieldRef<"facility_constant_price_list", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * facility_constant_price_list findUnique
-   */
-  export type facility_constant_price_listFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the facility_constant_price_list
-     */
-    select?: facility_constant_price_listSelect<ExtArgs> | null
-    /**
-     * Filter, which facility_constant_price_list to fetch.
-     */
-    where: facility_constant_price_listWhereUniqueInput
-  }
-
-  /**
-   * facility_constant_price_list findUniqueOrThrow
-   */
-  export type facility_constant_price_listFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the facility_constant_price_list
-     */
-    select?: facility_constant_price_listSelect<ExtArgs> | null
-    /**
-     * Filter, which facility_constant_price_list to fetch.
-     */
-    where: facility_constant_price_listWhereUniqueInput
-  }
-
-  /**
-   * facility_constant_price_list findFirst
-   */
-  export type facility_constant_price_listFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the facility_constant_price_list
-     */
-    select?: facility_constant_price_listSelect<ExtArgs> | null
-    /**
-     * Filter, which facility_constant_price_list to fetch.
-     */
-    where?: facility_constant_price_listWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of facility_constant_price_lists to fetch.
-     */
-    orderBy?: facility_constant_price_listOrderByWithRelationInput | facility_constant_price_listOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for facility_constant_price_lists.
-     */
-    cursor?: facility_constant_price_listWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` facility_constant_price_lists from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` facility_constant_price_lists.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of facility_constant_price_lists.
-     */
-    distinct?: Facility_constant_price_listScalarFieldEnum | Facility_constant_price_listScalarFieldEnum[]
-  }
-
-  /**
-   * facility_constant_price_list findFirstOrThrow
-   */
-  export type facility_constant_price_listFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the facility_constant_price_list
-     */
-    select?: facility_constant_price_listSelect<ExtArgs> | null
-    /**
-     * Filter, which facility_constant_price_list to fetch.
-     */
-    where?: facility_constant_price_listWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of facility_constant_price_lists to fetch.
-     */
-    orderBy?: facility_constant_price_listOrderByWithRelationInput | facility_constant_price_listOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for facility_constant_price_lists.
-     */
-    cursor?: facility_constant_price_listWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` facility_constant_price_lists from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` facility_constant_price_lists.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of facility_constant_price_lists.
-     */
-    distinct?: Facility_constant_price_listScalarFieldEnum | Facility_constant_price_listScalarFieldEnum[]
-  }
-
-  /**
-   * facility_constant_price_list findMany
-   */
-  export type facility_constant_price_listFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the facility_constant_price_list
-     */
-    select?: facility_constant_price_listSelect<ExtArgs> | null
-    /**
-     * Filter, which facility_constant_price_lists to fetch.
-     */
-    where?: facility_constant_price_listWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of facility_constant_price_lists to fetch.
-     */
-    orderBy?: facility_constant_price_listOrderByWithRelationInput | facility_constant_price_listOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing facility_constant_price_lists.
-     */
-    cursor?: facility_constant_price_listWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` facility_constant_price_lists from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` facility_constant_price_lists.
-     */
-    skip?: number
-    distinct?: Facility_constant_price_listScalarFieldEnum | Facility_constant_price_listScalarFieldEnum[]
-  }
-
-  /**
-   * facility_constant_price_list create
-   */
-  export type facility_constant_price_listCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the facility_constant_price_list
-     */
-    select?: facility_constant_price_listSelect<ExtArgs> | null
-    /**
-     * The data needed to create a facility_constant_price_list.
-     */
-    data: XOR<facility_constant_price_listCreateInput, facility_constant_price_listUncheckedCreateInput>
-  }
-
-  /**
-   * facility_constant_price_list createMany
-   */
-  export type facility_constant_price_listCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many facility_constant_price_lists.
-     */
-    data: facility_constant_price_listCreateManyInput | facility_constant_price_listCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * facility_constant_price_list update
-   */
-  export type facility_constant_price_listUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the facility_constant_price_list
-     */
-    select?: facility_constant_price_listSelect<ExtArgs> | null
-    /**
-     * The data needed to update a facility_constant_price_list.
-     */
-    data: XOR<facility_constant_price_listUpdateInput, facility_constant_price_listUncheckedUpdateInput>
-    /**
-     * Choose, which facility_constant_price_list to update.
-     */
-    where: facility_constant_price_listWhereUniqueInput
-  }
-
-  /**
-   * facility_constant_price_list updateMany
-   */
-  export type facility_constant_price_listUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update facility_constant_price_lists.
-     */
-    data: XOR<facility_constant_price_listUpdateManyMutationInput, facility_constant_price_listUncheckedUpdateManyInput>
-    /**
-     * Filter which facility_constant_price_lists to update
-     */
-    where?: facility_constant_price_listWhereInput
-  }
-
-  /**
-   * facility_constant_price_list upsert
-   */
-  export type facility_constant_price_listUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the facility_constant_price_list
-     */
-    select?: facility_constant_price_listSelect<ExtArgs> | null
-    /**
-     * The filter to search for the facility_constant_price_list to update in case it exists.
-     */
-    where: facility_constant_price_listWhereUniqueInput
-    /**
-     * In case the facility_constant_price_list found by the `where` argument doesn't exist, create a new facility_constant_price_list with this data.
-     */
-    create: XOR<facility_constant_price_listCreateInput, facility_constant_price_listUncheckedCreateInput>
-    /**
-     * In case the facility_constant_price_list was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<facility_constant_price_listUpdateInput, facility_constant_price_listUncheckedUpdateInput>
-  }
-
-  /**
-   * facility_constant_price_list delete
-   */
-  export type facility_constant_price_listDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the facility_constant_price_list
-     */
-    select?: facility_constant_price_listSelect<ExtArgs> | null
-    /**
-     * Filter which facility_constant_price_list to delete.
-     */
-    where: facility_constant_price_listWhereUniqueInput
-  }
-
-  /**
-   * facility_constant_price_list deleteMany
-   */
-  export type facility_constant_price_listDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which facility_constant_price_lists to delete
-     */
-    where?: facility_constant_price_listWhereInput
-  }
-
-  /**
-   * facility_constant_price_list without action
-   */
-  export type facility_constant_price_listDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the facility_constant_price_list
-     */
-    select?: facility_constant_price_listSelect<ExtArgs> | null
-  }
-
-
-  /**
    * Model personnel_price_list
    */
 
@@ -21127,6 +20262,7 @@ export namespace Prisma {
     application_fee: number | null
     application_charge: number | null
     enugu_ID_certificate: number | null
+    certificate_charge: number | null
     renewal_fee: number | null
     renewal_charge: number | null
   }
@@ -21136,6 +20272,7 @@ export namespace Prisma {
     application_fee: number | null
     application_charge: number | null
     enugu_ID_certificate: number | null
+    certificate_charge: number | null
     renewal_fee: number | null
     renewal_charge: number | null
   }
@@ -21146,6 +20283,7 @@ export namespace Prisma {
     application_fee: number | null
     application_charge: number | null
     enugu_ID_certificate: number | null
+    certificate_charge: number | null
     renewal_fee: number | null
     renewal_charge: number | null
   }
@@ -21156,6 +20294,7 @@ export namespace Prisma {
     application_fee: number | null
     application_charge: number | null
     enugu_ID_certificate: number | null
+    certificate_charge: number | null
     renewal_fee: number | null
     renewal_charge: number | null
   }
@@ -21166,6 +20305,7 @@ export namespace Prisma {
     application_fee: number
     application_charge: number
     enugu_ID_certificate: number
+    certificate_charge: number
     renewal_fee: number
     renewal_charge: number
     _all: number
@@ -21177,6 +20317,7 @@ export namespace Prisma {
     application_fee?: true
     application_charge?: true
     enugu_ID_certificate?: true
+    certificate_charge?: true
     renewal_fee?: true
     renewal_charge?: true
   }
@@ -21186,6 +20327,7 @@ export namespace Prisma {
     application_fee?: true
     application_charge?: true
     enugu_ID_certificate?: true
+    certificate_charge?: true
     renewal_fee?: true
     renewal_charge?: true
   }
@@ -21196,6 +20338,7 @@ export namespace Prisma {
     application_fee?: true
     application_charge?: true
     enugu_ID_certificate?: true
+    certificate_charge?: true
     renewal_fee?: true
     renewal_charge?: true
   }
@@ -21206,6 +20349,7 @@ export namespace Prisma {
     application_fee?: true
     application_charge?: true
     enugu_ID_certificate?: true
+    certificate_charge?: true
     renewal_fee?: true
     renewal_charge?: true
   }
@@ -21216,6 +20360,7 @@ export namespace Prisma {
     application_fee?: true
     application_charge?: true
     enugu_ID_certificate?: true
+    certificate_charge?: true
     renewal_fee?: true
     renewal_charge?: true
     _all?: true
@@ -21313,6 +20458,7 @@ export namespace Prisma {
     application_fee: number
     application_charge: number
     enugu_ID_certificate: number
+    certificate_charge: number | null
     renewal_fee: number
     renewal_charge: number
     _count: Personnel_price_listCountAggregateOutputType | null
@@ -21342,6 +20488,7 @@ export namespace Prisma {
     application_fee?: boolean
     application_charge?: boolean
     enugu_ID_certificate?: boolean
+    certificate_charge?: boolean
     renewal_fee?: boolean
     renewal_charge?: boolean
   }, ExtArgs["result"]["personnel_price_list"]>
@@ -21352,6 +20499,7 @@ export namespace Prisma {
     application_fee?: boolean
     application_charge?: boolean
     enugu_ID_certificate?: boolean
+    certificate_charge?: boolean
     renewal_fee?: boolean
     renewal_charge?: boolean
   }
@@ -21367,6 +20515,7 @@ export namespace Prisma {
       application_fee: number
       application_charge: number
       enugu_ID_certificate: number
+      certificate_charge: number | null
       renewal_fee: number
       renewal_charge: number
     }, ExtArgs["result"]["personnel_price_list"]>
@@ -21768,6 +20917,7 @@ export namespace Prisma {
     readonly application_fee: FieldRef<"personnel_price_list", 'Int'>
     readonly application_charge: FieldRef<"personnel_price_list", 'Int'>
     readonly enugu_ID_certificate: FieldRef<"personnel_price_list", 'Int'>
+    readonly certificate_charge: FieldRef<"personnel_price_list", 'Int'>
     readonly renewal_fee: FieldRef<"personnel_price_list", 'Int'>
     readonly renewal_charge: FieldRef<"personnel_price_list", 'Int'>
   }
@@ -22392,19 +21542,16 @@ export namespace Prisma {
     first_time_reg: 'first_time_reg',
     first_time_charge: 'first_time_charge',
     renewal_fee: 'renewal_fee',
-    renewal_charge: 'renewal_charge'
+    renewal_charge: 'renewal_charge',
+    verification_fee: 'verification_fee',
+    verification_charge: 'verification_charge',
+    certificate_fee: 'certificate_fee',
+    certificate_charge: 'certificate_charge',
+    inspection_fee: 'inspection_fee',
+    inspection_charge: 'inspection_charge'
   };
 
   export type Facility_price_listScalarFieldEnum = (typeof Facility_price_listScalarFieldEnum)[keyof typeof Facility_price_listScalarFieldEnum]
-
-
-  export const Facility_constant_price_listScalarFieldEnum: {
-    id: 'id',
-    name: 'name',
-    amount: 'amount'
-  };
-
-  export type Facility_constant_price_listScalarFieldEnum = (typeof Facility_constant_price_listScalarFieldEnum)[keyof typeof Facility_constant_price_listScalarFieldEnum]
 
 
   export const Personnel_price_listScalarFieldEnum: {
@@ -22413,6 +21560,7 @@ export namespace Prisma {
     application_fee: 'application_fee',
     application_charge: 'application_charge',
     enugu_ID_certificate: 'enugu_ID_certificate',
+    certificate_charge: 'certificate_charge',
     renewal_fee: 'renewal_fee',
     renewal_charge: 'renewal_charge'
   };
@@ -24306,6 +23454,12 @@ export namespace Prisma {
     first_time_charge?: IntFilter<"facility_price_list"> | number
     renewal_fee?: IntFilter<"facility_price_list"> | number
     renewal_charge?: IntFilter<"facility_price_list"> | number
+    verification_fee?: IntNullableFilter<"facility_price_list"> | number | null
+    verification_charge?: IntNullableFilter<"facility_price_list"> | number | null
+    certificate_fee?: IntNullableFilter<"facility_price_list"> | number | null
+    certificate_charge?: IntNullableFilter<"facility_price_list"> | number | null
+    inspection_fee?: IntNullableFilter<"facility_price_list"> | number | null
+    inspection_charge?: IntNullableFilter<"facility_price_list"> | number | null
   }
 
   export type facility_price_listOrderByWithRelationInput = {
@@ -24318,6 +23472,12 @@ export namespace Prisma {
     first_time_charge?: SortOrder
     renewal_fee?: SortOrder
     renewal_charge?: SortOrder
+    verification_fee?: SortOrderInput | SortOrder
+    verification_charge?: SortOrderInput | SortOrder
+    certificate_fee?: SortOrderInput | SortOrder
+    certificate_charge?: SortOrderInput | SortOrder
+    inspection_fee?: SortOrderInput | SortOrder
+    inspection_charge?: SortOrderInput | SortOrder
   }
 
   export type facility_price_listWhereUniqueInput = Prisma.AtLeast<{
@@ -24333,6 +23493,12 @@ export namespace Prisma {
     first_time_charge?: IntFilter<"facility_price_list"> | number
     renewal_fee?: IntFilter<"facility_price_list"> | number
     renewal_charge?: IntFilter<"facility_price_list"> | number
+    verification_fee?: IntNullableFilter<"facility_price_list"> | number | null
+    verification_charge?: IntNullableFilter<"facility_price_list"> | number | null
+    certificate_fee?: IntNullableFilter<"facility_price_list"> | number | null
+    certificate_charge?: IntNullableFilter<"facility_price_list"> | number | null
+    inspection_fee?: IntNullableFilter<"facility_price_list"> | number | null
+    inspection_charge?: IntNullableFilter<"facility_price_list"> | number | null
   }, "id">
 
   export type facility_price_listOrderByWithAggregationInput = {
@@ -24345,6 +23511,12 @@ export namespace Prisma {
     first_time_charge?: SortOrder
     renewal_fee?: SortOrder
     renewal_charge?: SortOrder
+    verification_fee?: SortOrderInput | SortOrder
+    verification_charge?: SortOrderInput | SortOrder
+    certificate_fee?: SortOrderInput | SortOrder
+    certificate_charge?: SortOrderInput | SortOrder
+    inspection_fee?: SortOrderInput | SortOrder
+    inspection_charge?: SortOrderInput | SortOrder
     _count?: facility_price_listCountOrderByAggregateInput
     _avg?: facility_price_listAvgOrderByAggregateInput
     _max?: facility_price_listMaxOrderByAggregateInput
@@ -24365,50 +23537,12 @@ export namespace Prisma {
     first_time_charge?: IntWithAggregatesFilter<"facility_price_list"> | number
     renewal_fee?: IntWithAggregatesFilter<"facility_price_list"> | number
     renewal_charge?: IntWithAggregatesFilter<"facility_price_list"> | number
-  }
-
-  export type facility_constant_price_listWhereInput = {
-    AND?: facility_constant_price_listWhereInput | facility_constant_price_listWhereInput[]
-    OR?: facility_constant_price_listWhereInput[]
-    NOT?: facility_constant_price_listWhereInput | facility_constant_price_listWhereInput[]
-    id?: IntFilter<"facility_constant_price_list"> | number
-    name?: StringFilter<"facility_constant_price_list"> | string
-    amount?: IntFilter<"facility_constant_price_list"> | number
-  }
-
-  export type facility_constant_price_listOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    amount?: SortOrder
-  }
-
-  export type facility_constant_price_listWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    name?: string
-    AND?: facility_constant_price_listWhereInput | facility_constant_price_listWhereInput[]
-    OR?: facility_constant_price_listWhereInput[]
-    NOT?: facility_constant_price_listWhereInput | facility_constant_price_listWhereInput[]
-    amount?: IntFilter<"facility_constant_price_list"> | number
-  }, "id" | "name">
-
-  export type facility_constant_price_listOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    amount?: SortOrder
-    _count?: facility_constant_price_listCountOrderByAggregateInput
-    _avg?: facility_constant_price_listAvgOrderByAggregateInput
-    _max?: facility_constant_price_listMaxOrderByAggregateInput
-    _min?: facility_constant_price_listMinOrderByAggregateInput
-    _sum?: facility_constant_price_listSumOrderByAggregateInput
-  }
-
-  export type facility_constant_price_listScalarWhereWithAggregatesInput = {
-    AND?: facility_constant_price_listScalarWhereWithAggregatesInput | facility_constant_price_listScalarWhereWithAggregatesInput[]
-    OR?: facility_constant_price_listScalarWhereWithAggregatesInput[]
-    NOT?: facility_constant_price_listScalarWhereWithAggregatesInput | facility_constant_price_listScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"facility_constant_price_list"> | number
-    name?: StringWithAggregatesFilter<"facility_constant_price_list"> | string
-    amount?: IntWithAggregatesFilter<"facility_constant_price_list"> | number
+    verification_fee?: IntNullableWithAggregatesFilter<"facility_price_list"> | number | null
+    verification_charge?: IntNullableWithAggregatesFilter<"facility_price_list"> | number | null
+    certificate_fee?: IntNullableWithAggregatesFilter<"facility_price_list"> | number | null
+    certificate_charge?: IntNullableWithAggregatesFilter<"facility_price_list"> | number | null
+    inspection_fee?: IntNullableWithAggregatesFilter<"facility_price_list"> | number | null
+    inspection_charge?: IntNullableWithAggregatesFilter<"facility_price_list"> | number | null
   }
 
   export type personnel_price_listWhereInput = {
@@ -24420,6 +23554,7 @@ export namespace Prisma {
     application_fee?: IntFilter<"personnel_price_list"> | number
     application_charge?: IntFilter<"personnel_price_list"> | number
     enugu_ID_certificate?: IntFilter<"personnel_price_list"> | number
+    certificate_charge?: IntNullableFilter<"personnel_price_list"> | number | null
     renewal_fee?: IntFilter<"personnel_price_list"> | number
     renewal_charge?: IntFilter<"personnel_price_list"> | number
   }
@@ -24430,6 +23565,7 @@ export namespace Prisma {
     application_fee?: SortOrder
     application_charge?: SortOrder
     enugu_ID_certificate?: SortOrder
+    certificate_charge?: SortOrderInput | SortOrder
     renewal_fee?: SortOrder
     renewal_charge?: SortOrder
   }
@@ -24443,6 +23579,7 @@ export namespace Prisma {
     application_fee?: IntFilter<"personnel_price_list"> | number
     application_charge?: IntFilter<"personnel_price_list"> | number
     enugu_ID_certificate?: IntFilter<"personnel_price_list"> | number
+    certificate_charge?: IntNullableFilter<"personnel_price_list"> | number | null
     renewal_fee?: IntFilter<"personnel_price_list"> | number
     renewal_charge?: IntFilter<"personnel_price_list"> | number
   }, "id">
@@ -24453,6 +23590,7 @@ export namespace Prisma {
     application_fee?: SortOrder
     application_charge?: SortOrder
     enugu_ID_certificate?: SortOrder
+    certificate_charge?: SortOrderInput | SortOrder
     renewal_fee?: SortOrder
     renewal_charge?: SortOrder
     _count?: personnel_price_listCountOrderByAggregateInput
@@ -24471,6 +23609,7 @@ export namespace Prisma {
     application_fee?: IntWithAggregatesFilter<"personnel_price_list"> | number
     application_charge?: IntWithAggregatesFilter<"personnel_price_list"> | number
     enugu_ID_certificate?: IntWithAggregatesFilter<"personnel_price_list"> | number
+    certificate_charge?: IntNullableWithAggregatesFilter<"personnel_price_list"> | number | null
     renewal_fee?: IntWithAggregatesFilter<"personnel_price_list"> | number
     renewal_charge?: IntWithAggregatesFilter<"personnel_price_list"> | number
   }
@@ -26403,6 +25542,12 @@ export namespace Prisma {
     first_time_charge: number
     renewal_fee: number
     renewal_charge: number
+    verification_fee?: number | null
+    verification_charge?: number | null
+    certificate_fee?: number | null
+    certificate_charge?: number | null
+    inspection_fee?: number | null
+    inspection_charge?: number | null
   }
 
   export type facility_price_listUncheckedCreateInput = {
@@ -26415,6 +25560,12 @@ export namespace Prisma {
     first_time_charge: number
     renewal_fee: number
     renewal_charge: number
+    verification_fee?: number | null
+    verification_charge?: number | null
+    certificate_fee?: number | null
+    certificate_charge?: number | null
+    inspection_fee?: number | null
+    inspection_charge?: number | null
   }
 
   export type facility_price_listUpdateInput = {
@@ -26426,6 +25577,12 @@ export namespace Prisma {
     first_time_charge?: IntFieldUpdateOperationsInput | number
     renewal_fee?: IntFieldUpdateOperationsInput | number
     renewal_charge?: IntFieldUpdateOperationsInput | number
+    verification_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    verification_charge?: NullableIntFieldUpdateOperationsInput | number | null
+    certificate_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    certificate_charge?: NullableIntFieldUpdateOperationsInput | number | null
+    inspection_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    inspection_charge?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type facility_price_listUncheckedUpdateInput = {
@@ -26438,6 +25595,12 @@ export namespace Prisma {
     first_time_charge?: IntFieldUpdateOperationsInput | number
     renewal_fee?: IntFieldUpdateOperationsInput | number
     renewal_charge?: IntFieldUpdateOperationsInput | number
+    verification_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    verification_charge?: NullableIntFieldUpdateOperationsInput | number | null
+    certificate_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    certificate_charge?: NullableIntFieldUpdateOperationsInput | number | null
+    inspection_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    inspection_charge?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type facility_price_listCreateManyInput = {
@@ -26450,6 +25613,12 @@ export namespace Prisma {
     first_time_charge: number
     renewal_fee: number
     renewal_charge: number
+    verification_fee?: number | null
+    verification_charge?: number | null
+    certificate_fee?: number | null
+    certificate_charge?: number | null
+    inspection_fee?: number | null
+    inspection_charge?: number | null
   }
 
   export type facility_price_listUpdateManyMutationInput = {
@@ -26461,6 +25630,12 @@ export namespace Prisma {
     first_time_charge?: IntFieldUpdateOperationsInput | number
     renewal_fee?: IntFieldUpdateOperationsInput | number
     renewal_charge?: IntFieldUpdateOperationsInput | number
+    verification_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    verification_charge?: NullableIntFieldUpdateOperationsInput | number | null
+    certificate_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    certificate_charge?: NullableIntFieldUpdateOperationsInput | number | null
+    inspection_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    inspection_charge?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type facility_price_listUncheckedUpdateManyInput = {
@@ -26473,45 +25648,12 @@ export namespace Prisma {
     first_time_charge?: IntFieldUpdateOperationsInput | number
     renewal_fee?: IntFieldUpdateOperationsInput | number
     renewal_charge?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type facility_constant_price_listCreateInput = {
-    name: string
-    amount: number
-  }
-
-  export type facility_constant_price_listUncheckedCreateInput = {
-    id?: number
-    name: string
-    amount: number
-  }
-
-  export type facility_constant_price_listUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    amount?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type facility_constant_price_listUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    amount?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type facility_constant_price_listCreateManyInput = {
-    id?: number
-    name: string
-    amount: number
-  }
-
-  export type facility_constant_price_listUpdateManyMutationInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    amount?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type facility_constant_price_listUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    amount?: IntFieldUpdateOperationsInput | number
+    verification_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    verification_charge?: NullableIntFieldUpdateOperationsInput | number | null
+    certificate_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    certificate_charge?: NullableIntFieldUpdateOperationsInput | number | null
+    inspection_fee?: NullableIntFieldUpdateOperationsInput | number | null
+    inspection_charge?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type personnel_price_listCreateInput = {
@@ -26519,6 +25661,7 @@ export namespace Prisma {
     application_fee: number
     application_charge: number
     enugu_ID_certificate: number
+    certificate_charge?: number | null
     renewal_fee: number
     renewal_charge: number
   }
@@ -26529,6 +25672,7 @@ export namespace Prisma {
     application_fee: number
     application_charge: number
     enugu_ID_certificate: number
+    certificate_charge?: number | null
     renewal_fee: number
     renewal_charge: number
   }
@@ -26538,6 +25682,7 @@ export namespace Prisma {
     application_fee?: IntFieldUpdateOperationsInput | number
     application_charge?: IntFieldUpdateOperationsInput | number
     enugu_ID_certificate?: IntFieldUpdateOperationsInput | number
+    certificate_charge?: NullableIntFieldUpdateOperationsInput | number | null
     renewal_fee?: IntFieldUpdateOperationsInput | number
     renewal_charge?: IntFieldUpdateOperationsInput | number
   }
@@ -26548,6 +25693,7 @@ export namespace Prisma {
     application_fee?: IntFieldUpdateOperationsInput | number
     application_charge?: IntFieldUpdateOperationsInput | number
     enugu_ID_certificate?: IntFieldUpdateOperationsInput | number
+    certificate_charge?: NullableIntFieldUpdateOperationsInput | number | null
     renewal_fee?: IntFieldUpdateOperationsInput | number
     renewal_charge?: IntFieldUpdateOperationsInput | number
   }
@@ -26558,6 +25704,7 @@ export namespace Prisma {
     application_fee: number
     application_charge: number
     enugu_ID_certificate: number
+    certificate_charge?: number | null
     renewal_fee: number
     renewal_charge: number
   }
@@ -26567,6 +25714,7 @@ export namespace Prisma {
     application_fee?: IntFieldUpdateOperationsInput | number
     application_charge?: IntFieldUpdateOperationsInput | number
     enugu_ID_certificate?: IntFieldUpdateOperationsInput | number
+    certificate_charge?: NullableIntFieldUpdateOperationsInput | number | null
     renewal_fee?: IntFieldUpdateOperationsInput | number
     renewal_charge?: IntFieldUpdateOperationsInput | number
   }
@@ -26577,6 +25725,7 @@ export namespace Prisma {
     application_fee?: IntFieldUpdateOperationsInput | number
     application_charge?: IntFieldUpdateOperationsInput | number
     enugu_ID_certificate?: IntFieldUpdateOperationsInput | number
+    certificate_charge?: NullableIntFieldUpdateOperationsInput | number | null
     renewal_fee?: IntFieldUpdateOperationsInput | number
     renewal_charge?: IntFieldUpdateOperationsInput | number
   }
@@ -28012,6 +27161,12 @@ export namespace Prisma {
     first_time_charge?: SortOrder
     renewal_fee?: SortOrder
     renewal_charge?: SortOrder
+    verification_fee?: SortOrder
+    verification_charge?: SortOrder
+    certificate_fee?: SortOrder
+    certificate_charge?: SortOrder
+    inspection_fee?: SortOrder
+    inspection_charge?: SortOrder
   }
 
   export type facility_price_listAvgOrderByAggregateInput = {
@@ -28022,6 +27177,12 @@ export namespace Prisma {
     first_time_charge?: SortOrder
     renewal_fee?: SortOrder
     renewal_charge?: SortOrder
+    verification_fee?: SortOrder
+    verification_charge?: SortOrder
+    certificate_fee?: SortOrder
+    certificate_charge?: SortOrder
+    inspection_fee?: SortOrder
+    inspection_charge?: SortOrder
   }
 
   export type facility_price_listMaxOrderByAggregateInput = {
@@ -28034,6 +27195,12 @@ export namespace Prisma {
     first_time_charge?: SortOrder
     renewal_fee?: SortOrder
     renewal_charge?: SortOrder
+    verification_fee?: SortOrder
+    verification_charge?: SortOrder
+    certificate_fee?: SortOrder
+    certificate_charge?: SortOrder
+    inspection_fee?: SortOrder
+    inspection_charge?: SortOrder
   }
 
   export type facility_price_listMinOrderByAggregateInput = {
@@ -28046,6 +27213,12 @@ export namespace Prisma {
     first_time_charge?: SortOrder
     renewal_fee?: SortOrder
     renewal_charge?: SortOrder
+    verification_fee?: SortOrder
+    verification_charge?: SortOrder
+    certificate_fee?: SortOrder
+    certificate_charge?: SortOrder
+    inspection_fee?: SortOrder
+    inspection_charge?: SortOrder
   }
 
   export type facility_price_listSumOrderByAggregateInput = {
@@ -28056,34 +27229,12 @@ export namespace Prisma {
     first_time_charge?: SortOrder
     renewal_fee?: SortOrder
     renewal_charge?: SortOrder
-  }
-
-  export type facility_constant_price_listCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    amount?: SortOrder
-  }
-
-  export type facility_constant_price_listAvgOrderByAggregateInput = {
-    id?: SortOrder
-    amount?: SortOrder
-  }
-
-  export type facility_constant_price_listMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    amount?: SortOrder
-  }
-
-  export type facility_constant_price_listMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    amount?: SortOrder
-  }
-
-  export type facility_constant_price_listSumOrderByAggregateInput = {
-    id?: SortOrder
-    amount?: SortOrder
+    verification_fee?: SortOrder
+    verification_charge?: SortOrder
+    certificate_fee?: SortOrder
+    certificate_charge?: SortOrder
+    inspection_fee?: SortOrder
+    inspection_charge?: SortOrder
   }
 
   export type personnel_price_listCountOrderByAggregateInput = {
@@ -28092,6 +27243,7 @@ export namespace Prisma {
     application_fee?: SortOrder
     application_charge?: SortOrder
     enugu_ID_certificate?: SortOrder
+    certificate_charge?: SortOrder
     renewal_fee?: SortOrder
     renewal_charge?: SortOrder
   }
@@ -28101,6 +27253,7 @@ export namespace Prisma {
     application_fee?: SortOrder
     application_charge?: SortOrder
     enugu_ID_certificate?: SortOrder
+    certificate_charge?: SortOrder
     renewal_fee?: SortOrder
     renewal_charge?: SortOrder
   }
@@ -28111,6 +27264,7 @@ export namespace Prisma {
     application_fee?: SortOrder
     application_charge?: SortOrder
     enugu_ID_certificate?: SortOrder
+    certificate_charge?: SortOrder
     renewal_fee?: SortOrder
     renewal_charge?: SortOrder
   }
@@ -28121,6 +27275,7 @@ export namespace Prisma {
     application_fee?: SortOrder
     application_charge?: SortOrder
     enugu_ID_certificate?: SortOrder
+    certificate_charge?: SortOrder
     renewal_fee?: SortOrder
     renewal_charge?: SortOrder
   }
@@ -28130,6 +27285,7 @@ export namespace Prisma {
     application_fee?: SortOrder
     application_charge?: SortOrder
     enugu_ID_certificate?: SortOrder
+    certificate_charge?: SortOrder
     renewal_fee?: SortOrder
     renewal_charge?: SortOrder
   }
@@ -30878,10 +30034,6 @@ export namespace Prisma {
      * @deprecated Use facility_price_listDefaultArgs instead
      */
     export type facility_price_listArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = facility_price_listDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use facility_constant_price_listDefaultArgs instead
-     */
-    export type facility_constant_price_listArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = facility_constant_price_listDefaultArgs<ExtArgs>
     /**
      * @deprecated Use personnel_price_listDefaultArgs instead
      */
