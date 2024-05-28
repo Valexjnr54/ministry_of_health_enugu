@@ -331,7 +331,7 @@ model personnel_price_list {
   application_fee      Int
   application_charge   Int
   enugu_ID_certificate Int
-  certificate_charge Int?
+  certificate_charge   Int?
   renewal_fee          Int
   renewal_charge       Int
 }
