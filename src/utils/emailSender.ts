@@ -499,7 +499,7 @@ export async function sendRenewalFacilityEmail(
   );
   // Read the EJS template from the file
   const template = fs.readFileSync(templatePath, "utf-8");
-  const qrData = `https://ministry-of-health-reg.netlify.app/verification?type=Facility&enugu_id=${enugu_facility_id}`;
+  const qrData = `https://ministry-of-health-reg.netlify.app/choose-verification?type=Facility&enugu_id=${enugu_facility_id}`;
   const qrcode = await generateQRCode(
     qrData,
     `public/static/${facility_name}_qrcode.png`
@@ -866,7 +866,7 @@ export async function sendApprovedInspectionMail(
   // Read the EJS template from the file
   const template = fs.readFileSync(templatePath, "utf-8");
 
-  const qrData = `https://ministry-of-health-reg.netlify.app/verification?type=Facility&enugu_id=${enugu_facility_id}`;
+  const qrData = `https://ministry-of-health-reg.netlify.app/choose-verification?type=Facility&enugu_id=${enugu_facility_id}`;
   const qrcode = await generateQRCode(
     qrData,
     `public/static/${facility_name}_qrcode.png`
