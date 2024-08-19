@@ -76,7 +76,7 @@ export async function initializeFoodPaymentHandler(
       type_of_payment,
       callback_url
     );
-    // await sendFoodPaymentEmail(email, paymentInfo, fullname);
+    await sendFoodPaymentEmail(email, paymentInfo, fullname);
     response.json({ data: paymentInfo });
   } catch (error) {
     console.log(error);
