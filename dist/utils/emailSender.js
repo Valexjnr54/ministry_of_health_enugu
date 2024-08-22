@@ -83,7 +83,7 @@ async function sendCompletionEmail(email, facility, type, password) {
   );
   // Read the EJS template from the file
   const template = fs_1.default.readFileSync(templatePath, "utf-8");
-  const url = `https://ministry-of-health-reg.netlify.app/login-page?type=${type}`;
+  const url = `https://enuguhealthverify.com/login-page?type=${type}`;
   const mailOptions = {
     from: "support@enuguhealthverify.com",
     to: email,
@@ -205,7 +205,7 @@ async function sendCreateInspectorMail(email, inspector, password) {
   );
   // Read the EJS template from the file
   const template = fs_1.default.readFileSync(templatePath, "utf-8");
-  const url = "https://ministry-of-health-reg.netlify.app/inspector/login";
+  const url = "https://enuguhealthverify.com/inspector/login";
   const mailOptions = {
     from: "support@enuguhealthverify.com",
     to: email,
@@ -233,7 +233,7 @@ async function sendCreateEnforcerMail(email, enforcer, password) {
   );
   // Read the EJS template from the file
   const template = fs_1.default.readFileSync(templatePath, "utf-8");
-  const url = "https://ministry-of-health-reg.netlify.app/inspector/login";
+  const url = "https://enuguhealthverify.com/inspector/login";
   const mailOptions = {
     from: "support@enuguhealthverify.com",
     to: email,
@@ -261,7 +261,7 @@ async function sendCreateSubAdminMail(email, inspector, password) {
   );
   // Read the EJS template from the file
   const template = fs_1.default.readFileSync(templatePath, "utf-8");
-  const url = "https://ministry-of-health-reg.netlify.app/admin/login";
+  const url = "https://enuguhealthverify.com/admin/login";
   const mailOptions = {
     from: "support@enuguhealthverify.com",
     to: email,
@@ -299,7 +299,7 @@ async function sendRenewalEmail(
   );
   // Read the EJS template from the file
   const template = fs_1.default.readFileSync(templatePath, "utf-8");
-  const qrData = `https://ministry-of-health-reg.netlify.app/choose-verification?type=${type}&enugu_id=${enugu_practice_id}`;
+  const qrData = `https://enuguhealthverify.com/choose-verification?type=${type}&enugu_id=${enugu_practice_id}`;
   const qrcode = await (0, generateQrcode_1.generateQRCode)(
     qrData,
     `public/static/qrcode.png`
@@ -401,7 +401,7 @@ async function sendRenewalFoodHandlerEmail(
   );
   // Read the EJS template from the file
   const template = fs_1.default.readFileSync(templatePath, "utf-8");
-  const qrData = `https://ministry-of-health-reg.netlify.app/choose-verification?type=${type}&enugu_id=${enugu_practice_id}ice_id}`;
+  const qrData = `https://enuguhealthverify.com/choose-verification?type=${type}&enugu_id=${enugu_practice_id}ice_id}`;
   const qrcode = await (0, generateQrcode_1.generateQRCode)(
     qrData,
     `public/static/qrcode.png`
@@ -500,7 +500,7 @@ async function sendRenewalFacilityEmail(
   );
   // Read the EJS template from the file
   const template = fs_1.default.readFileSync(templatePath, "utf-8");
-  const qrData = `https://ministry-of-health-reg.netlify.app/verification?type=Facility&enugu_id=${enugu_facility_id}`;
+  const qrData = `https://enuguhealthverify.com/verification?type=Facility&enugu_id=${enugu_facility_id}`;
   const qrcode = await (0, generateQrcode_1.generateQRCode)(
     qrData,
     `public/static/${facility_name}_qrcode.png`
@@ -712,7 +712,7 @@ async function sendResetEmail(email, user, reset_password_token, type) {
   }
   // Read the EJS template from the file
   const template = fs_1.default.readFileSync(templatePath, "utf-8");
-  const url = `https://ministry-of-health-reg.netlify.app/reset-password?email=${email}&reset_token=${reset_password_token}&type=${type}`;
+  const url = `https://enuguhealthverify.com/reset-password?email=${email}&reset_token=${reset_password_token}&type=${type}`;
   const mailOptions = {
     from: "support@enuguhealthverify.com",
     to: email,
@@ -810,7 +810,7 @@ async function sendApprovedInspectionMail(
   );
   // Read the EJS template from the file
   const template = fs_1.default.readFileSync(templatePath, "utf-8");
-  const qrData = `https://ministry-of-health-reg.netlify.app/verification?type=Facility&enugu_id=${enugu_facility_id}`;
+  const qrData = `https://enuguhealthverify.com/verification?type=Facility&enugu_id=${enugu_facility_id}`;
   const qrcode = await (0, generateQrcode_1.generateQRCode)(
     qrData,
     `public/static/${facility_name}_qrcode.png`
@@ -916,7 +916,7 @@ async function sendApprovedPersonnelMail(
   );
   // Read the EJS template from the file
   const template = fs_1.default.readFileSync(templatePath, "utf-8");
-  const qrData = `https://ministry-of-health-reg.netlify.app/choose-verification?type=${type}&enugu_id=${enugu_practice_id}`;
+  const qrData = `https://enuguhealthverify.com/choose-verification?type=${type}&enugu_id=${enugu_practice_id}`;
   const qrcode = await (0, generateQrcode_1.generateQRCode)(
     qrData,
     `public/static/qrcode.png`
@@ -1012,7 +1012,7 @@ async function sendApprovedFoodHandlerMail(
   );
   // Read the EJS template from the file
   const template = fs_1.default.readFileSync(templatePath, "utf-8");
-  const qrData = `https://ministry-of-health-reg.netlify.app/choose-verification?type=${type}&enugu_id=${enugu_practice_id}`;
+  const qrData = `https://enuguhealthverify.com/choose-verification?type=${type}&enugu_id=${enugu_practice_id}`;
   const qrcode = await (0, generateQrcode_1.generateQRCode)(
     qrData,
     `public/static/qrcode.png`
