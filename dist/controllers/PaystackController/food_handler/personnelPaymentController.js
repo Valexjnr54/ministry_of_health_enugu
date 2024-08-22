@@ -55,7 +55,7 @@ async function initializeFoodPaymentHandler(request, response) {
                 .json({ message: "Callback Can't be undefined" });
         }
         const paymentInfo = await (0, credo_1.initializePayment)(fullname, phone_number, payamount, email, type, type_of_payment, callback_url);
-        // await sendFoodPaymentEmail(email, paymentInfo, fullname);
+        await (0, emailSender_1.sendFoodPaymentEmail)(email, paymentInfo, fullname);
         response.json({ data: paymentInfo });
     }
     catch (error) {

@@ -66,7 +66,7 @@ export async function sendCompletionEmail(
   // Read the EJS template from the file
   const template = fs.readFileSync(templatePath, "utf-8");
 
-  const url = `https://enuguhealthverify.com
+  const url = `https://enuguhealthverify.com/login-page?type=${type}`;
   const mailOptions = {
     from: "support@enuguhealthverify.com",
     to: email,
